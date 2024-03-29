@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.MainController">
@@ -19,10 +21,15 @@
         </items>
       </MenuButton>
       <Button fx:id="defaultButton" layoutX="276.0" layoutY="355.0" mnemonicParsing="false" onAction="#onButtonClicked" text="Start" />
-      <Pagination layoutX="120.0" layoutY="155.0" prefHeight="200.0" prefWidth="363.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="155.0" />
+      <Pagination fx:id="defaultPagination" layoutX="120.0" layoutY="155.0" maxPageIndicatorCount="7" pageCount="7" prefHeight="200.0" prefWidth="363.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="155.0" />
       <Label fx:id="defaultLabel" layoutX="376.0" layoutY="359.0" text="Label" />
       <Label layoutX="281.0" layoutY="14.0" text="Name" />
-      <TextField layoutX="100.0" layoutY="109.0" />
+      <TextField fx:id="inputNumberArea" layoutX="100.0" layoutY="109.0" />
       <Label layoutX="108.0" layoutY="89.0" text="Enter number of rounds" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Downloads/initial_tower_image.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

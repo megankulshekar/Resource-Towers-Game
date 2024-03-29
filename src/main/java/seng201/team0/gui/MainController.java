@@ -3,6 +3,8 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seng201.team0.services.CounterService;
 
@@ -19,6 +21,9 @@ public class MainController {
     private Button defaultButton;
 
     private CounterService counterService;
+
+    @FXML
+    private Pagination defaultPagination;
 
     /**
      * Initialize the window
