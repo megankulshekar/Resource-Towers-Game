@@ -8,10 +8,12 @@ public class Tower {
      * The tower's level
      */
     protected int level = 1;
+
     /**
      * The amount of resource the tower gives
      */
     protected int resourceAmount;
+
     /**
      * The time for the tower to reload on its resource
      */
@@ -53,7 +55,7 @@ public class Tower {
     }
 
     /**
-     * Increments tower's level by amount given
+     * Increments tower's level by 1
      * Increments tower's resource amount by 2
      * Decrements tower's reload speed by 2
      */
@@ -77,15 +79,5 @@ public class Tower {
      */
     public void decrementReloadSpeed(int decrementAmount){
         reloadSpeed -= decrementAmount;
-    }
-
-    public static void main(String[] args){
-        Tower tower1 = new Tower(1, 1);
-        DiamondTower tower2 = new DiamondTower();
-        tower1.levelUp();
-        tower2.levelUp();
-        System.out.println(tower1.getResourceAmount());
-        System.out.println(tower2.getResourceAmount());
-        
     }
 }
