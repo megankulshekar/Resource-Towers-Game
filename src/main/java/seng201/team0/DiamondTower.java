@@ -3,24 +3,12 @@ package seng201.team0;
 /**
  * Class representing a diamond tower
  */
-public class DiamondTower extends Tower implements Purchasable {
+public class DiamondTower extends Tower {
     /**
      * Constructor
      */
     public DiamondTower(){
-        super(10, 8);
-    }
-
-    public int getBuyingPrice(){
-        return 14;
-    }
-
-    public int getSellingPrice(){
-        return getBuyingPrice() / 2;
-    }
-
-    public String getDescription(){
-        return "Tower that extracts and supplies diamonds to mine carts that carry diamonds";
+        super(10, 5);
     }
 
     /**

@@ -80,4 +80,5 @@ public class Tower {
     public void decrementReloadSpeed(int decrementAmount){
         reloadSpeed -= decrementAmount;
     }
+
 }
