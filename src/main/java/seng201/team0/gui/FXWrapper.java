@@ -9,12 +9,16 @@ import seng201.team0.GameEnvironment;
 
 import java.io.IOException;
 
+/**
+ * Class defines functionality for displaying all GUIs onto game window
+ */
 public class FXWrapper {
     /**
      * The game window
      */
     @FXML
     private Pane pane;
+
     /**
      * Current FXML stage
      */
