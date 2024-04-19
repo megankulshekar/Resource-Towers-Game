@@ -3,7 +3,7 @@ package seng201.team0;
 /**
  * Abstract class representing the general functionality of any item in game
  */
-public abstract class Item {
+public abstract class Item implements Purchasable {
     /**
      * Variable for showing if item has been used
      */
@@ -15,8 +15,6 @@ public abstract class Item {
     public Item(){
         used = false;
     }
-    public void buyItem() {
 
-    }
     public abstract void useItem(Tower tower);
 }

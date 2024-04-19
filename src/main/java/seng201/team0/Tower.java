@@ -3,7 +3,7 @@ package seng201.team0;
 /**
  * Class representing the general functionality of any tower in game
  */
-public class Tower {
+public abstract class Tower implements Purchasable {
     /**
      * The tower's level
      */
@@ -114,5 +114,4 @@ public class Tower {
     public void decreaseReloadSpeed(int decreaseAmount){
         reloadSpeed -= decreaseAmount;
     }
-
 }

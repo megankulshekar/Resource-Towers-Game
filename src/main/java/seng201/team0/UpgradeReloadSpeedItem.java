@@ -3,19 +3,22 @@ package seng201.team0;
 /**
  * Class representing an item for decreasing a tower's reload speed
  */
-public class UpgradeReloadSpeedItem extends Item implements Purchasable {
+public class UpgradeReloadSpeedItem extends Item {
     /**
      * Constructor
      */
     public UpgradeReloadSpeedItem(){
         super();
     }
+
     public int getBuyingPrice(){
         return 15;
     }
+
     public int getSellingPrice(){
         return getBuyingPrice() / 2;
     }
+
     public String getDescription(){
         return "Decreases a tower's reload speed";
     }

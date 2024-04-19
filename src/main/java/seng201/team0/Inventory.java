@@ -11,10 +11,12 @@ public class Inventory {
      * Array of towers being used in game
      */
     private Tower[] mainTowers = new Tower[5];
+
     /**
      * Array of towers not being used in game
      */
     private Tower[] reserveTowers = new Tower[5];
+
     /**
      * Array of items the user has bought
      */
@@ -30,63 +32,63 @@ public class Inventory {
     }
 
     /**
-     * Adds new tower to mainTowers array.
-     * If mainTowers is full, then method adds new tower to reserveTowers array.
-     * If reserveTowers is also full, new tower is not added
-     * @param tower The new tower being added to the inventory
+     * Adds new purchasable to the inventory.
+     * If purchasable is a tower, purchasable is added to mainTowers array.
+     * If mainTowers is full, then purchasable is added to reserveTowers array.
+     * If reserveTowers is also full, purchasable is not added.
+     * Otherwise, if purchasable is an item, purchasable is added to items array.
+     * @param purchasable The new purchasable being added to the inventory
      */
-    public void add(Tower tower){
-        for (int i = 0; i < 5; i++){
-            if (mainTowers[i] == null){
-                mainTowers[i] = tower;
-                return;
+    public void add(Purchasable purchasable){
+        if (purchasable instanceof Tower){
+            Tower tower = (Tower) purchasable;
+            for (int i = 0; i < 5; i++){
+                if (mainTowers[i] == null){
+                    mainTowers[i] = tower;
+                    return;
+                }
             }
-        }
-        for (int i = 0; i < 5; i++){
-            if (reserveTowers[i] == null){
-                reserveTowers[i] = tower;
-                return;
+            for (int i = 0; i < 5; i++){
+                if (reserveTowers[i] == null){
+                    reserveTowers[i] = tower;
+                    return;
+                }
             }
+            System.out.println("Could not add tower due to maximum number of towers reached");
+        } else {
+            Item item = (Item) purchasable;
+            items.add(item);
         }
-        System.out.println("Could not add tower due to maximum number of towers reached");
     }
 
     /**
-     * Adds new item to items array
-     * @param item The new item being added to the inventory
+     * Removes purchasable from inventory.
+     * If purchasable is a tower, purchasable is removed from mainTowers array.
+     * If purchasable not in mainTowers, purchasable is removed from reserveTowers array.
+     * If purchasable not in reserveTowers, tower is not removed.
+     * Otherwise, if purchasable is an item, purchasable is removed from items array.
+     * @param purchasable The purchasable being removed from the inventory
      */
-    public void add(Item item){
-        items.add(item);
-    }
-
-    /**
-     * Removes tower in mainTowers array.
-     * If tower not in mainTowers, then tower is removed from reserveTowers array.
-     * If tower not in reserveTowers, tower is not removed
-     * @param tower Tower being removed from inventory
-     */
-    public void remove(Tower tower){
-        for (int i = 0; i < 5; i++){
-            if (mainTowers[i] == tower){
-                mainTowers[i] = null;
-                return;
+    public void remove(Purchasable purchasable){
+        if (purchasable instanceof Tower) {
+            Tower tower = (Tower) purchasable;
+            for (int i = 0; i < 5; i++) {
+                if (mainTowers[i] == tower) {
+                    mainTowers[i] = null;
+                    return;
+                }
             }
-        }
-        for (int i = 0; i < 5; i++){
-            if (reserveTowers[i] == tower){
-                reserveTowers[i] = null;
-                return;
+            for (int i = 0; i < 5; i++) {
+                if (reserveTowers[i] == tower) {
+                    reserveTowers[i] = null;
+                    return;
+                }
             }
+            System.out.println("Could not remove tower as it is not in tower arrays");
+        } else {
+            Item item = (Item) purchasable;
+            items.remove(item);
         }
-        System.out.println("Could not remove tower as it is not in tower arrays");
-    }
-
-    /**
-     * Removes item from items array
-     * @param item Item being removed from inventory
-     */
-    public void remove(Item item){
-        items.remove(item);
     }
 
     /**
@@ -99,5 +101,10 @@ public class Inventory {
         Tower reserveToMain = reserveTowers[reserveTowerIndex];
         mainTowers[mainTowerIndex] = reserveToMain;
         reserveTowers[reserveTowerIndex] = mainToReserve;
+    }
+
+    public void upgradeTower(int itemIndex, Tower tower){
+        items.get(itemIndex).useItem(tower);
+        items.remove(itemIndex);
     }
 }

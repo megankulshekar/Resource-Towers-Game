@@ -3,33 +3,44 @@ package seng201.team0;
 import java.util.function.Consumer;
 
 /**
- * Class representing the user
+ * Class representing the game environment
  */
 public class GameEnvironment {
     /**
      * Name of the user
      */
     private String name;
+
     /**
      * Number of rounds user picks for the game
      */
     private int numberOfRounds;
+
     /**
      * Difficulty setting user picks for the game
      */
     private String difficulty;
+
     /**
      * Amount of money the user has
      */
     private int money;
+
     /**
      * Inventory of the user
      */
-    private Inventory inventory = new Inventory();
+    Inventory inventory = new Inventory();
+
+    /**
+     * Shop used for the game
+     */
+    Shop shop = new Shop();
+
     /**
      * Method for launching the start screen
      */
     private final Consumer<GameEnvironment> startScreenLauncher;
+
     /**
      * Method for clearing the game window
      */
@@ -96,7 +107,7 @@ public class GameEnvironment {
             money = 30;
         } else if (difficulty == "Medium"){
             money = 20;
-        } else{
+        } else {
             money = 10;
         }
     }
@@ -110,13 +121,20 @@ public class GameEnvironment {
     }
 
     /**
-     * Increases (or decreases) the user's money
-     * @param increaseAmount Amount money is increased/decreased by
+     * Increases the user's money
+     * @param increaseAmount Amount money is increased by
      */
     public void increaseMoney(int increaseAmount){
         money += increaseAmount;
     }
 
+    /**
+     * Decreases the user's money
+     * @param decreaseAmount Amount money is decreased by
+     */
+    public void decreaseMoney(int decreaseAmount){
+        money -= decreaseAmount;
+    }
 
     /**
      * Launches the start screen GUI
