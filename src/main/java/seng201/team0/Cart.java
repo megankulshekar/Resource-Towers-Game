@@ -25,6 +25,8 @@ public class Cart {
      */
     private int currentLevel = 0;
 
+    private int time;
+
     /**
      * Constructor
      * @param cartSize Size of cart
@@ -35,6 +37,7 @@ public class Cart {
         size = cartSize;
         resourceType = cartResourceType;
         speed = carSpeed;
+        time = 100 / speed;
     }
 
     /**
