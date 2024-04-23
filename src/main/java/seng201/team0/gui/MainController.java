@@ -22,9 +22,6 @@ public class MainController {
 
     private CounterService counterService;
 
-    @FXML
-    private Pagination defaultPagination;
-
     /**
      * Initialize the window
      *
