@@ -8,7 +8,7 @@ public class CoalTower extends Tower {
      * Constructor
      */
     public CoalTower(){
-        super(2, 3);
+        super("Coal", 2, 2);
     }
 
     public int getBuyingPrice(){

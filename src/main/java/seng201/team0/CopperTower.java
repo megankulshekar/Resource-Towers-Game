@@ -8,7 +8,7 @@ public class CopperTower extends Tower {
      * Constructor
      */
     public CopperTower(){
-        super(3, 3);
+        super("Copper", 3, 3);
     }
 
     public int getBuyingPrice(){

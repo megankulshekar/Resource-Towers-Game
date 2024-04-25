@@ -20,6 +20,11 @@ public abstract class Tower implements Purchasable {
     protected boolean broken = false;
 
     /**
+     * The type of resource the tower gives
+     */
+    protected String resourceType;
+
+    /**
      * The amount of resource the tower gives
      */
     protected int resourceAmount;
@@ -35,7 +40,8 @@ public abstract class Tower implements Purchasable {
      * @param startSpeed The reload time in between when the tower gives resources
      *                   at the start
      */
-    public Tower(int startAmount, int startSpeed){
+    public Tower(String type, int startAmount, int startSpeed){
+        resourceType = type;
         resourceAmount = startAmount;
         reloadSpeed = startSpeed;
     }

@@ -8,7 +8,7 @@ public class DiamondTower extends Tower{
      * Constructor
      */
     public DiamondTower(){
-        super(10, 5);
+        super("Diamond", 8, 8);
     }
 
     public int getBuyingPrice(){

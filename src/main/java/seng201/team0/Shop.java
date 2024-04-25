@@ -3,9 +3,19 @@ package seng201.team0;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class representing the shop in game
+ */
 public class Shop {
-    ArrayList<Tower> allTowers = new ArrayList<Tower>();
-    ArrayList<Item> allItems = new ArrayList<Item>();
+    /**
+     * List of all towers available in the shop
+     */
+    private ArrayList<Tower> allTowers = new ArrayList<Tower>();
+
+    /**
+     * List of all items available in the shop
+     */
+    private ArrayList<Item> allItems = new ArrayList<Item>();
 
     /**
      * Constructor
@@ -33,7 +43,7 @@ public class Shop {
      */
     public void buy(Purchasable purchasable, GameEnvironment game){
         game.decreaseMoney(purchasable.getBuyingPrice());
-        game.inventory.add(purchasable);
+        game.addToInventory(purchasable);
     }
 
     /**
@@ -44,6 +54,6 @@ public class Shop {
      */
     public void sell(Purchasable purchasable, GameEnvironment game){
         game.increaseMoney(purchasable.getSellingPrice());
-        game.inventory.remove(purchasable);
+        game.removeFromInventory(purchasable);
     }
 }

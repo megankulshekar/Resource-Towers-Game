@@ -8,7 +8,7 @@ public class IronTower extends Tower {
      * Constructor
      */
     public IronTower(){
-        super(6, 2);
+        super("Iron", 4, 4);
     }
 
     public int getBuyingPrice(){
