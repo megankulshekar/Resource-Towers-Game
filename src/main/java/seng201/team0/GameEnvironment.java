@@ -1,5 +1,6 @@
 package seng201.team0;
 // Some of the following code is reused from Tutorial 2 - Structuring applications with JavaFX
+import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /**
@@ -17,6 +18,11 @@ public class GameEnvironment {
     private int numberOfRounds;
 
     /**
+     * List of rounds generated for the game
+     */
+    private ArrayList<Round> rounds = new ArrayList<Round>();
+
+    /**
      * Difficulty setting user picks for the game
      */
     private String difficulty;
@@ -29,12 +35,12 @@ public class GameEnvironment {
     /**
      * Inventory of the user
      */
-    Inventory inventory = new Inventory();
+    private Inventory inventory = new Inventory();
 
     /**
      * Shop used for the game
      */
-    Shop shop = new Shop();
+    private Shop shop = new Shop();
 
     /**
      * Method for launching the start screen
@@ -90,6 +96,14 @@ public class GameEnvironment {
     }
 
     /**
+     * Adds a round to list of rounds
+     * @param newRound New round being added
+     */
+    public void addRound(Round newRound){
+        rounds.add(newRound);
+    }
+
+    /**
      * Gets the difficulty of the game
      * @return Difficulty
      */
@@ -134,6 +148,22 @@ public class GameEnvironment {
      */
     public void decreaseMoney(int decreaseAmount){
         money -= decreaseAmount;
+    }
+
+    /**
+     * Adds purchasable to inventory
+     * @param purchasable Purchasable being added
+     */
+    public void addToInventory(Purchasable purchasable){
+        inventory.add(purchasable);
+    }
+
+    /**
+     * Removes purchasable from inventory
+     * @param purchasable Purchasable being removed
+     */
+    public void removeFromInventory(Purchasable purchasable){
+        inventory.remove(purchasable);
     }
 
     /**
