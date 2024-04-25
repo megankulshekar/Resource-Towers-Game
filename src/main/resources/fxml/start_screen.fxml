@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.StartScreenController">
+<GridPane alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.StartScreenController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="209.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.0" minWidth="10.0" prefWidth="203.0" />
@@ -62,9 +63,9 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="234.0" prefWidth="256.0" GridPane.rowIndex="3">
+      <Button fx:id="tower1Button" mnemonicParsing="false" onAction="#onTower1Chosen" prefHeight="234.0" prefWidth="256.0" GridPane.rowIndex="3">
          <graphic>
-            <VBox fx:id="tower1Button" prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label alignment="CENTER" text="Tower 1">
                      <font>
@@ -78,9 +79,9 @@
             </VBox>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="234.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <Button fx:id="tower2Button" mnemonicParsing="false" onAction="#onTower2Chosen" prefHeight="234.0" prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <graphic>
-            <VBox fx:id="tower2Button" prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label alignment="CENTER" text="Tower 2">
                      <font>
@@ -94,9 +95,9 @@
             </VBox>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false" prefHeight="234.0" prefWidth="297.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <Button fx:id="tower3Button" mnemonicParsing="false" onAction="#onTower3Chosen" prefHeight="234.0" prefWidth="297.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
          <graphic>
-            <VBox fx:id="tower3Button" prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label alignment="CENTER" text="Tower 3">
                      <font>
@@ -137,17 +138,20 @@
       </Button>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <RadioButton fx:id="easyButton" layoutX="51.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Easy">
+            <RadioButton fx:id="easyButton" layoutX="50.0" layoutY="29.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Easy">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="difficulty" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="mediumButton" layoutX="50.0" layoutY="55.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Medium" toggleGroup="$difficulty">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="mediumButton" layoutX="50.0" layoutY="55.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Medium">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </RadioButton>
-            <RadioButton fx:id="hardButton" layoutX="50.0" layoutY="81.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Hard">
+            <RadioButton fx:id="hardButton" layoutX="50.0" layoutY="81.0" mnemonicParsing="false" onAction="#onLevelChosen" text="Hard" toggleGroup="$difficulty">
                <font>
                   <Font size="14.0" />
                </font>
@@ -166,9 +170,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="43.0" text="Type of Tower:" />
-            <Label layoutX="14.0" layoutY="113.0" text="Reload Speed:" />
-            <Label layoutX="14.0" layoutY="79.0" text="Resource Amount:" />
+            <Label fx:id="descriptionLabel" layoutX="14.0" layoutY="43.0" prefHeight="100.0" prefWidth="208.0" text="Select a Tower from the List" />
          </children>
       </AnchorPane>
    </children>

@@ -20,5 +20,5 @@ public interface Purchasable {
      * Gets the description of item/tower
      * @return Description
      */
-    public String getDescription();
+    public String getDescription(int resourceAmount, int reloadSpeed);
 }

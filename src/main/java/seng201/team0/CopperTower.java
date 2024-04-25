@@ -19,7 +19,7 @@ public class CopperTower extends Tower {
         return getBuyingPrice() / 2;
     }
 
-    public String getDescription(){
+    public String getDescription(int resourceAmount, int reloadSpeed){
         return "Tower that extracts and supplies copper to mine carts that carry copper";
     }
 }
