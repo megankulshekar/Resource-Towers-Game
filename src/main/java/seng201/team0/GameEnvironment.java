@@ -17,6 +17,8 @@ public class GameEnvironment {
      */
     private int numberOfRounds;
 
+    private int currentRoundIndex = 0;
+
     /**
      * List of rounds generated for the game
      */
@@ -46,6 +48,10 @@ public class GameEnvironment {
      * Method for launching the start screen
      */
     private final Consumer<GameEnvironment> startScreenLauncher;
+    private final Consumer<GameEnvironment> preRoundLauncher;
+    private final Consumer<GameEnvironment> RoundLauncher;
+    private final Consumer<GameEnvironment> InventoryLauncher;
+    private final Consumer<GameEnvironment> ShopLauncher;
 
     /**
      * Method for clearing the game window
@@ -57,9 +63,15 @@ public class GameEnvironment {
      * @param clearScreen Method that clears current GUI displayed on the game window
      * @param startScreenLauncher Method that displays the start screen GUI on the game window
      */
-    public GameEnvironment(Runnable clearScreen, Consumer<GameEnvironment> startScreenLauncher){
+    public GameEnvironment(Runnable clearScreen, Consumer<GameEnvironment> startScreenLauncher,
+                           Consumer<GameEnvironment> preRoundLauncher, Consumer<GameEnvironment> RoundLauncher,
+                           Consumer<GameEnvironment> InventoryLauncher, Consumer<GameEnvironment> ShopLauncher){
         this.clearScreen = clearScreen;
         this.startScreenLauncher = startScreenLauncher;
+        this.preRoundLauncher = preRoundLauncher;
+        this.RoundLauncher = RoundLauncher;
+        this.InventoryLauncher = InventoryLauncher;
+        this.ShopLauncher = ShopLauncher;
         launchStartScreen();
     }
 
@@ -85,6 +97,10 @@ public class GameEnvironment {
      */
     public int getNumberRounds(){
         return numberOfRounds;
+    }
+
+    public int getCurrentRoundIndex(){
+        return currentRoundIndex;
     }
 
     /**
@@ -177,6 +193,62 @@ public class GameEnvironment {
      * Clears the start screen GUI
      */
     public void closeStartScreen(){
+        clearScreen.run();
+    }
+
+    /**
+     * Launches the pre-round GUI
+     */
+    public void launchPreRound(){
+        preRoundLauncher.accept(this);
+    }
+
+    /**
+     * Clears the pre-round GUI
+     */
+    public void closePreRound(){
+        clearScreen.run();
+    }
+
+    /**
+     * Launches the round GUI
+     */
+    public void launchRound(){
+        preRoundLauncher.accept(this);
+    }
+
+    /**
+     * Clears the round GUI
+     */
+    public void closeRound(){
+        clearScreen.run();
+    }
+
+    /**
+     * Launches the inventory GUI
+     */
+    public void launchInventory(){
+        preRoundLauncher.accept(this);
+    }
+
+    /**
+     * Clears the inventory GUI
+     */
+    public void closeInventory(){
+        clearScreen.run();
+    }
+
+    /**
+     * Launches the shop GUI
+     */
+    public void launchShop(){
+        preRoundLauncher.accept(this);
+    }
+
+    /**
+     * Clears the shop GUI
+     */
+    public void closeShop(){
         clearScreen.run();
     }
 }

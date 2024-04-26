@@ -30,7 +30,8 @@ public class FXWrapper {
      */
     public void init(Stage stage) {
         this.stage = stage;
-        new GameEnvironment(this::clearPane, this::launchStartScreen);
+        new GameEnvironment(this::clearPane, this::launchStartScreen, this::launchPreRound, this::launchRound,
+                            this::launchInventory, this::launchShop);
     }
 
     /**
@@ -56,11 +57,48 @@ public class FXWrapper {
     }
 
     /**
+     * Displays pre-round GUI on the game window
+     * @param game The game environment
+     */
+    public void launchPreRound(GameEnvironment game){
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/pre_round.fxml"));
+            setupLoader.setControllerFactory(param -> new PreRoundController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Displays round GUI on the game window
+     * @param game The game environment
+     */
+    public void launchRound(GameEnvironment game){
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/round.fxml"));
+            setupLoader.setControllerFactory(param -> new RoundController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Displays inventory GUI on the game window
      * @param game The game environment
      */
     public void launchInventory(GameEnvironment game){
-
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
+            setupLoader.setControllerFactory(param -> new InventoryController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -68,6 +106,13 @@ public class FXWrapper {
      * @param game The game environment
      */
     public void launchShop(GameEnvironment game){
-
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
+            setupLoader.setControllerFactory(param -> new ShopController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
