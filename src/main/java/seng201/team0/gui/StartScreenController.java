@@ -36,6 +36,11 @@ public class StartScreenController {
     @FXML
     private Label descriptionLabel;
 
+    @FXML
+    private Label selectedTower1Label, selectedTower2Label, selectedTower3Label;
+
+    private int towerChosen = -1;
+
     /**
      * Starts the display page
      * @param game The game environment
@@ -84,18 +89,73 @@ public class StartScreenController {
     public void onTower1Chosen(){
         CoalTower coalTower1 = new CoalTower();
         descriptionLabel.setText(coalTower1.getDescription(10, 10));
+        towerChosen = 0;
     }
 
     @FXML
     public void onTower2Chosen(){
         CoalTower coalTower2 = new CoalTower();
         descriptionLabel.setText(coalTower2.getDescription(5, 5));
+        towerChosen = 1;
     }
 
     @FXML
     public void onTower3Chosen(){
         CoalTower coalTower1 = new CoalTower();
         descriptionLabel.setText(coalTower1.getDescription(1, 3));
+        towerChosen = 2;
+    }
+
+    public void towerTypeChosen(int towerChosen, Label name){
+        CoalTower coalTower = new CoalTower();
+        if(towerChosen == 0){
+            name.setText(coalTower.getDescription(10, 10));
+        }
+        else if(towerChosen == 1){
+            name.setText(coalTower.getDescription(5, 5));
+        }
+        else if(towerChosen == 2){
+            name.setText(coalTower.getDescription(1, 3));
+        }
+    }
+
+    @FXML
+    public void onTower1Selected(){
+        if(towerChosen == 0) {
+            towerTypeChosen(0, selectedTower1Label);
+        }
+        else if(towerChosen == 1){
+            towerTypeChosen(1, selectedTower1Label);
+        }
+        else if(towerChosen == 2){
+            towerTypeChosen(2, selectedTower1Label);
+        }
+    }
+
+    @FXML
+    public void onTower2Selected(){
+        if(towerChosen == 0) {
+            towerTypeChosen(0, selectedTower2Label);
+        }
+        else if(towerChosen == 1){
+            towerTypeChosen(1, selectedTower2Label);
+        }
+        else if(towerChosen == 2){
+            towerTypeChosen(2, selectedTower2Label);
+        }
+    }
+
+    @FXML
+    public void onTower3Selected(){
+        if(towerChosen == 0) {
+            towerTypeChosen(0, selectedTower3Label);
+        }
+        else if(towerChosen == 1){
+            towerTypeChosen(1, selectedTower3Label);
+        }
+        else if(towerChosen == 2){
+            towerTypeChosen(2, selectedTower3Label);
+        }
     }
 
     /**
