@@ -34,7 +34,7 @@ public class StartScreenController {
     private Button tower1Button, tower2Button, tower3Button;
 
     @FXML
-    private Label towerDescriptionLabel;
+    private Label descriptionLabel;
 
     /**
      * Starts the display page
@@ -83,19 +83,19 @@ public class StartScreenController {
     @FXML
     public void onTower1Chosen(){
         CoalTower coalTower1 = new CoalTower();
-        towerDescriptionLabel.setText(coalTower1.getDescription(10, 10));
+        descriptionLabel.setText(coalTower1.getDescription(10, 10));
     }
 
     @FXML
     public void onTower2Chosen(){
         CoalTower coalTower2 = new CoalTower();
-        towerDescriptionLabel.setText(coalTower2.getDescription(5, 5));
+        descriptionLabel.setText(coalTower2.getDescription(5, 5));
     }
 
     @FXML
     public void onTower3Chosen(){
         CoalTower coalTower1 = new CoalTower();
-        towerDescriptionLabel.setText(coalTower1.getDescription(1, 3));
+        descriptionLabel.setText(coalTower1.getDescription(1, 3));
     }
 
     /**
