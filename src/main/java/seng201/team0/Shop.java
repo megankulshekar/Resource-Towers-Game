@@ -45,15 +45,4 @@ public class Shop {
         game.decreaseMoney(purchasable.getBuyingPrice());
         game.addToInventory(purchasable);
     }
-
-    /**
-     * Sells purchasable by increasing user's money by the selling price
-     * and removing purchasable from user's inventory
-     * @param purchasable Purchasable being sold
-     * @param game The game environment
-     */
-    public void sell(Purchasable purchasable, GameEnvironment game){
-        game.increaseMoney(purchasable.getSellingPrice());
-        game.removeFromInventory(purchasable);
-    }
 }

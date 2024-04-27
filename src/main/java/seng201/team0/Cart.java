@@ -8,18 +8,22 @@ public class Cart {
      * Size of the cart
      */
     private int size;
+
     /**
      * The type of resource the cart can carry
      */
     private String resourceType;
+
     /**
      * Speed of the cart
      */
     private int speed;
+
     /**
      * Variable for showing if cart is full
      */
     private boolean full = false;
+
     /**
      * The current amount of resources in the cart
      */
@@ -31,12 +35,12 @@ public class Cart {
      * Constructor
      * @param cartSize Size of cart
      * @param cartResourceType Type of resource the cart can carry
-     * @param carSpeed Speed of the cart
+     * @param cartSpeed Speed of the cart
      */
-    public Cart(int cartSize, String cartResourceType, int carSpeed){
+    public Cart(int cartSize, String cartResourceType, int cartSpeed){
         size = cartSize;
         resourceType = cartResourceType;
-        speed = carSpeed;
+        speed = cartSpeed;
         time = 100 / speed;
     }
 

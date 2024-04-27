@@ -17,6 +17,9 @@ public class GameEnvironment {
      */
     private int numberOfRounds;
 
+    /**
+     * Index of the current round in list of rounds
+     */
     private int currentRoundIndex = 0;
 
     /**
@@ -45,12 +48,28 @@ public class GameEnvironment {
     private Shop shop = new Shop();
 
     /**
-     * Method for launching the start screen
+     * Method for launching the start screen GUI
      */
     private final Consumer<GameEnvironment> startScreenLauncher;
+
+    /**
+     * Method for launching the pre round GUI
+     */
     private final Consumer<GameEnvironment> preRoundLauncher;
+
+    /**
+     * Method for launching the round GUI
+     */
     private final Consumer<GameEnvironment> RoundLauncher;
+
+    /**
+     * Method for launching the inventory GUI
+     */
     private final Consumer<GameEnvironment> InventoryLauncher;
+
+    /**
+     * Method for launching the shop GUI
+     */
     private final Consumer<GameEnvironment> ShopLauncher;
 
     /**
@@ -99,6 +118,10 @@ public class GameEnvironment {
         return numberOfRounds;
     }
 
+    /**
+     * Gets the list index of the current round
+     * @return Current round index
+     */
     public int getCurrentRoundIndex(){
         return currentRoundIndex;
     }
@@ -194,6 +217,7 @@ public class GameEnvironment {
      */
     public void closeStartScreen(){
         clearScreen.run();
+        launchRound();
     }
 
     /**
@@ -214,7 +238,7 @@ public class GameEnvironment {
      * Launches the round GUI
      */
     public void launchRound(){
-        preRoundLauncher.accept(this);
+        RoundLauncher.accept(this);
     }
 
     /**
@@ -228,7 +252,7 @@ public class GameEnvironment {
      * Launches the inventory GUI
      */
     public void launchInventory(){
-        preRoundLauncher.accept(this);
+        InventoryLauncher.accept(this);
     }
 
     /**
@@ -242,7 +266,7 @@ public class GameEnvironment {
      * Launches the shop GUI
      */
     public void launchShop(){
-        preRoundLauncher.accept(this);
+        ShopLauncher.accept(this);
     }
 
     /**

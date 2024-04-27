@@ -36,6 +36,7 @@ public abstract class Tower implements Purchasable {
 
     /**
      * Constructor
+     * @param type The type of resource the tower gives
      * @param startAmount The amount of resource the tower gives at the start
      * @param startSpeed The reload time in between when the tower gives resources
      *                   at the start
@@ -60,6 +61,14 @@ public abstract class Tower implements Purchasable {
      */
     public int getXP(){
         return XP;
+    }
+
+    /**
+     * Gets the resource type of the tower
+     * @return Resource type
+     */
+    public String getResourceType(){
+        return resourceType;
     }
 
     /**

@@ -16,15 +16,21 @@ public class RoundController {
 
     public RoundController(GameEnvironment game){
         this.game = game;
-        roundNumber.setText("Round "+(this.game.getCurrentRoundIndex()+1));
+    }
+
+    @FXML
+    public void initialize(){
+        roundNumber.setText("Round "+(game.getCurrentRoundIndex()+1));
     }
 
     @FXML
     public void onInventory(){
+        game.closeRound();
         game.launchInventory();
     }
     @FXML
     public void onShop(){
+        game.closeRound();
         game.launchShop();
     }
 }

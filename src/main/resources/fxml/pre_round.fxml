@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="seng201.team0.gui.PreRoundController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="514.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="253.0" layoutY="14.0" text="You won!">
          <font>
@@ -48,7 +48,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button layoutX="274.0" layoutY="476.0" mnemonicParsing="false" onAction="#onStartNextRound" text="Start next round" />
+      <Button layoutX="274.0" layoutY="476.0" mnemonicParsing="false" text="Start next round" />
       <Label layoutX="185.0" layoutY="198.0" text="Select difficulty for next round">
          <font>
             <Font size="20.0" />
