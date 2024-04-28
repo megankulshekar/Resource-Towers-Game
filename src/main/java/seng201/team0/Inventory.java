@@ -22,6 +22,10 @@ public class Inventory {
      */
     private ArrayList<Item> items = new ArrayList<Item>();
 
+    public Tower[] getMainTowers(){
+        return mainTowers;
+    }
+
     /**
      * Prints the user's inventory
      */

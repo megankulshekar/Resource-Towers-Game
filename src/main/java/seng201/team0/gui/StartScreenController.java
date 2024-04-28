@@ -6,9 +6,12 @@ import seng201.team0.*;
 
 import java.util.List;
 
+/**
+ * Class for controlling the start screen GUI
+ */
 public class StartScreenController {
     /**
-     * sets the game environment attribute
+     * Sets the game environment attribute
      */
     private GameEnvironment game;
 
@@ -166,6 +169,7 @@ public class StartScreenController {
             Round newRound = new Round(game.getDifficulty());
             game.addRound(newRound);
         }
+        game.getRounds().get(0).createCarts();
         game.closeStartScreen();
     }
 }

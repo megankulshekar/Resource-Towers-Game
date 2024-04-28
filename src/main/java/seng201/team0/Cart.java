@@ -91,6 +91,10 @@ public class Cart {
         return currentLevel;
     }
 
+    public String getDescription(){
+        return "Type of cart: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size;
+    }
+
     /**
      * Increases current amount of resources in the cart
      * If current level is greater than or equal to size, cart is set to full
