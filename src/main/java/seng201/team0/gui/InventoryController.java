@@ -31,9 +31,13 @@ public class InventoryController {
         this.game = game;
     }
 
-//    public void initialize(){
-//        tower1Label.setText(game.getInventory().getMainTowers(0));
-//    }
+    public void initialize(){
+        tower1Label.setText(game.getInventory().getMainTowerDescriptions(0));
+        tower2Label.setText(game.getInventory().getMainTowerDescriptions(1));
+        tower3Label.setText(game.getInventory().getMainTowerDescriptions(2));
+        tower4Label.setText("No tower selected");
+        tower5Label.setText("No tower selected");
+    }
 
     @FXML
     public void onSelectedInvenTower1(){

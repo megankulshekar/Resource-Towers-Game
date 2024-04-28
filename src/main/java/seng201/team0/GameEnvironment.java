@@ -201,8 +201,8 @@ public class GameEnvironment {
      * Adds purchasable to inventory
      * @param purchasable Purchasable being added
      */
-    public void addToInventory(Purchasable purchasable){
-        inventory.add(purchasable);
+    public void addToInventory(Purchasable purchasable, String description){
+        inventory.add(purchasable, description);
     }
 
     /**

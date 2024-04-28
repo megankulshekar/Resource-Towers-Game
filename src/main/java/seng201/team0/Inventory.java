@@ -17,6 +17,10 @@ public class Inventory {
      */
     private Tower[] reserveTowers = new Tower[5];
 
+    private String[] mainTowerDescriptions = new String[5];
+
+    private String[] reserveTowerDescriptions = new String[5];
+
     /**
      * Array of items the user has bought
      */
@@ -43,18 +47,20 @@ public class Inventory {
      * Otherwise, if purchasable is an item, purchasable is added to items array.
      * @param purchasable The new purchasable being added to the inventory
      */
-    public void add(Purchasable purchasable){
+    public void add(Purchasable purchasable, String description){
         if (purchasable instanceof Tower){
             Tower tower = (Tower) purchasable;
             for (int i = 0; i < 5; i++){
                 if (mainTowers[i] == null){
                     mainTowers[i] = tower;
+                    mainTowerDescriptions[i] = description;
                     return;
                 }
             }
             for (int i = 0; i < 5; i++){
                 if (reserveTowers[i] == null){
                     reserveTowers[i] = tower;
+                    reserveTowerDescriptions[i] = description;
                     return;
                 }
             }
@@ -98,6 +104,27 @@ public class Inventory {
     public Tower getMainTowers(int indexValue){
         if(indexValue >= 0 && indexValue <= 4){
             return mainTowers[indexValue];
+        }
+        return null;
+    }
+
+    public String getMainTowerDescriptions(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return mainTowerDescriptions[indexValue];
+        }
+        return null;
+    }
+
+    public Tower getReserveTowers(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return reserveTowers[indexValue];
+        }
+        return null;
+    }
+
+    public String getReserveTowersDescriptions(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return reserveTowerDescriptions[indexValue];
         }
         return null;
     }

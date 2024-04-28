@@ -126,19 +126,19 @@ public class StartScreenController {
             name.setText(coalTower.getDescription("Coal", 10, 10));
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);
-            game.addToInventory(coalTower);
+            game.addToInventory(coalTower, coalTower.getDescription("Coal", 10, 10));
         }
         else if(towerChosen == 1){
             name.setText(coalTower.getDescription("Coal", 5, 5));
             coalTower.increaseResourceAmount(3);
             coalTower.decreaseReloadSpeed(-3);
-            game.addToInventory(coalTower);
+            game.addToInventory(coalTower, coalTower.getDescription("Coal", 5, 5));
         }
         else if(towerChosen == 2){
             name.setText(coalTower.getDescription("Coal", 1, 3));
             coalTower.increaseResourceAmount(-1);
             coalTower.decreaseReloadSpeed(-1);
-            game.addToInventory(coalTower);
+            game.addToInventory(coalTower, coalTower.getDescription("Coal", 1, 3));
         }
     }
 

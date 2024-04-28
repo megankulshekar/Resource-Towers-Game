@@ -41,8 +41,8 @@ public class Shop {
      * @param purchasable Purchasable being bought
      * @param game The game environment
      */
-    public void buy(Purchasable purchasable, GameEnvironment game){
+    public void buy(Purchasable purchasable, GameEnvironment game, String description){
         game.decreaseMoney(purchasable.getBuyingPrice());
-        game.addToInventory(purchasable);
+        game.addToInventory(purchasable, description);
     }
 }

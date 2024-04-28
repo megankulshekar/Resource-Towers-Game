@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
    <children>
-      <Label alignment="CENTER" layoutY="-1.0" prefHeight="23.0" prefWidth="600.0" text="Towers">
+      <Label alignment="CENTER" layoutX="80.0" layoutY="-1.0" prefHeight="23.0" prefWidth="600.0" text="Towers">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <GridPane layoutX="1.0" layoutY="34.0" prefHeight="80.0" prefWidth="600.0">
+      <GridPane layoutX="14.0" layoutY="20.0" prefHeight="154.0" prefWidth="740.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,14 +28,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="invenTower1Button" mnemonicParsing="false" onAction="#onSelectedInvenTower1" prefHeight="112.0" prefWidth="120.0">
+            <Button fx:id="invenTower1Button" mnemonicParsing="false" onAction="#onSelectedInvenTower1" prefHeight="100.0" prefWidth="110.0">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower1Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="First tower">
+                        <Label fx:id="tower1Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -44,11 +44,11 @@
                   </AnchorPane>
                </graphic>
             </Button>
-            <Button fx:id="invenTower2Button" mnemonicParsing="false" onAction="#onSelectedInvenTower2" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="1">
+            <Button fx:id="invenTower2Button" mnemonicParsing="false" onAction="#onSelectedInvenTower2" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="1">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower2Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Second tower">
+                        <Label fx:id="tower2Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -56,11 +56,11 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="invenTower3Button" mnemonicParsing="false" onAction="#onSelectedInvenTower3" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="2">
+            <Button fx:id="invenTower3Button" mnemonicParsing="false" onAction="#onSelectedInvenTower3" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="2">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower3Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Third tower">
+                        <Label fx:id="tower3Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -68,11 +68,11 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="invenTower4Button" mnemonicParsing="false" onAction="#onSelectedInvenTower4" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="3">
+            <Button fx:id="invenTower4Button" mnemonicParsing="false" onAction="#onSelectedInvenTower4" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower4Label" layoutX="3.0" prefHeight="72.0" prefWidth="97.0" text="No tower selected">
+                        <Label fx:id="tower4Label" layoutX="3.0" prefHeight="100.0" prefWidth="110.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -80,19 +80,21 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="invenTower5Button" mnemonicParsing="false" onAction="#onSelectedInvenTower5" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="4" />
-            <AnchorPane prefHeight="61.0" prefWidth="102.0" GridPane.columnIndex="4">
-               <children>
-                  <Label fx:id="tower5Label" layoutX="12.0" layoutY="3.0" prefHeight="72.0" prefWidth="97.0" text="No tower selected">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
+            <Button fx:id="invenTower5Button" mnemonicParsing="false" onAction="#onSelectedInvenTower5" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="4">
+               <graphic>
+                  <AnchorPane prefHeight="61.0" prefWidth="102.0">
+                     <children>
+                        <Label fx:id="tower5Label" layoutX="12.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic></Button>
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="114.0" prefHeight="23.0" prefWidth="600.0" text="Reserve Towers">
+      <Label alignment="CENTER" layoutX="80.0" layoutY="165.0" prefHeight="23.0" prefWidth="600.0" text="Reserve Towers">
          <font>
             <Font size="24.0" />
          </font>
@@ -100,7 +102,7 @@
             <Insets top="10.0" />
          </padding>
       </Label>
-      <GridPane layoutX="1.0" layoutY="160.0" prefHeight="80.0" prefWidth="600.0">
+      <GridPane layoutX="14.0" layoutY="205.0" prefHeight="154.0" prefWidth="740.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -112,14 +114,14 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="reserveTower1Button" mnemonicParsing="false" onAction="#onSelectedReserve1" prefHeight="112.0" prefWidth="120.0">
+            <Button fx:id="reserveTower1Button" mnemonicParsing="false" onAction="#onSelectedReserve1" prefHeight="100.0" prefWidth="110.0">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower1Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Tower 1">
+                        <Label fx:id="reserveTower1Label" layoutX="8.0" layoutY="9.0" prefHeight="100.0" prefWidth="110.0" text="Tower 1">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -128,11 +130,11 @@
                   </AnchorPane>
                </graphic>
             </Button>
-            <Button fx:id="reserveTower2Button" mnemonicParsing="false" onAction="#onSelectedReserve2" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="1">
+            <Button fx:id="reserveTower2Button" mnemonicParsing="false" onAction="#onSelectedReserve2" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="1">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower2Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Tower 2">
+                        <Label fx:id="reserveTower2Label" layoutX="8.0" layoutY="9.0" prefHeight="100.0" prefWidth="110.0" text="Tower 2">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -140,11 +142,11 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="reserveTower3Button" mnemonicParsing="false" onAction="#onSelectedReserve3" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="2">
+            <Button fx:id="reserveTower3Button" mnemonicParsing="false" onAction="#onSelectedReserve3" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="2">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower3Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Tower 3">
+                        <Label fx:id="reserveTower3Label" layoutX="8.0" layoutY="9.0" prefHeight="100.0" prefWidth="110.0" text="Tower 3">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -152,11 +154,11 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="reserveTower4Button" mnemonicParsing="false" onAction="#onSelectedReserve4" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="3">
+            <Button fx:id="reserveTower4Button" mnemonicParsing="false" onAction="#onSelectedReserve4" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="3">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower4Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Tower 4">
+                        <Label fx:id="reserveTower4Label" layoutX="8.0" layoutY="9.0" prefHeight="100.0" prefWidth="110.0" text="Tower 4">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -164,11 +166,11 @@
                      </children>
                   </AnchorPane>
                </graphic></Button>
-            <Button fx:id="reserveTower5Button" mnemonicParsing="false" onAction="#onSelectedReserve5" prefHeight="112.0" prefWidth="120.0" GridPane.columnIndex="4">
+            <Button fx:id="reserveTower5Button" mnemonicParsing="false" onAction="#onSelectedReserve5" prefHeight="112.0" prefWidth="110.0" GridPane.columnIndex="4">
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower5Label" layoutX="8.0" layoutY="9.0" prefHeight="55.0" prefWidth="87.0" text="Tower 5">
+                        <Label fx:id="reserveTower5Label" layoutX="8.0" layoutY="9.0" prefHeight="100.0" prefWidth="110.0" text="Tower 5">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -179,7 +181,7 @@
             </Button>
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="1.0" layoutY="240.0" prefHeight="23.0" prefWidth="600.0" text="Upgrades">
+      <Label alignment="CENTER" layoutX="8.0" layoutY="360.0" prefHeight="23.0" prefWidth="600.0" text="Upgrades">
          <font>
             <Font size="24.0" />
          </font>
@@ -187,7 +189,7 @@
             <Insets top="10.0" />
          </padding>
       </Label>
-      <GridPane layoutY="285.0" prefHeight="80.0" prefWidth="600.0">
+      <GridPane layoutX="14.0" layoutY="421.0" prefHeight="80.0" prefWidth="600.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -245,7 +247,7 @@
                </graphic></Button>
          </children>
       </GridPane>
-      <GridPane layoutX="1.0" layoutY="365.0" prefHeight="72.0" prefWidth="600.0">
+      <GridPane layoutX="1.0" layoutY="501.0" prefHeight="72.0" prefWidth="600.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
