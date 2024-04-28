@@ -206,6 +206,14 @@ public class GameEnvironment {
     }
 
     /**
+     * Gets the user's inventory
+     * @return User inventory
+     */
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    /**
      * Launches the start screen GUI
      */
     public void launchStartScreen(){

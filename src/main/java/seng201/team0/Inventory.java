@@ -91,6 +91,13 @@ public class Inventory {
         }
     }
 
+    public Tower getMainTowers(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return mainTowers[indexValue];
+        }
+        return null;
+    }
+
     /**
      * Swaps a main tower and a reserve tower
      * @param mainTowerIndex Index of main tower being swapped
