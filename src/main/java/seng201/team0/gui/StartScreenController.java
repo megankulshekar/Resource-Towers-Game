@@ -85,6 +85,9 @@ public class StartScreenController {
         game.setDifficulty(inputDifficulty);
     }
 
+    /**
+     * If the left most block is chosen, displays the high resource amount & high reload speed coal tower
+     */
     @FXML
     public void onTower1Chosen(){
         CoalTower coalTower1 = new CoalTower();
@@ -92,6 +95,9 @@ public class StartScreenController {
         towerChosen = 0;
     }
 
+    /**
+     * If the middle block is chosen, displays the medium resource amount & medium reload speed coal tower
+     */
     @FXML
     public void onTower2Chosen(){
         CoalTower coalTower2 = new CoalTower();
@@ -99,6 +105,9 @@ public class StartScreenController {
         towerChosen = 1;
     }
 
+    /**
+     * If the right most block is chosen, displays the low resource amount & high reload speed coal tower
+     */
     @FXML
     public void onTower3Chosen(){
         CoalTower coalTower1 = new CoalTower();
@@ -106,6 +115,11 @@ public class StartScreenController {
         towerChosen = 2;
     }
 
+    /**
+     * Helper function for setting labels
+     * @param towerChosen Which tower is chosen
+     * @param name Label to change
+     */
     public void towerTypeChosen(int towerChosen, Label name){
         CoalTower coalTower = new CoalTower();
         if(towerChosen == 0){
@@ -119,43 +133,22 @@ public class StartScreenController {
         }
     }
 
+    /**
+     * Displays the selected tower details in the chosen block
+     */
     @FXML
     public void onTower1Selected(){
-        if(towerChosen == 0) {
-            towerTypeChosen(0, selectedTower1Label);
-        }
-        else if(towerChosen == 1){
-            towerTypeChosen(1, selectedTower1Label);
-        }
-        else if(towerChosen == 2){
-            towerTypeChosen(2, selectedTower1Label);
-        }
+        towerTypeChosen(towerChosen, selectedTower1Label);
     }
 
     @FXML
     public void onTower2Selected(){
-        if(towerChosen == 0) {
-            towerTypeChosen(0, selectedTower2Label);
-        }
-        else if(towerChosen == 1){
-            towerTypeChosen(1, selectedTower2Label);
-        }
-        else if(towerChosen == 2){
-            towerTypeChosen(2, selectedTower2Label);
-        }
+        towerTypeChosen(towerChosen, selectedTower2Label);
     }
 
     @FXML
     public void onTower3Selected(){
-        if(towerChosen == 0) {
-            towerTypeChosen(0, selectedTower3Label);
-        }
-        else if(towerChosen == 1){
-            towerTypeChosen(1, selectedTower3Label);
-        }
-        else if(towerChosen == 2){
-            towerTypeChosen(2, selectedTower3Label);
-        }
+        towerTypeChosen(towerChosen, selectedTower3Label);
     }
 
     /**
