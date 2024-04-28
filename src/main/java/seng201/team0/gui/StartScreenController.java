@@ -2,10 +2,7 @@ package seng201.team0.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import seng201.team0.CoalTower;
-import seng201.team0.GameEnvironment;
-import seng201.team0.Round;
-import seng201.team0.Tower;
+import seng201.team0.*;
 
 import java.util.List;
 
@@ -127,12 +124,21 @@ public class StartScreenController {
         CoalTower coalTower = new CoalTower();
         if(towerChosen == 0){
             name.setText(coalTower.getDescription(10, 10));
+            coalTower.increaseResourceAmount(8);
+            coalTower.decreaseReloadSpeed(-8);
+            game.addToInventory(coalTower);
         }
         else if(towerChosen == 1){
             name.setText(coalTower.getDescription(5, 5));
+            coalTower.increaseResourceAmount(3);
+            coalTower.decreaseReloadSpeed(-3);
+            game.addToInventory(coalTower);
         }
         else if(towerChosen == 2){
             name.setText(coalTower.getDescription(1, 3));
+            coalTower.increaseResourceAmount(-1);
+            coalTower.decreaseReloadSpeed(-1);
+            game.addToInventory(coalTower);
         }
     }
 
