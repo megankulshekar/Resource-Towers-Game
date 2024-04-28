@@ -19,8 +19,8 @@ public class CoalTower extends Tower {
         return getBuyingPrice() / 2;
     }
 
-    public String getDescription(int resourceAmount, int reloadSpeed){
+    public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         //return "Tower that extracts and supplies coal to mine carts that carry coal";
-        return "Type of Tower: Coal\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+        return "Type of Tower: " + typeTower + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
     }
 }

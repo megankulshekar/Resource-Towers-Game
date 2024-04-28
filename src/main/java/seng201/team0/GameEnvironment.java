@@ -198,14 +198,6 @@ public class GameEnvironment {
     }
 
     /**
-     * Gets the user's inventory
-     * @return User's inventory
-     */
-    public Inventory getInventory(){
-        return inventory;
-    }
-
-    /**
      * Adds purchasable to inventory
      * @param purchasable Purchasable being added
      */

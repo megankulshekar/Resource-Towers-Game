@@ -54,7 +54,7 @@ public class RoundController {
         for (int i = 0; i < mainTowerLabels.size(); i++){
             Tower tower = game.getInventory().getMainTowers()[i];
             if (tower != null) {
-                mainTowerLabels.get(i).setText(tower.getDescription(2, 2));
+                mainTowerLabels.get(i).setText(tower.getDescription("Coal", 2, 2));
             } else{
                 mainTowerLabels.get(i).setText("");
             }

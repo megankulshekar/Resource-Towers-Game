@@ -19,7 +19,7 @@ public class DiamondTower extends Tower{
         return getBuyingPrice() / 2;
     }
 
-    public String getDescription(int resourceAmount, int reloadSpeed){
+    public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Tower that extracts and supplies diamonds to mine carts that carry diamonds";
     }
 

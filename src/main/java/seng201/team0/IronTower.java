@@ -19,7 +19,7 @@ public class IronTower extends Tower {
         return getBuyingPrice() / 2;
     }
 
-    public String getDescription(int resourceAmount, int reloadSpeed){
+    public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Tower that extracts and supplies iron to mine carts that carry iron";
     }
 }
