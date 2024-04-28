@@ -119,6 +119,14 @@ public class GameEnvironment {
     }
 
     /**
+     * Sets the number of rounds for the game
+     * @param inputNumberRounds Number of rounds user has chosen
+     */
+    public void setNumberRounds(int inputNumberRounds) {
+        numberOfRounds = inputNumberRounds;
+    }
+
+    /**
      * Gets the list index of the current round
      * @return Current round index
      */
@@ -127,11 +135,11 @@ public class GameEnvironment {
     }
 
     /**
-     * Sets the number of rounds for the game
-     * @param inputNumberRounds Number of rounds user has chosen
+     * Gets the list of rounds for the game
+     * @return List of rounds
      */
-    public void setNumberRounds(int inputNumberRounds) {
-        numberOfRounds = inputNumberRounds;
+    public ArrayList<Round> getRounds(){
+        return rounds;
     }
 
     /**
@@ -190,6 +198,14 @@ public class GameEnvironment {
     }
 
     /**
+     * Gets the user's inventory
+     * @return User's inventory
+     */
+    public Inventory getInventory(){
+        return inventory;
+    }
+
+    /**
      * Adds purchasable to inventory
      * @param purchasable Purchasable being added
      */
@@ -232,6 +248,7 @@ public class GameEnvironment {
      */
     public void closePreRound(){
         clearScreen.run();
+        launchRound();
     }
 
     /**

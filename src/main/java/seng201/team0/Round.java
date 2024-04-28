@@ -59,6 +59,14 @@ public class Round {
     }
 
     /**
+     * Gets the carts used in the round
+     * @return List of carts used in round
+     */
+    public ArrayList<Cart> getCarts(){
+        return carts;
+    }
+
+    /**
      * Creates carts for the round
      */
     public void createCarts(){
