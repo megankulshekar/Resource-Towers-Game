@@ -38,13 +38,6 @@ public class RoundController {
     @FXML
     public void initialize() {
         int currentRoundIndex = game.getCurrentRoundIndex();
-
-        /*Round round = new Round("Hard");
-        round.increaseNumCarts(7);
-        round.createCarts();
-        game.addRound(round);
-        game.addToInventory(new DiamondTower());*/
-
         Round currentRound = game.getRounds().get(currentRoundIndex);
 
         roundNumber.setText("Round " + (currentRoundIndex + 1));
@@ -52,7 +45,7 @@ public class RoundController {
         List<Label> cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         for (int i = 0; i < mainTowerLabels.size(); i++){
-            Tower tower = game.getInventory().getMainTowers()[i];
+            Tower tower = game.getInventory().getMainTowers(i);
             if (tower != null) {
                 mainTowerLabels.get(i).setText(tower.getDescription("Coal", 2, 2));
             } else{

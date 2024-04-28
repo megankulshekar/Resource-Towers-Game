@@ -134,6 +134,10 @@ public class GameEnvironment {
         return currentRoundIndex;
     }
 
+    public void increaseCurrentRoundIndex(){
+        currentRoundIndex++;
+    }
+
     /**
      * Gets the list of rounds for the game
      * @return List of rounds
@@ -197,6 +201,10 @@ public class GameEnvironment {
         money -= decreaseAmount;
     }
 
+    public Inventory getInventory(){
+        return inventory;
+    }
+
     /**
      * Adds purchasable to inventory
      * @param purchasable Purchasable being added
@@ -211,14 +219,6 @@ public class GameEnvironment {
      */
     public void removeFromInventory(Purchasable purchasable){
         inventory.remove(purchasable);
-    }
-
-    /**
-     * Gets the user's inventory
-     * @return User inventory
-     */
-    public Inventory getInventory() {
-        return inventory;
     }
 
     /**

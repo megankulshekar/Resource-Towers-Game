@@ -177,12 +177,12 @@
       </AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
          <children>
-            <Label layoutX="47.0" layoutY="6.0" text="Tower Statistics">
+            <Label layoutX="32.0" layoutY="4.0" text="Tower Statistics">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="descriptionLabel" layoutX="14.0" layoutY="43.0" prefHeight="100.0" prefWidth="208.0" text="Select a Tower from the List" />
+            <Label fx:id="descriptionLabel" layoutX="4.0" layoutY="43.0" prefHeight="100.0" prefWidth="199.0" text="Select a Tower from the List" />
          </children>
       </AnchorPane>
    </children>
