@@ -135,17 +135,17 @@
             </Button>
          </children>
       </GridPane>
-      <Label fx:id="roundNumber" layoutX="287.0" layoutY="14.0" text="Round #">
+      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="36.0" prefWidth="702.0" text="Round #">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="325.0" layoutY="257.0" text="Carts">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="257.0" prefHeight="25.0" prefWidth="702.0" text="Carts">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="290.0" layoutY="86.0" text="Main Towers">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="86.0" prefHeight="25.0" prefWidth="702.0" text="Main Towers">
          <font>
             <Font size="20.0" />
          </font>

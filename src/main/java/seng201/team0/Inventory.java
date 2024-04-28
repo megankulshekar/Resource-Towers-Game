@@ -26,8 +26,16 @@ public class Inventory {
      */
     private ArrayList<Item> items = new ArrayList<Item>();
 
-    public Tower[] getMainTowers(){
-        return mainTowers;
+    /**
+     * Gets a tower at specified index in main towers list
+     * @param indexValue Index used to get tower
+     * @return Tower at specified index
+     */
+    public Tower getMainTowers(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return mainTowers[indexValue];
+        }
+        return null;
     }
 
     /**
@@ -99,13 +107,6 @@ public class Inventory {
             Item item = (Item) purchasable;
             items.remove(item);
         }
-    }
-
-    public Tower getMainTowers(int indexValue){
-        if(indexValue >= 0 && indexValue <= 4){
-            return mainTowers[indexValue];
-        }
-        return null;
     }
 
     public String getMainTowerDescriptions(int indexValue){
