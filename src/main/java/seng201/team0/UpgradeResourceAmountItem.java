@@ -19,6 +19,10 @@ public class UpgradeResourceAmountItem extends Item {
         return getBuyingPrice() / 2;
     }
 
+    public String getDescription(){
+        return "Increases a tower's resource amount";
+    }
+
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Increases a tower's resource amount";
     }

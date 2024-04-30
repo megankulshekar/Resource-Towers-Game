@@ -1,7 +1,6 @@
 package seng201.team0;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -55,7 +54,7 @@ public class Round {
             cartSize = 6;
             cartSpeed = 6;
         }
-        Collections.addAll(resourceTypes, "Coal");
+        resourceTypes.add("Coal");
     }
 
     /**

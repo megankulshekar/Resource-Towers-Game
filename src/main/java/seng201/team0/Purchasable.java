@@ -21,4 +21,6 @@ public interface Purchasable {
      * @return Description
      */
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed);
+
+    public String getDescription();
 }

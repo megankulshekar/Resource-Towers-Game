@@ -19,6 +19,10 @@ public class RepairItem extends Item {
         return getBuyingPrice() / 2;
     }
 
+    public String getDescription(){
+        return "Repairs a tower back to working order";
+    }
+
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Repairs a tower back to working order";
     }

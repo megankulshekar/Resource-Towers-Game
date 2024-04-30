@@ -14,6 +14,8 @@ public class RoundController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+    private int currentRoundIndex;
+    private Round currentRound;
 
     @FXML
     private Label roundNumber;
@@ -24,30 +26,39 @@ public class RoundController {
     @FXML
     private Label cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10;
 
+    private List<Label> mainTowerLabels;
+    private List<Label> cartLabels;
+
     /**
      * Constructor
      * @param game The game environment
      */
     public RoundController(GameEnvironment game) {
         this.game = game;
+        this.currentRoundIndex = game.getCurrentRoundIndex();
+        this.currentRound = game.getRounds().get(currentRoundIndex);
     }
 
     /**
      * Initialises GUI by setting text for each label
      */
     @FXML
-    public void initialize() {
-        int currentRoundIndex = game.getCurrentRoundIndex();
-        Round currentRound = game.getRounds().get(currentRoundIndex);
-
+    public void initialize() throws InterruptedException {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
-        List<Label> mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
-        List<Label> cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
+        this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
+        this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
+        updateLabels();
+    }
+
+    /**
+     * Displays the descriptions of towers and carts used in the round
+     */
+    public void updateLabels(){
         for (int i = 0; i < mainTowerLabels.size(); i++){
             Tower tower = game.getInventory().getMainTowers(i);
             if (tower != null) {
-                mainTowerLabels.get(i).setText(tower.getDescription("Coal", 2, 2));
+                mainTowerLabels.get(i).setText(tower.getDescription());
             } else{
                 mainTowerLabels.get(i).setText("");
             }
@@ -60,6 +71,14 @@ public class RoundController {
             } else{
                 cartLabels.get(i).setText("");
             }
+        }
+    }
+
+    @FXML
+    public void onFillCart() throws InterruptedException {
+        for (int i = 0; i < currentRound.getCarts().size(); i++) {
+            currentRound.fillCart(currentRound.getCarts().get(i), game.getInventory().getMainTowers(0));
+            updateLabels();
         }
     }
 
@@ -79,5 +98,9 @@ public class RoundController {
     public void onShop(){
         game.closeRound();
         game.launchShop();
+    }
+
+    public void onEndRound(){
+        game.closeRound();
     }
 }

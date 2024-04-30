@@ -92,7 +92,7 @@ public class Cart {
     }
 
     public String getDescription(){
-        return "Type of cart: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size;
+        return "Cart Type: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size;
     }
 
     /**
@@ -101,9 +101,12 @@ public class Cart {
      * @param increaseAmount Amount current level is increased by
      */
     public void increaseCurrentLevel(int increaseAmount){
-        currentLevel += increaseAmount;
-        if (currentLevel >= size){
-            setFullToTrue();
+        if (!full) {
+            currentLevel += increaseAmount;
+            if (currentLevel >= size) {
+                currentLevel = size;
+                setFullToTrue();
+            }
         }
     }
 }

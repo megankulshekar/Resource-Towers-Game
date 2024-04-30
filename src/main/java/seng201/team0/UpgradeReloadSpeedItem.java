@@ -19,6 +19,9 @@ public class UpgradeReloadSpeedItem extends Item {
         return getBuyingPrice() / 2;
     }
 
+    public String getDescription(){
+        return "Decreases a tower's reload speed";
+    }
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Decreases a tower's reload speed";
     }
