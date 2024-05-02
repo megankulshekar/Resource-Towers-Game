@@ -1,5 +1,8 @@
 package seng201.team0;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,6 +19,12 @@ public class Shop {
      * List of all items available in the shop
      */
     private ArrayList<Item> allItems = new ArrayList<Item>();
+
+    public ObservableList<String> getItems() {
+        return items;
+    }
+
+    private ObservableList<String> items = FXCollections.observableArrayList("Placeholder");
 
     /**
      * Constructor

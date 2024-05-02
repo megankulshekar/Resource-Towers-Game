@@ -198,7 +198,7 @@
             <Insets top="10.0" />
          </padding>
       </Label>
-      <ListView layoutX="9.0" layoutY="394.0" prefHeight="100.0" prefWidth="740.0" />
+      <ListView fx:id="upgradesList" layoutX="9.0" layoutY="394.0" prefHeight="100.0" prefWidth="740.0" />
       <Label fx:id="upgradeAppliedLabel" layoutX="320.0" layoutY="542.0" prefHeight="16.0" prefWidth="118.0" />
    </children>
 </AnchorPane>

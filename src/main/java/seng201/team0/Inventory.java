@@ -140,6 +140,9 @@ public class Inventory {
         Tower reserveToMain = reserveTowers[reserveTowerIndex];
         mainTowers[mainTowerIndex] = reserveToMain;
         reserveTowers[reserveTowerIndex] = mainToReserve;
+        String newReservedTowerDescription = mainTowerDescriptions[mainTowerIndex];
+        mainTowerDescriptions[mainTowerIndex] = reserveTowerDescriptions[reserveTowerIndex];
+        reserveTowerDescriptions[reserveTowerIndex] = newReservedTowerDescription;
     }
 
     /**
