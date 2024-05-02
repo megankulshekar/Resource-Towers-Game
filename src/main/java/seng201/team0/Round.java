@@ -10,7 +10,7 @@ public class Round {
     /**
      * Difficulty of round
      */
-    private String difficulty;
+    private static String difficulty;
 
     /**
      * Number of carts in round
@@ -57,6 +57,33 @@ public class Round {
         resourceTypes.add("Coal");
     }
 
+    /**
+     * Gets the number of carts in the round
+     * @return Number of carts
+     */
+    public int getNumCarts(){
+        return numCarts;
+    }
+
+    /**
+     * Gets the size of the carts in the round
+     * @return Size of the carts
+     */
+    public int getCartSize(){
+        return cartSize;
+    }
+
+    /**
+     * Gets the speed of the carts in the round
+     * @return Speed of the carts
+     */
+    public int getCartSpeed(){
+        return cartSpeed;
+    }
+
+    public ArrayList<String> getResourceTypes(){
+        return resourceTypes;
+    }
     /**
      * Gets the carts used in the round
      * @return List of carts used in round

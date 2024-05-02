@@ -30,17 +30,17 @@
             <RadioButton fx:id="easyButton" mnemonicParsing="false" onAction="#onDifficultyChosen" text="Easy" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <RadioButton fx:id="mediumButton" mnemonicParsing="false" onAction="#onDifficultyChosen" text="Medium" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <RadioButton fx:id="hardButton" mnemonicParsing="false" onAction="#onDifficultyChosen" text="Hard" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Label fx:id="easyOption" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="234.0" text="Easy Option" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="easyOption" alignment="CENTER" contentDisplay="CENTER" prefHeight="146.0" prefWidth="224.0" text="Easy Option" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="mediumOption" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="248.0" text="Medium Option" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="mediumOption" alignment="CENTER" contentDisplay="CENTER" prefHeight="163.0" prefWidth="224.0" text="Medium Option" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="hardOPtion" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="230.0" text="Hard Option" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Label fx:id="hardOption" alignment="CENTER" contentDisplay="CENTER" prefHeight="161.0" prefWidth="224.0" text="Hard Option" wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

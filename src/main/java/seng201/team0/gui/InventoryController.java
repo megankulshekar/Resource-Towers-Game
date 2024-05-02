@@ -168,6 +168,6 @@ public class InventoryController {
 
     @FXML
     public void onExit(){
-        game.closeStartScreen();
+        game.closeInventory();
     }
 }

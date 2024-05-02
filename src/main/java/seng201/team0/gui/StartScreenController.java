@@ -47,6 +47,7 @@ public class StartScreenController {
      */
     public StartScreenController(GameEnvironment game){
         this.game = game;
+        this.game.setNumberRounds(5);
     }
 
     /**
@@ -74,13 +75,13 @@ public class StartScreenController {
     public void onLevelChosen(){
         String inputDifficulty;
         if(easyButton.isSelected()){
-            inputDifficulty = easyButton.getText();
+            inputDifficulty = "Easy";
         }
         else if(mediumButton.isSelected()){
-            inputDifficulty = mediumButton.getText();
+            inputDifficulty = "Medium";
         }
         else{
-            inputDifficulty = hardButton.getText();
+            inputDifficulty = "Hard";
         }
         game.setDifficulty(inputDifficulty);
     }
@@ -122,7 +123,7 @@ public class StartScreenController {
      */
     public void towerTypeChosen(int towerChosen, Label name){
         CoalTower coalTower = new CoalTower();
-        if(towerChosen == 0){
+        if(towerChosen == 0){game.getRounds().get(0).createCarts();
             name.setText(coalTower.getDescription("Coal", 10, 10));
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);

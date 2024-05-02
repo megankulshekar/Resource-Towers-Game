@@ -14,7 +14,15 @@ public class RoundController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+
+    /**
+     * The index of the current round in the list of rounds
+     */
     private int currentRoundIndex;
+
+    /**
+     * The current round of the game
+     */
     private Round currentRound;
 
     @FXML
@@ -35,15 +43,15 @@ public class RoundController {
      */
     public RoundController(GameEnvironment game) {
         this.game = game;
-        this.currentRoundIndex = game.getCurrentRoundIndex();
-        this.currentRound = game.getRounds().get(currentRoundIndex);
+        currentRoundIndex = game.getCurrentRoundIndex();
+        currentRound = game.getRounds().get(currentRoundIndex);
     }
 
     /**
      * Initialises GUI by setting text for each label
      */
     @FXML
-    public void initialize() throws InterruptedException {
+    public void initialize() {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
         this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
@@ -75,7 +83,7 @@ public class RoundController {
     }
 
     @FXML
-    public void onFillCart() throws InterruptedException {
+    public void onFillCart() {
         for (int i = 0; i < currentRound.getCarts().size(); i++) {
             currentRound.fillCart(currentRound.getCarts().get(i), game.getInventory().getMainTowers(0));
             updateLabels();
@@ -99,6 +107,10 @@ public class RoundController {
         game.closeRound();
         game.launchShop();
     }
+
+    /**
+     * Closes round GUI
+     */
 
     public void onEndRound(){
         game.closeRound();

@@ -277,6 +277,7 @@ public class GameEnvironment {
      */
     public void closeInventory(){
         clearScreen.run();
+        launchRound();
     }
 
     /**
