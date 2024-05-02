@@ -1,9 +1,12 @@
 package seng201.team0.gui;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.*;
 
+import javafx.util.Duration;
 import java.util.List;
 
 /**
@@ -37,6 +40,8 @@ public class RoundController {
     private List<Label> mainTowerLabels;
     private List<Label> cartLabels;
 
+    private Timeline timeline;
+
     /**
      * Constructor
      * @param game The game environment
@@ -50,6 +55,7 @@ public class RoundController {
     /**
      * Initialises GUI by setting text for each label
      */
+    //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
     public void initialize() {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
@@ -57,6 +63,12 @@ public class RoundController {
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         updateLabels();
+        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        pause.setOnFinished(event -> {
+                    onFillCart();
+                    pause.play();
+                });
+        pause.play();
     }
 
     /**
@@ -111,7 +123,6 @@ public class RoundController {
     /**
      * Closes round GUI
      */
-
     public void onEndRound(){
         game.closeRound();
     }

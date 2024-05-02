@@ -10,9 +10,18 @@ import seng201.team0.Tower;
 
 import java.util.List;
 
+/**
+ * Class for controlling the inventory GUI
+ */
 public class InventoryController {
+    /**
+     * Sets the game environment attribute
+     */
     private GameEnvironment game;
 
+    /**
+     * Buttons and labels are separate attributes in the GUI layout
+     */
     @FXML
     private Button invenTower1Button, invenTower2Button, invenTower3Button, invenTower4Button, invenTower5Button;
 
@@ -40,10 +49,16 @@ public class InventoryController {
     @FXML
     private ListView<String> upgradesList;
 
+    /**
+     * Starting indices when the GUI is initially launched
+     */
     private int mainTowerIndex = -1;
 
     private int reserveTowerIndex = -1;
 
+    /**
+     * Lists for keeping track of all buttons and labels
+     */
     public List<Button> invenTowerButtons;
 
     public List<Button> reserveTowerButtons;
@@ -56,10 +71,18 @@ public class InventoryController {
 
 //    public List<String> reserveTowerDescriptions = List.of(game.getInventory().getReserveTowersDescriptions(0), game.getInventory().getReserveTowersDescriptions(1), game.getInventory().getReserveTowersDescriptions(2), game.getInventory().getReserveTowersDescriptions(3), game.getInventory().getReserveTowersDescriptions(4));
 
+    /**
+     * Constructor
+     * @param game The game environment
+     */
     public InventoryController(GameEnvironment game){
         this.game = game;
     }
 
+    /**
+     * Initializes the buttons and output text
+     * When certain buttons are clicked, index value of that button is stored in a variable
+     */
     public void initialize() {
         invenTowerButtons = List.of(invenTower1Button, invenTower2Button, invenTower3Button, invenTower4Button, invenTower5Button);
         reserveTowerButtons = List.of(reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
@@ -89,7 +112,7 @@ public class InventoryController {
             });
         }
 
-        for (int i = 0; i < invenTowerButtons.size(); i++) {
+        for (int i = 0; i < reserveTowerButtons.size(); i++) {
             int finalI = i;
             reserveTowerButtons.get(i).setOnAction(event -> {
                 reserveTowerIndex = finalI;
@@ -147,6 +170,9 @@ public class InventoryController {
         reserveTowerIndex = 4;
     }
 
+    /**
+     * When the move tower button is clicked, tower indices and labels are swapped
+     */
     @FXML
     public void onMoveTower(){
         //System.out.println(reserveTowerIndex);
@@ -161,11 +187,17 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Alerts user that the upgrade has been applied
+     */
     @FXML
     public void onUpgradeTower(){
         upgradeAppliedLabel.setText("Upgrade Applied");
     }
 
+    /**
+     * Exit returns back to the main game
+     */
     @FXML
     public void onExit(){
         game.closeInventory();

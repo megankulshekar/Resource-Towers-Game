@@ -128,6 +128,7 @@ public class StartScreenController {
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);
             game.addToInventory(coalTower, coalTower.getDescription("Coal", 10, 10));
+            //game.getRounds().get(0).createCarts();
         }
         else if(towerChosen == 1){
             name.setText(coalTower.getDescription("Coal", 5, 5));
