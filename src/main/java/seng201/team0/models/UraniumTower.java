@@ -30,6 +30,10 @@ public class UraniumTower extends Tower {
         return "Tower that extracts and supplies uranium to mine carts that carry uranium";
     }
 
+    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
+        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+    }
+
     /**
      * Increases tower's level by 1
      * Increases tower's resource amount by 5

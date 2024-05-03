@@ -27,6 +27,10 @@ public class RepairItem extends Item {
         return "Repairs a tower back to working order";
     }
 
+    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
+        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+    }
+
     /**
      * Repairs tower by setting broken variable to false
      * @param tower Tower item is used on

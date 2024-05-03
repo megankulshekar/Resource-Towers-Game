@@ -27,7 +27,7 @@ public class CoalTower extends Tower {
         }
 
     }
-    public String getDescription(String type, int resourceAmount, int reloadSpeed){
-        return "Tower Type: " + type + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
+        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
     }
 }

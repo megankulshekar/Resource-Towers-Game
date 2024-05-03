@@ -292,5 +292,6 @@ public class GameEnvironment {
      */
     public void closeShop(){
         clearScreen.run();
+        launchRound();
     }
 }

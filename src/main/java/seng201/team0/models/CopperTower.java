@@ -30,4 +30,8 @@ public class CopperTower extends Tower {
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
         return "Tower that extracts and supplies copper to mine carts that carry copper";
     }
+
+    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
+        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+    }
 }

@@ -27,6 +27,10 @@ public class UpgradeResourceAmountItem extends Item {
         return "Increases a tower's resource amount";
     }
 
+    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
+        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+    }
+
     /**
      * Increases resource amount of tower
      * @param tower Tower item is used on
