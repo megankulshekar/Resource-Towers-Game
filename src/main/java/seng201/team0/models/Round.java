@@ -54,7 +54,9 @@ public class Round {
             cartSize = 6;
             cartSpeed = 6;
         }
-        resourceTypes.add("Coal");
+        if (!resourceTypes.contains("Coal")){
+            resourceTypes.add("Coal");
+        }
     }
 
     /**

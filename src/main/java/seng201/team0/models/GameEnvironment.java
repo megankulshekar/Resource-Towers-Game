@@ -233,7 +233,7 @@ public class GameEnvironment {
      */
     public void closeStartScreen(){
         clearScreen.run();
-        launchRound();
+        launchPreRound();
     }
 
     /**

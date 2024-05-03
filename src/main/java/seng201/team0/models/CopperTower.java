@@ -20,7 +20,11 @@ public class CopperTower extends Tower {
     }
 
     public String getDescription(){
-        return "Tower Type: " + resourceType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+        if (broken){
+            return "Tower is broken";
+        } else{
+            return "Tower Type: " + resourceType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
+        }
     }
 
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){

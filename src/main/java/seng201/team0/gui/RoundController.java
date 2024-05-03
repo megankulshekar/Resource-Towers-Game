@@ -67,7 +67,7 @@ public class RoundController {
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         updateLabels();
-        PauseTransition pause = new PauseTransition(Duration.seconds(10));
+        PauseTransition pause = new PauseTransition(Duration.seconds(5));
         pause.setOnFinished(event -> {
                     onFillCart();
                     pause.play();
@@ -98,7 +98,6 @@ public class RoundController {
         }
     }
 
-    @FXML
     public void onFillCart() {
         for (int i = 0; i < currentRound.getCarts().size(); i++) {
             currentRound.fillCart(currentRound.getCarts().get(i), game.getInventory().getMainTowers(0));
