@@ -1,18 +1,18 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
- * Class representing a gold tower
+ * Class representing an iron tower
  */
-public class GoldTower extends Tower {
+public class IronTower extends Tower {
     /**
      * Constructor
      */
-    public GoldTower(){
-        super("Gold", 5, 5);
+    public IronTower(){
+        super("Iron", 4, 4);
     }
 
     public int getBuyingPrice(){
-        return 9;
+        return 8;
     }
 
     public int getSellingPrice(){
@@ -24,6 +24,6 @@ public class GoldTower extends Tower {
     }
 
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
-        return "Tower that extracts and supplies gold to mine carts that carry gold";
+        return "Tower that extracts and supplies iron to mine carts that carry iron";
     }
 }

@@ -1,4 +1,4 @@
-package seng201.team0;
+package seng201.team0.models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

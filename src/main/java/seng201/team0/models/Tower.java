@@ -1,4 +1,4 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
  * Class representing the general functionality of any tower in game

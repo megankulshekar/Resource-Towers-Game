@@ -1,13 +1,13 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
- * Class representing an item for increasing a tower's XP level
+ * Class representing an item for repairing towers
  */
-public class UpgradeXPItem extends Item {
+public class RepairItem extends Item {
     /**
      * Constructor
      */
-    public UpgradeXPItem(){
+    public RepairItem(){
         super();
     }
 
@@ -20,19 +20,19 @@ public class UpgradeXPItem extends Item {
     }
 
     public String getDescription(){
-        return "Increases a tower's XP level";
+        return "Repairs a tower back to working order";
     }
 
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
-        return "Increases a tower's XP level";
+        return "Repairs a tower back to working order";
     }
 
     /**
-     * Increases XP level of tower
+     * Repairs tower by setting broken variable to false
      * @param tower Tower item is used on
      */
     public void useItem(Tower tower){
-        tower.increaseXP(10);
+        tower.setBroken(false);
         used = true;
     }
 }

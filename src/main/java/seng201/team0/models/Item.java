@@ -1,4 +1,4 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
  * Abstract class representing the general functionality of any item in game

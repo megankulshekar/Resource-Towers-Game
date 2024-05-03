@@ -1,4 +1,4 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
  * Interface class representing all purchasable items/towers

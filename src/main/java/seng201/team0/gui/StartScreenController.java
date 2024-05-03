@@ -2,7 +2,7 @@ package seng201.team0.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import seng201.team0.*;
+import seng201.team0.models.*;
 
 import java.util.List;
 
@@ -123,7 +123,8 @@ public class StartScreenController {
      */
     public void towerTypeChosen(int towerChosen, Label name){
         CoalTower coalTower = new CoalTower();
-        if(towerChosen == 0){game.getRounds().get(0).createCarts();
+        if(towerChosen == 0){
+            game.getRounds().get(0).createCarts();
             name.setText(coalTower.getDescription("Coal", 10, 10));
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);

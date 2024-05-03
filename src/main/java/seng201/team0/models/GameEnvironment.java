@@ -1,4 +1,4 @@
-package seng201.team0;
+package seng201.team0.models;
 // Some of the following code is reused from Tutorial 2 - Structuring applications with JavaFX
 import java.util.ArrayList;
 import java.util.function.Consumer;

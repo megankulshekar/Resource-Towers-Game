@@ -3,8 +3,8 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import seng201.team0.GameEnvironment;
-import seng201.team0.Round;
+import seng201.team0.models.GameEnvironment;
+import seng201.team0.models.Round;
 
 public class PreRoundController {
     /**

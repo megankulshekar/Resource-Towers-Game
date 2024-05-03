@@ -1,13 +1,13 @@
-package seng201.team0;
+package seng201.team0.models;
 
 /**
- * Class representing an item for decreasing a tower's reload speed
+ * Class representing an item for increasing a tower's resource amount
  */
-public class UpgradeReloadSpeedItem extends Item {
+public class UpgradeResourceAmountItem extends Item {
     /**
      * Constructor
      */
-    public UpgradeReloadSpeedItem(){
+    public UpgradeResourceAmountItem(){
         super();
     }
 
@@ -20,18 +20,19 @@ public class UpgradeReloadSpeedItem extends Item {
     }
 
     public String getDescription(){
-        return "Decreases a tower's reload speed";
+        return "Increases a tower's resource amount";
     }
+
     public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
-        return "Decreases a tower's reload speed";
+        return "Increases a tower's resource amount";
     }
 
     /**
-     * Decreases reload speed of tower
+     * Increases resource amount of tower
      * @param tower Tower item is used on
      */
     public void useItem(Tower tower){
-        tower.decreaseReloadSpeed(2);
+        tower.increaseResourceAmount(2);
         used = true;
     }
 }

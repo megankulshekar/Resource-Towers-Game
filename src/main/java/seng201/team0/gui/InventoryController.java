@@ -4,9 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import seng201.team0.CoalTower;
-import seng201.team0.GameEnvironment;
-import seng201.team0.Tower;
+import seng201.team0.models.CoalTower;
+import seng201.team0.models.GameEnvironment;
+import seng201.team0.models.Tower;
 
 import java.util.List;
 
