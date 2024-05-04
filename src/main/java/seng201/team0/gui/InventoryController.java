@@ -82,7 +82,7 @@ public class InventoryController {
 
     /**
      * Initializes the buttons and output text
-     * When certain buttons are clicked, index value of that button is stored in a variable
+     * When certain buttons are clicked, index value of that button is stored in a variable for later use
      */
     public void initialize() {
         invenTowerButtons = List.of(invenTower1Button, invenTower2Button, invenTower3Button, invenTower4Button, invenTower5Button);
@@ -93,18 +93,6 @@ public class InventoryController {
 
         mainTowerLabels = List.of(tower1Label, tower2Label, tower3Label, tower4Label, tower5Label);
         reserveTowerLabels = List.of(reserveTower1Label, reserveTower2Label, reserveTower3Label, reserveTower4Label, reserveTower5Label);
-
-//        tower1Label.setText(game.getInventory().getMainTowerDescriptions(0));
-//        tower2Label.setText(game.getInventory().getMainTowerDescriptions(1));
-//        tower3Label.setText(game.getInventory().getMainTowerDescriptions(2));
-//        tower4Label.setText("No tower");
-//        tower5Label.setText("No tower");
-//
-//        reserveTower1Label.setText("No tower");
-//        reserveTower2Label.setText("No tower");
-//        reserveTower3Label.setText("No tower");
-//        reserveTower4Label.setText("No tower");
-//        reserveTower5Label.setText("No tower");
 
         updateLabels();
 
@@ -123,6 +111,9 @@ public class InventoryController {
         }
     }
 
+    /**
+     * Displays the main and reserve towers descriptions
+     */
     public void updateLabels(){
         for (int i = 0; i < mainTowerLabels.size(); i++){
             Tower tower = game.getInventory().getMainTowers(i);
@@ -198,8 +189,8 @@ public class InventoryController {
      */
     @FXML
     public void onMoveTower(){
-        //System.out.println(reserveTowerIndex);
-        //System.out.println(mainTowerIndex);
+        System.out.println(reserveTowerIndex);
+        System.out.println(mainTowerIndex);
 
         game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
         String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
