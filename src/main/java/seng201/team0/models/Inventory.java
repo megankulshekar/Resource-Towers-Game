@@ -2,6 +2,7 @@ package seng201.team0.models;
 
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class representing the user's inventory
@@ -24,7 +25,7 @@ public class Inventory {
     /**
      * Array of items the user has bought
      */
-    private ArrayList<Item> items = new ArrayList<Item>();
+    private List<Item> items = new ArrayList<Item>();
 
     /**
      * Gets a tower at specified index in main towers list

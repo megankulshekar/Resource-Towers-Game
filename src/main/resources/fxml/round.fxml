@@ -75,7 +75,7 @@
             </Button>
          </children>
       </GridPane>
-      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" onMouseClicked="#onFillCart" prefHeight="36.0" prefWidth="800.0" text="Round #">
+      <Label fx:id="roundNumber" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="36.0" prefWidth="800.0" text="Round #">
          <font>
             <Font size="30.0" />
          </font>

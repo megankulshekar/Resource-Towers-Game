@@ -64,6 +64,14 @@ public abstract class Tower implements Purchasable {
     }
 
     /**
+     * Gets the variable for showing if tower is broken
+     * @return Boolean broken value
+     */
+    public boolean isBroken(){
+        return broken;
+    }
+
+    /**
      * Gets the resource type of the tower
      * @return Resource type
      */
