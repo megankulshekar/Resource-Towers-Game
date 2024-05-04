@@ -123,7 +123,7 @@ public class Inventory {
         return null;
     }
 
-    public String getReserveTowersDescriptions(int indexValue){
+    public String getReserveTowerDescriptions(int indexValue){
         if(indexValue >= 0 && indexValue <= 4){
             return reserveTowerDescriptions[indexValue];
         }

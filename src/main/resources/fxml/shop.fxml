@@ -3,44 +3,37 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="564.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ShopController">
+<AnchorPane prefHeight="655.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ShopController">
    <children>
-      <Label fx:id="moneyLabel" layoutX="181.0" layoutY="407.0" prefHeight="41.0" prefWidth="229.0">
+      <Label fx:id="moneyLabel" layoutX="53.0" layoutY="561.0" prefHeight="41.0" prefWidth="229.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="buyTowerButton" layoutX="322.0" layoutY="254.0" mnemonicParsing="false" onAction="#onBuyTower" prefHeight="41.0" prefWidth="114.0" text="Buy Tower" />
+      <Button fx:id="buyTowerButton" layoutX="322.0" layoutY="208.0" mnemonicParsing="false" onAction="#onBuyTower" prefHeight="41.0" prefWidth="114.0" text="Buy Tower" />
       <Label alignment="CENTER" layoutX="123.0" layoutY="-3.0" prefHeight="35.0" prefWidth="511.0" text="Shop">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="299.0" layoutY="32.0" prefHeight="48.0" prefWidth="166.0" text="Buy a New Tower">
+      <Label layoutX="15.0" layoutY="15.0" prefHeight="48.0" prefWidth="166.0" text="Buy a New Tower">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="114.0" layoutY="424.0" prefHeight="48.0" prefWidth="153.0" text="Buy an Upgrade">
+      <Label layoutX="14.0" layoutY="467.0" prefHeight="48.0" prefWidth="153.0" text="Buy an Upgrade">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <MenuButton fx:id="upgradeMenu" layoutX="511.0" layoutY="382.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="166.0" text="Select an Upgrade">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <GridPane layoutX="14.0" layoutY="65.0" prefHeight="154.0" prefWidth="740.0">
+      <GridPane layoutX="15.0" layoutY="39.0" prefHeight="154.0" prefWidth="740.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -122,16 +115,90 @@
             </Button>
          </children>
       </GridPane>
-      <Button fx:id="exitButton" layoutX="350.0" layoutY="329.0" mnemonicParsing="false" onAction="#onExit" prefHeight="26.0" prefWidth="71.0" text="Exit" />
-      <Label fx:id="itemBoughtLabel" layoutX="181.0" layoutY="361.0" prefHeight="41.0" prefWidth="229.0">
+      <Button fx:id="exitButton" layoutX="683.0" layoutY="569.0" mnemonicParsing="false" onAction="#onExit" prefHeight="26.0" prefWidth="71.0" text="Exit" />
+      <Label fx:id="towerBoughtLabel" layoutX="465.0" layoutY="208.0" prefHeight="41.0" prefWidth="217.0" />
+      <Label layoutX="64.0" layoutY="185.0" text="\$7" />
+      <Label layoutX="224.0" layoutY="184.0" text="\$8" />
+      <Label layoutX="369.0" layoutY="185.0" text="\$9" />
+      <Label layoutX="513.0" layoutY="184.0" text="\$12" />
+      <Label layoutX="658.0" layoutY="184.0" text="\$14" />
+      <Button fx:id="buyUpgradeButton" layoutX="323.0" layoutY="556.0" mnemonicParsing="false" onAction="#onBuyUpgrade" prefHeight="41.0" prefWidth="114.0" text="Buy Upgrade" />
+      <Label layoutX="15.0" layoutY="282.0" prefHeight="48.0" prefWidth="166.0" text="Sell a Tower">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="211.0" text="\$7" />
-      <Label layoutX="221.0" layoutY="211.0" text="\$8" />
-      <Label layoutX="368.0" layoutY="211.0" text="\$9" />
-      <Label layoutX="512.0" layoutY="211.0" text="\$12" />
-      <Label layoutX="662.0" layoutY="211.0" text="\$14" />
+      <ListView fx:id="sellTowerList" layoutX="134.0" layoutY="258.0" prefHeight="96.0" prefWidth="607.0" />
+      <Button fx:id="sellTowerButton" layoutX="323.0" layoutY="372.0" mnemonicParsing="false" onAction="#onSellTower" prefHeight="41.0" prefWidth="114.0" text="Sell Tower" />
+      <Label fx:id="towerSoldLabel" layoutX="465.0" layoutY="372.0" prefHeight="41.0" prefWidth="217.0" />
+      <GridPane layoutX="175.0" layoutY="460.0" prefHeight="58.0" prefWidth="607.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="repairItemButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="110.0">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="repairItem" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0" text="Repair Item">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </Button>
+            <Button fx:id="upgradeXPButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="1">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="upgradeXP" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0" text="Upgrade XP">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </Button>
+            <Button fx:id="upgradeReloadSpeedButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="2">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="upgradeReloadSpeed" alignment="CENTER" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0" text="Upgrade Reload Speed">
+                           <font>
+                              <Font size="9.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </Button>
+            <Button fx:id="upgradeResourceAmountButton" mnemonicParsing="false" prefHeight="100.0" prefWidth="110.0" GridPane.columnIndex="3">
+               <graphic>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="upgradeResourceAmount" alignment="CENTER" layoutX="3.0" prefHeight="100.0" prefWidth="110.0" text="Upgrade Resource Amount">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+      <Label fx:id="upgradeBoughtLabel" layoutX="454.0" layoutY="561.0" prefHeight="41.0" prefWidth="217.0" />
    </children>
 </AnchorPane>

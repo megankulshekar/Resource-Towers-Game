@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import seng201.team0.models.Cart;
 import seng201.team0.models.CoalTower;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
@@ -93,17 +94,19 @@ public class InventoryController {
         mainTowerLabels = List.of(tower1Label, tower2Label, tower3Label, tower4Label, tower5Label);
         reserveTowerLabels = List.of(reserveTower1Label, reserveTower2Label, reserveTower3Label, reserveTower4Label, reserveTower5Label);
 
-        tower1Label.setText(game.getInventory().getMainTowerDescriptions(0));
-        tower2Label.setText(game.getInventory().getMainTowerDescriptions(1));
-        tower3Label.setText(game.getInventory().getMainTowerDescriptions(2));
-        tower4Label.setText("No tower");
-        tower5Label.setText("No tower");
+//        tower1Label.setText(game.getInventory().getMainTowerDescriptions(0));
+//        tower2Label.setText(game.getInventory().getMainTowerDescriptions(1));
+//        tower3Label.setText(game.getInventory().getMainTowerDescriptions(2));
+//        tower4Label.setText("No tower");
+//        tower5Label.setText("No tower");
+//
+//        reserveTower1Label.setText("No tower");
+//        reserveTower2Label.setText("No tower");
+//        reserveTower3Label.setText("No tower");
+//        reserveTower4Label.setText("No tower");
+//        reserveTower5Label.setText("No tower");
 
-        reserveTower1Label.setText("No tower");
-        reserveTower2Label.setText("No tower");
-        reserveTower3Label.setText("No tower");
-        reserveTower4Label.setText("No tower");
-        reserveTower5Label.setText("No tower");
+        updateLabels();
 
         for (int i = 0; i < invenTowerButtons.size(); i++) {
             int finalI = i;
@@ -117,6 +120,26 @@ public class InventoryController {
             reserveTowerButtons.get(i).setOnAction(event -> {
                 reserveTowerIndex = finalI;
             });
+        }
+    }
+
+    public void updateLabels(){
+        for (int i = 0; i < mainTowerLabels.size(); i++){
+            Tower tower = game.getInventory().getMainTowers(i);
+            if (tower != null) {
+                mainTowerLabels.get(i).setText(game.getInventory().getMainTowerDescriptions(i));
+            } else{
+                mainTowerLabels.get(i).setText("");
+            }
+        }
+
+        for (int i = 0; i < reserveTowerLabels.size(); i++){
+            Tower tower = game.getInventory().getReserveTowers(i);
+            if (tower != null) {
+                reserveTowerLabels.get(i).setText(game.getInventory().getReserveTowerDescriptions(i));
+            } else{
+                reserveTowerLabels.get(i).setText("");
+            }
         }
     }
 
@@ -178,13 +201,11 @@ public class InventoryController {
         //System.out.println(reserveTowerIndex);
         //System.out.println(mainTowerIndex);
 
-        if (game.getInventory().getMainTowers(mainTowerIndex) != null && game.getInventory().getReserveTowers(reserveTowerIndex) != null) {
-            game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
-            String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
-            String mainText = mainTowerLabels.get(mainTowerIndex).getText();
-            reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
-            mainTowerLabels.get(mainTowerIndex).setText(reserveText);
-        }
+        game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
+        String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
+        String mainText = mainTowerLabels.get(mainTowerIndex).getText();
+        reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
+        mainTowerLabels.get(mainTowerIndex).setText(reserveText);
     }
 
     /**
