@@ -12,7 +12,7 @@ public class DiamondTower extends Tower{
     }
 
     public int getBuyingPrice(){
-        return 12;
+        return 14;
     }
 
     public int getSellingPrice(){

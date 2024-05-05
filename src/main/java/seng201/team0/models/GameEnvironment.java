@@ -69,6 +69,11 @@ public class GameEnvironment {
     private final Consumer<GameEnvironment> InventoryLauncher;
 
     /**
+     * Method for launching the upgrade popup GUI
+     */
+    private final Consumer<GameEnvironment> UpgradePopupLauncher;
+
+    /**
      * Method for launching the shop GUI
      */
     private final Consumer<GameEnvironment> ShopLauncher;
@@ -85,12 +90,13 @@ public class GameEnvironment {
      */
     public GameEnvironment(Runnable clearScreen, Consumer<GameEnvironment> startScreenLauncher,
                            Consumer<GameEnvironment> preRoundLauncher, Consumer<GameEnvironment> RoundLauncher,
-                           Consumer<GameEnvironment> InventoryLauncher, Consumer<GameEnvironment> ShopLauncher){
+                           Consumer<GameEnvironment> InventoryLauncher, Consumer<GameEnvironment> UpgradePopupLauncher, Consumer<GameEnvironment> ShopLauncher){
         this.clearScreen = clearScreen;
         this.startScreenLauncher = startScreenLauncher;
         this.preRoundLauncher = preRoundLauncher;
         this.RoundLauncher = RoundLauncher;
         this.InventoryLauncher = InventoryLauncher;
+        this.UpgradePopupLauncher = UpgradePopupLauncher;
         this.ShopLauncher = ShopLauncher;
         launchStartScreen();
     }
@@ -229,6 +235,18 @@ public class GameEnvironment {
         inventory.remove(purchasable);
     }
 
+    public void buyInShop(Purchasable purchasable, GameEnvironment game, String description){
+        shop.buy(purchasable, game, description);
+    }
+
+    public void addToUpgrades(Item item, String description){
+        inventory.addUpgrade(item, description);
+    }
+
+    public void buyUpgrades(Item item, GameEnvironment game, String description){
+        shop.buyUpgrade(item, game, description);
+    }
+
     /**
      * Launches the start screen GUI
      */
@@ -286,6 +304,29 @@ public class GameEnvironment {
     public void closeInventory(){
         clearScreen.run();
         launchRound();
+    }
+
+    /**
+     * Clears the inventory GUI for upgrade popup GUI
+     */
+    public void closeInventoryForUpgrade(){
+        clearScreen.run();
+        launchUpgradePopup();
+    }
+
+    /**
+     * Launches the upgrade popup GUI
+     */
+    public void launchUpgradePopup() {
+        UpgradePopupLauncher.accept(this);
+    }
+
+    /**
+     * Clears the upgrade popup GUI
+     */
+    public void closeUpgradePopup() {
+        clearScreen.run();
+        launchInventory();
     }
 
     /**

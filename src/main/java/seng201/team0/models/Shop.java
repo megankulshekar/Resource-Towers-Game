@@ -55,4 +55,9 @@ public class Shop {
         game.decreaseMoney(purchasable.getBuyingPrice());
         game.addToInventory(purchasable, description);
     }
+
+    public void buyUpgrade(Item item, GameEnvironment game, String description){
+        game.decreaseMoney(item.getBuyingPrice());
+        game.addToUpgrades(item, description);
+    }
 }

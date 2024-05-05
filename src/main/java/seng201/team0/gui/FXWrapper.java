@@ -31,7 +31,7 @@ public class FXWrapper {
     public void init(Stage stage) {
         this.stage = stage;
         new GameEnvironment(this::clearPane, this::launchStartScreen, this::launchPreRound, this::launchRound,
-                            this::launchInventory, this::launchShop);
+                            this::launchInventory, this::launchUpgradePopup, this::launchShop);
     }
 
     /**
@@ -94,6 +94,21 @@ public class FXWrapper {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/inventory.fxml"));
             setupLoader.setControllerFactory(param -> new InventoryController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Displays upgrade popup GUI on the game window
+     * @param game The game environment
+     */
+    public void launchUpgradePopup(GameEnvironment game){
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/new_stage_upgrade_popup.fxml"));
+            setupLoader.setControllerFactory(param -> new NewStageUpgradePopupController(game));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
         } catch (IOException e) {

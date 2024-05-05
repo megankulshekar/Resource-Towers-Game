@@ -12,7 +12,7 @@ public class UraniumTower extends Tower {
     }
 
     public int getBuyingPrice(){
-        return 14;
+        return 12;
     }
 
     public int getSellingPrice(){

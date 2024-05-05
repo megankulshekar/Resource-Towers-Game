@@ -8,6 +8,8 @@ import seng201.team0.models.Cart;
 import seng201.team0.models.CoalTower;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
+import seng201.team0.services.InventoryService;
+import seng201.team0.services.RoundService;
 
 import java.util.List;
 
@@ -19,6 +21,11 @@ public class InventoryController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+
+    /**
+     * The service class for the controller
+     */
+    private InventoryService inventoryService;
 
     /**
      * Buttons and labels are separate attributes in the GUI layout
@@ -78,6 +85,7 @@ public class InventoryController {
      */
     public InventoryController(GameEnvironment game){
         this.game = game;
+        inventoryService = new InventoryService(this.game);
     }
 
     /**
@@ -197,6 +205,8 @@ public class InventoryController {
         String mainText = mainTowerLabels.get(mainTowerIndex).getText();
         reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
         mainTowerLabels.get(mainTowerIndex).setText(reserveText);
+        mainTowerIndex = -1;
+        reserveTowerIndex = -1;
     }
 
     /**
@@ -204,7 +214,11 @@ public class InventoryController {
      */
     @FXML
     public void onUpgradeTower(){
-        upgradeAppliedLabel.setText("Upgrade Applied");
+        //if (mainTowerIndex != -1 && reserveTowerIndex == -1 || mainTowerIndex == -1 && reserveTowerIndex != -1){
+        game.closeInventoryForUpgrade();
+        game.launchUpgradePopup();
+        //}
+        //upgradeAppliedLabel.setText("Upgrade Applied");
     }
 
     /**

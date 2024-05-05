@@ -1,5 +1,7 @@
 package seng201.team0.models;
 
+import javafx.scene.control.Label;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,11 @@ public class Inventory {
     private String[] reserveTowerDescriptions = new String[5];
 
     /**
+     * Stores upgrade descriptions for use in other classes
+     */
+    private ArrayList<String> upgradesBought = new ArrayList<String>();
+
+    /**
      * Array of items the user has bought
      */
     private List<Item> items = new ArrayList<Item>();
@@ -37,6 +44,10 @@ public class Inventory {
             return mainTowers[indexValue];
         }
         return null;
+    }
+
+    public ArrayList<String> getUpgradesBought() {
+        return upgradesBought;
     }
 
     /**
@@ -129,6 +140,11 @@ public class Inventory {
             return reserveTowerDescriptions[indexValue];
         }
         return null;
+    }
+
+    public void addUpgrade(Item item, String description){
+        items.add(item);
+        upgradesBought.add(description);
     }
 
     /**

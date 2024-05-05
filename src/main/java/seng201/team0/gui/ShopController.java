@@ -78,6 +78,15 @@ public class ShopController {
     @FXML
     private Label upgradeBoughtLabel;
 
+    @FXML
+    private ListView sellUpgradeList;
+
+    @FXML
+    private Button sellUpgradeButton;
+
+    @FXML
+    private Label upgradeSoldLabel;
+
     /**
      * Physical button to exit the shop GUI
      */
@@ -142,6 +151,8 @@ public class ShopController {
         boughtUpgradeButtons = List.of(repairItemButton, upgradeXPButton, upgradeReloadSpeedButton, upgradeResourceAmountButton);
         upgradesLabels = List.of(repairItem, upgradeXP, upgradeReloadSpeed, upgradeResourceAmount);
 
+        specialTowersVisibility();
+
         //updates the player's remaining money periodically
         updateMoneyLabel();
 
@@ -159,12 +170,6 @@ public class ShopController {
             });
         }
 
-        //the Uranium and Diamond towers cannot be bought until after 8 rounds have been passed
-        uraniumButton.setDisable(true);
-        diamondButton.setDisable(true);
-        uraniumCostLabel.setVisible(false);
-        diamondCostLabel.setVisible(false);
-
 //        sellTowerList.setCellFactory(new TowerCellFactory());
 //        sellTowerList.setItems(FXCollections.observableArrayList(game.getInventory().getMainTowers(0), game.getInventory().getMainTowers(1)));
 //
@@ -176,6 +181,18 @@ public class ShopController {
 //            System.out.println("Action: " + r);
 //            System.out.println("Current Selection: " + sellTowerList.getSelectionModel().getSelectedItems());
 //        });
+    }
+
+    /**
+     * The Uranium and Diamond towers cannot be bought until after 8 rounds have been successfully passed
+     */
+    public void specialTowersVisibility(){
+        if (game.getCurrentRoundIndex() < 8){
+            uraniumButton.setDisable(true);
+            diamondButton.setDisable(true);
+            uraniumCostLabel.setVisible(false);
+            diamondCostLabel.setVisible(false);
+        }
     }
 
     /**
@@ -206,35 +223,30 @@ public class ShopController {
      */
     @FXML
     public void onBuyTower(){
-        if (game.getMoney() > 0) {
-            if (boughtTowerIndex == 0 && game.getMoney() - 7 > 0){
-                    Tower copperTower = new CopperTower();
-                    game.addToInventory(copperTower, copperTower.setDescription("Copper", 11, 11));
-                    game.decreaseMoney(7);
-                    towerBoughtLabel.setText("Tower bought");
+        if (game.getMoney() >= 0) {
+            if (boughtTowerIndex == 0 && game.getMoney() - 7 >= 0){
+                Tower copperTower = new CopperTower();
+                game.buyInShop(copperTower, game, copperTower.setDescription("Copper", 11, 11));
+                towerBoughtLabel.setText("Tower bought");
             }
-            else if (boughtTowerIndex == 1 && game.getMoney() - 8 > 0) {
+            else if (boughtTowerIndex == 1 && game.getMoney() - 8 >= 0) {
                 Tower ironTower = new IronTower();
-                game.addToInventory(ironTower, ironTower.setDescription("Iron", 12, 12));
-                game.decreaseMoney(8);
+                game.buyInShop(ironTower, game, ironTower.setDescription("Iron", 12, 12));
                 towerBoughtLabel.setText("Tower bought");
             }
-            else if (boughtTowerIndex == 2 && game.getMoney() - 9 > 0) {
+            else if (boughtTowerIndex == 2 && game.getMoney() - 9 >= 0) {
                 Tower goldTower = new GoldTower();
-                game.addToInventory(goldTower, goldTower.setDescription("Gold", 13, 13));
-                game.decreaseMoney(9);
+                game.buyInShop(goldTower, game, goldTower.setDescription("Gold", 13, 13));
                 towerBoughtLabel.setText("Tower bought");
             }
-            else if (boughtTowerIndex == 3 && game.getMoney() - 12 > 0) {
+            else if (boughtTowerIndex == 3 && game.getMoney() - 12 >= 0) {
                 Tower uraniumTower = new UraniumTower();
-                game.addToInventory(uraniumTower, uraniumTower.setDescription("Uranium", 15, 15));
-                game.decreaseMoney(12);
+                game.buyInShop(uraniumTower, game, uraniumTower.setDescription("Uranium", 15, 15));
                 towerBoughtLabel.setText("Tower bought");
             }
-            else if (boughtTowerIndex == 4 && game.getMoney() - 14 > 0) {
+            else if (boughtTowerIndex == 4 && game.getMoney() - 14 >= 0) {
                 Tower diamondTower = new DiamondTower();
-                game.addToInventory(diamondTower, diamondTower.setDescription("Diamond", 16, 16));
-                game.decreaseMoney(14);
+                game.buyInShop(diamondTower, game, diamondTower.setDescription("Diamond", 16, 16));
                 towerBoughtLabel.setText("Tower bought");
             }
             else{
@@ -276,9 +288,45 @@ public class ShopController {
      */
     @FXML
     public void onBuyUpgrade(){
-        upgradesBought.add(upgradesLabels.get(boughtUpgradeIndex).getText());
-        //System.out.println(upgradesBought);
-        upgradeBoughtLabel.setText("Upgrade bought");
+        if (game.getMoney() >= 0) {
+            if (boughtUpgradeIndex == 0 && game.getMoney() - 15 >= 0){
+                Item repairItem = new RepairItem();
+                game.buyUpgrades(repairItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
+                upgradeBoughtLabel.setText("Upgrade bought");
+            }
+            else if (boughtUpgradeIndex == 1 && game.getMoney() - 15 >= 0) {
+                Item upgradeXPItem = new UpgradeXPItem();
+                game.buyUpgrades(upgradeXPItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
+                upgradeBoughtLabel.setText("Upgrade bought");
+            }
+            else if (boughtTowerIndex == 2 && game.getMoney() - 15 >= 0) {
+                Item upgradeReloadSpeedItem = new UpgradeReloadSpeedItem();
+                game.buyUpgrades(upgradeReloadSpeedItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
+                upgradeBoughtLabel.setText("Upgrade bought");
+            }
+            else if (boughtTowerIndex == 3 && game.getMoney() - 15 >= 0) {
+                Item upgradeResourceAmountItem = new UpgradeResourceAmountItem();
+                game.buyUpgrades(upgradeResourceAmountItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
+                upgradeBoughtLabel.setText("Upgrade bought");
+            }
+            else{
+                upgradeBoughtLabel.setText("You do not have enough money");
+            }
+            setLabelVisibility(upgradeBoughtLabel);
+        }
+        else{
+            upgradeBoughtLabel.setText("You do not have enough money");
+        }
+        //System.out.println(game.getInventory().getUpgradesBought());
+    }
+
+    /**
+     * When the sell upgrade button is clicked, displays that the upgrade has been sold
+     */
+    @FXML
+    public void onSellUpgrade(){
+        upgradeSoldLabel.setText("Upgrade sold");
+        setLabelVisibility(upgradeSoldLabel);
     }
 
     /**
