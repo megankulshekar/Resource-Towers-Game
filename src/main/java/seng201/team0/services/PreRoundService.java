@@ -39,6 +39,7 @@ public class PreRoundService {
      * @return Next round
      */
     public Round getNextRound(){
+        System.out.println(game.getCurrentRoundIndex());
         return nextRound;
     }
 

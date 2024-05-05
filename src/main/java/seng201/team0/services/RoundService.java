@@ -1,38 +1,37 @@
 package seng201.team0.services;
 
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
 import seng201.team0.models.*;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+/**
+ * Class for providing services to round controller class
+ */
 public class RoundService {
-    private GameEnvironment game;
-    private int currentRoundIndex;
+    /**
+     * The current round of the game
+     */
     private Round currentRound;
 
+    /**
+     * Constructor
+     * @param game The game environment
+     */
     public RoundService(GameEnvironment game){
-        this.game = game;
-        currentRoundIndex = game.getCurrentRoundIndex();
+        int currentRoundIndex = game.getCurrentRoundIndex();
         currentRound = game.getRounds().get(currentRoundIndex);
     }
 
+    /**
+     * Gets the current round of the game
+     * @return The current round
+     */
     public Round getCurrentRound(){
         return currentRound;
     }
 
-    public void fillCart() {
-        List<Cart> currentRoundCarts = currentRound.getCarts();
-        Inventory inventory = game.getInventory();
-        for (Cart cart : currentRoundCarts) {
-            Tower tower = inventory.getMainTowers(0);
-            if (!cart.isFull() && cart.getResourceType().equals(tower.getResourceType())) {
-                currentRound.fillCart(cart, tower);
-            }
-        }
-    }
+    /**
+     * Checks if all carts in the round are full
+     * @return Boolean value representing if all carts are full
+     */
     public boolean allCartsFull(){
         boolean allFull = true;
         for (Cart cart : currentRound.getCarts()){

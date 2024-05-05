@@ -69,7 +69,7 @@ public class PreRoundController {
         moneyEarned.setText("You earned "+amountGiven);
 
         Random random = new Random();
-        int randomInt = random.nextInt(10);
+        int randomInt = random.nextInt(15);
         if (randomInt == 0){
             preRoundService.towerBreaks();
             randomEvents.setText("One of your towers has broken down");

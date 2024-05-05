@@ -8,9 +8,9 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import seng201.team0.models.*;
 import seng201.team0.services.RoundService;
+import seng201.team0.services.RoundThreads;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Class for controlling the round GUI
@@ -45,10 +45,15 @@ public class RoundController {
     @FXML
     private Label cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10;
 
+    /**
+     * List of labels for user's main towers
+     */
     private List<Label> mainTowerLabels;
-    private List<Label> cartLabels;
 
-    private Timeline timeline;
+    /**
+     * List of labels for carts in the round
+     */
+    private List<Label> cartLabels;
 
     /**
      * Constructor
@@ -62,27 +67,31 @@ public class RoundController {
     }
 
     /**
-     * Initialises GUI by setting text for each label
+     * Initialises GUI by setting text for each label,
+     * creates a new thread for each tower in user's main towers
+     * which fills carts in the round, and constantly checks if all carts are full
      */
     //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
-    public void initialize() throws InterruptedException {
-        roundNumber.setText("Round "+(currentRoundIndex + 1));
+    public void initialize() {
+        roundNumber.setText("Round " + (currentRoundIndex + 1));
         this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         updateLabels();
 
         Inventory inventory = game.getInventory();
-        Tower tower = inventory.getMainTowers(0);
+        for (int i = 0; i < 5; i++) {
+            Tower tower = inventory.getMainTowers(i);
+            if (tower != null) {
+                Thread thread = new Thread(new RoundThreads(game, tower));
+                thread.start();
+            }
+        }
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(1));
-        PauseTransition pause1 = new PauseTransition(Duration.seconds(10));
-
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.01));
         pause.setOnFinished(event -> {
-            fillCart(tower);
             updateLabels();
-            pause1.play();
             boolean allFull = roundService.allCartsFull();
             if (allFull){
                 endRound();
@@ -91,17 +100,6 @@ public class RoundController {
             }
         });
         pause.play();
-    }
-
-    public void fillCart(Tower fillingTower) {
-        PauseTransition pause1 = new PauseTransition(Duration.seconds(fillingTower.getReloadSpeed()));
-        List<Cart> currentRoundCarts = currentRound.getCarts();
-        for (Cart cart : currentRoundCarts) {
-            if (!cart.isFull() && cart.getResourceType().equals(fillingTower.getResourceType())) {
-                currentRound.fillCart(cart, fillingTower);
-                pause1.play();
-            }
-        }
     }
 
     /**
