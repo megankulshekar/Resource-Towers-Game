@@ -1,6 +1,7 @@
 package seng201.team0.models;
 // Some of the following code is reused from Tutorial 2 - Structuring applications with JavaFX
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -25,7 +26,7 @@ public class GameEnvironment {
     /**
      * List of rounds generated for the game
      */
-    private ArrayList<Round> rounds = new ArrayList<Round>();
+    private List<Round> rounds = new ArrayList<Round>();
 
     /**
      * Difficulty setting user picks for the game
@@ -134,6 +135,9 @@ public class GameEnvironment {
         return currentRoundIndex;
     }
 
+    /**
+     * Increases the index of the current round by 1
+     */
     public void increaseCurrentRoundIndex(){
         currentRoundIndex++;
     }
@@ -142,7 +146,7 @@ public class GameEnvironment {
      * Gets the list of rounds for the game
      * @return List of rounds
      */
-    public ArrayList<Round> getRounds(){
+    public List<Round> getRounds(){
         return rounds;
     }
 
@@ -201,6 +205,10 @@ public class GameEnvironment {
         money -= decreaseAmount;
     }
 
+    /**
+     * Gets the user's inventory
+     * @return User's inventory
+     */
     public Inventory getInventory(){
         return inventory;
     }
@@ -233,7 +241,7 @@ public class GameEnvironment {
      */
     public void closeStartScreen(){
         clearScreen.run();
-        launchPreRound();
+        launchRound();
     }
 
     /**

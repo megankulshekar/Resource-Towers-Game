@@ -72,7 +72,7 @@ public class Cart {
      * Gets whether cart if full
      * @return Variable for showing if cart is full
      */
-    public boolean getFull() {
+    public boolean isFull() {
         return full;
     }
 

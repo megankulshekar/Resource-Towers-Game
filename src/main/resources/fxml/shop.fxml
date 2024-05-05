@@ -118,11 +118,13 @@
       <Button fx:id="exitButton" layoutX="682.0" layoutY="550.0" mnemonicParsing="false" onAction="#onExit" prefHeight="26.0" prefWidth="71.0" text="Exit" />
       <Label fx:id="towerBoughtLabel" layoutX="465.0" layoutY="208.0" prefHeight="41.0" prefWidth="217.0" />
       <Label layoutX="64.0" layoutY="185.0" text="\$7" />
-      <Label layoutX="224.0" layoutY="184.0" text="\$8" />
+      <Label layoutX="220.0" layoutY="184.0" text="\$8" />
       <Label layoutX="369.0" layoutY="185.0" text="\$9" />
       <Label layoutX="513.0" layoutY="184.0" text="\$12" />
       <Label layoutX="658.0" layoutY="184.0" text="\$14" />
-      <Button fx:id="buyUpgradeButton" layoutX="329.0" layoutY="542.0" mnemonicParsing="false" onAction="#onBuyUpgrade" prefHeight="41.0" prefWidth="114.0" text="Buy Upgrade" />
+      <Label fx:id="uraniumCostLabel" layoutX="513.0" layoutY="184.0" text="\$12" />
+      <Label fx:id="diamondCostLabel" layoutX="658.0" layoutY="184.0" text="\$14" />
+      <Button fx:id="buyUpgradeButton" layoutX="323.0" layoutY="556.0" mnemonicParsing="false" onAction="#onBuyUpgrade" prefHeight="41.0" prefWidth="114.0" text="Buy Upgrade" />
       <Label layoutX="15.0" layoutY="282.0" prefHeight="48.0" prefWidth="166.0" text="Sell a Tower">
          <font>
             <Font size="18.0" />

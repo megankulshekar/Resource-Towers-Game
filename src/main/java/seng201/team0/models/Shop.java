@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Class representing the shop in game
@@ -13,12 +14,12 @@ public class Shop {
     /**
      * List of all towers available in the shop
      */
-    private ArrayList<Tower> allTowers = new ArrayList<Tower>();
+    private List<Tower> allTowers = new ArrayList<Tower>();
 
     /**
      * List of all items available in the shop
      */
-    private ArrayList<Item> allItems = new ArrayList<Item>();
+    private List<Item> allItems = new ArrayList<Item>();
 
     public ObservableList<String> getItems() {
         return items;
@@ -30,17 +31,17 @@ public class Shop {
      * Constructor
      */
     public Shop(){
-        CoalTower tower1 = new CoalTower();
-        CopperTower tower2 = new CopperTower();
-        IronTower tower3 = new IronTower();
-        GoldTower tower4 = new GoldTower();
-        DiamondTower tower5 = new DiamondTower();
-        UraniumTower tower6 = new UraniumTower();
+        Tower tower1 = new CoalTower();
+        Tower tower2 = new CopperTower();
+        Tower tower3 = new IronTower();
+        Tower tower4 = new GoldTower();
+        Tower tower5 = new DiamondTower();
+        Tower tower6 = new UraniumTower();
         Collections.addAll(allTowers, tower1, tower2, tower3, tower4, tower5, tower6);
-        RepairItem item1 = new RepairItem();
-        UpgradeXPItem item2 = new UpgradeXPItem();
-        UpgradeResourceAmountItem item3 = new UpgradeResourceAmountItem();
-        UpgradeReloadSpeedItem item4 = new UpgradeReloadSpeedItem();
+        Item item1 = new RepairItem();
+        Item item2 = new UpgradeXPItem();
+        Item item3 = new UpgradeResourceAmountItem();
+        Item item4 = new UpgradeReloadSpeedItem();
         Collections.addAll(allItems, item1, item2, item3, item4);
     }
 

@@ -124,12 +124,10 @@ public class StartScreenController {
     public void towerTypeChosen(int towerChosen, Label name){
         CoalTower coalTower = new CoalTower();
         if(towerChosen == 0){
-            //game.getRounds().get(0).createCarts();
             name.setText(coalTower.setDescription("Coal", 10, 10));
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);
             game.addToInventory(coalTower, coalTower.setDescription("Coal", 10, 10));
-            game.getRounds().get(0).createCarts();
         }
         else if(towerChosen == 1){
             name.setText(coalTower.setDescription("Coal", 5, 5));

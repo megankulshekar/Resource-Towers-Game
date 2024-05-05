@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Round;
-import seng201.team0.models.Tower;
+import seng201.team0.services.PreRoundService;
 
 import java.util.Random;
 
@@ -14,11 +14,23 @@ import java.util.Random;
  */
 public class PreRoundController {
     /**
-     * Sets the game environment attribute
+     * The game environment
      */
     private GameEnvironment game;
-    private int currentRoundIndex;
-    private Round currentRound;
+
+    /**
+     * The service class for the controller
+     */
+    private PreRoundService preRoundService;
+
+    /**
+     * The next round
+     */
+    private Round nextRound;
+
+    /**
+     * The difficulty of the next round chosen by the user
+     */
     private String chosenDifficulty;
 
     @FXML
@@ -36,11 +48,16 @@ public class PreRoundController {
      */
     public PreRoundController(GameEnvironment game) {
         this.game = game;
-        this.game.increaseCurrentRoundIndex();
-        currentRoundIndex = game.getCurrentRoundIndex();
-        currentRound = game.getRounds().get(currentRoundIndex);
+        preRoundService = new PreRoundService(this.game);
+        nextRound = preRoundService.getNextRound();
     }
 
+    /**
+     * Initiliases the GUI by setting text for the labels,
+     * giving money to the user, performing a random event,
+     * and increasing number of carts and cart resource types
+     * for next round
+     */
     @FXML
     public void initialize(){
         String name = game.getName();
@@ -48,26 +65,18 @@ public class PreRoundController {
             completionLabel.setText("You completed the round, " + name + "!");
         }
 
+        String amountGiven = preRoundService.giveMoney();
+        moneyEarned.setText("You earned "+amountGiven);
+
         Random random = new Random();
-        int randomInt = random.nextInt(1);
+        int randomInt = random.nextInt(10);
         if (randomInt == 0){
-            towerBreaks();
+            preRoundService.towerBreaks();
+            randomEvents.setText("One of your towers has broken down");
         }
 
-        if (currentRoundIndex % 2 == 0){
-            currentRound.increaseNumCarts(1);
-        }
-        if (currentRoundIndex == 2){
-            currentRound.addResourceType("Copper");
-        } else if (currentRoundIndex == 4){
-            currentRound.addResourceType("Iron");
-        } else if (currentRoundIndex == 6) {
-            currentRound.addResourceType("Gold");
-        } else if (currentRoundIndex == 8){
-            currentRound.addResourceType("Diamond");
-        } else if (currentRoundIndex == 10){
-            currentRound.addResourceType("Uranium");
-        }
+        preRoundService.addNewCart();
+        preRoundService.addNewResourceType();
         displayOptions();
     }
 
@@ -75,42 +84,25 @@ public class PreRoundController {
      * Displays three options for the next round
      */
     public void displayOptions(){
-        String resourceTypes = currentRound.getResourceTypes()
+        String resourceTypes = nextRound.getResourceTypes()
                 .toString().replace("[","").replace("]","");
         easyOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(currentRound.getCartSize()+1)+"\n\n" +
-                "Cart Speed: "+(currentRound.getCartSpeed()+1));
+                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(nextRound.getCartSize()+1)+"\n\n" +
+                "Cart Speed: "+(nextRound.getCartSpeed()+1));
         mediumOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(currentRound.getCartSize()+2)+"\n\n" +
-                "Cart Speed: "+(currentRound.getCartSpeed()+2));
+                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(nextRound.getCartSize()+2)+"\n\n" +
+                "Cart Speed: "+(nextRound.getCartSpeed()+2));
         hardOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(currentRound.getCartSize()+3)+"\n\n" +
-                "Cart Speed: "+(currentRound.getCartSpeed()+3));
+                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(nextRound.getCartSize()+3)+"\n\n" +
+                "Cart Speed: "+(nextRound.getCartSpeed()+3));
     }
 
-    public void towerBreaks() {
-        Random random = new Random();
-        Tower randomTower;
-        do {
-            int randomIndex = random.nextInt(5);
-            randomTower = game.getInventory().getMainTowers(randomIndex);
-        } while (randomTower == null);
-        randomTower.setBroken(true);
-        randomEvents.setText("One of your towers has broken down");
-    }
-    public void easyDifficulty(){
-        currentRound.increaseCartSize(1);
-    }
-    public void mediumDifficulty(){
-        currentRound.increaseCartSize(2);
-    }
-    public void hardDifficulty(){
-        currentRound.increaseCartSize(3);
-    }
-
+    /**
+     * Selects the difficulty based on the corresponding radio button
+     */
     @FXML
     public void onDifficultyChosen(){
         if (easyButton.isSelected()){
@@ -119,7 +111,7 @@ public class PreRoundController {
         else if (mediumButton.isSelected()){
             chosenDifficulty = "Medium";
         }
-        else{
+        else if (hardButton.isSelected()){
             chosenDifficulty = "Hard";
         }
     }
@@ -131,16 +123,16 @@ public class PreRoundController {
      */
     @FXML
     public void onStartRound(){
-        if (chosenDifficulty == "Easy"){
-            easyDifficulty();
+        if (chosenDifficulty.equals("Easy")){
+            preRoundService.setEasyDifficulty();
         }
-        else if (chosenDifficulty == "Medium"){
-            mediumDifficulty();
+        else if (chosenDifficulty.equals("Medium")){
+            preRoundService.setMediumDifficulty();
         }
-        else {
-            hardDifficulty();
+        else if (chosenDifficulty.equals("Hard")){
+            preRoundService.setHardDifficulty();
         }
-        game.getRounds().get(currentRoundIndex).createCarts();
+        nextRound.createCarts();
         game.closePreRound();
     }
 }

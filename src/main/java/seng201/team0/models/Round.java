@@ -1,6 +1,7 @@
 package seng201.team0.models;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -10,7 +11,7 @@ public class Round {
     /**
      * Difficulty of round
      */
-    private static String difficulty;
+    private String difficulty;
 
     /**
      * Number of carts in round
@@ -30,12 +31,12 @@ public class Round {
     /**
      * All cart resource types used in round
      */
-    private static ArrayList<String> resourceTypes = new ArrayList<String>();
+    private static List<String> resourceTypes = new ArrayList<String>();
 
     /**
      * All carts used in round
      */
-    private ArrayList<Cart> carts = new ArrayList<Cart>();
+    private List<Cart> carts = new ArrayList<Cart>();
 
     /**
      * Constructor
@@ -59,6 +60,9 @@ public class Round {
         }
     }
 
+    public String getDifficulty(){
+        return difficulty;
+    }
     /**
      * Gets the number of carts in the round
      * @return Number of carts
@@ -83,14 +87,14 @@ public class Round {
         return cartSpeed;
     }
 
-    public ArrayList<String> getResourceTypes(){
+    public List<String> getResourceTypes(){
         return resourceTypes;
     }
     /**
      * Gets the carts used in the round
      * @return List of carts used in round
      */
-    public ArrayList<Cart> getCarts(){
+    public List<Cart> getCarts(){
         return carts;
     }
 
@@ -107,6 +111,9 @@ public class Round {
         }
     }
 
+    public void setDifficulty(String difficultySetting){
+        difficulty = difficultySetting;
+    }
     /**
      * Increases number of carts
      * @param increaseAmount Amount number of carts increased by
@@ -145,7 +152,9 @@ public class Round {
      * @param tower Tower used to fill cart
      */
     public void fillCart(Cart cart, Tower tower){
-        cart.increaseCurrentLevel(tower.getResourceAmount());
+        if (!tower.isBroken()){
+            cart.increaseCurrentLevel(tower.getResourceAmount());
+        }
     }
 
     /**
