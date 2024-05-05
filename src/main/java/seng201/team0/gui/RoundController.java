@@ -10,6 +10,7 @@ import seng201.team0.models.*;
 import seng201.team0.services.RoundService;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Class for controlling the round GUI
@@ -65,20 +66,42 @@ public class RoundController {
      */
     //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
-    public void initialize() {
+    public void initialize() throws InterruptedException {
         roundNumber.setText("Round "+(currentRoundIndex + 1));
         this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         updateLabels();
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        Inventory inventory = game.getInventory();
+        Tower tower = inventory.getMainTowers(0);
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(1));
+        PauseTransition pause1 = new PauseTransition(Duration.seconds(10));
+
         pause.setOnFinished(event -> {
-                    roundService.fillCart();
-                    updateLabels();
-                    pause.play();
-                });
+            fillCart(tower);
+            updateLabels();
+            pause1.play();
+            boolean allFull = roundService.allCartsFull();
+            if (allFull){
+                endRound();
+            } else {
+                pause.play();
+            }
+        });
         pause.play();
+    }
+
+    public void fillCart(Tower fillingTower) {
+        PauseTransition pause1 = new PauseTransition(Duration.seconds(fillingTower.getReloadSpeed()));
+        List<Cart> currentRoundCarts = currentRound.getCarts();
+        for (Cart cart : currentRoundCarts) {
+            if (!cart.isFull() && cart.getResourceType().equals(fillingTower.getResourceType())) {
+                currentRound.fillCart(cart, fillingTower);
+                pause1.play();
+            }
+        }
     }
 
     /**
@@ -104,30 +127,6 @@ public class RoundController {
         }
     }
 
-    public void tower1Fills(){
-        Tower tower1 = game.getInventory().getMainTowers(0);
-        List<Cart> currentRoundCarts = currentRound.getCarts();
-        PauseTransition pause1 = new PauseTransition(Duration.seconds(tower1.getReloadSpeed()));
-        pause1.setOnFinished(event -> {
-            roundService.fillCart();
-            updateLabels();
-            pause1.play();
-        });
-        pause1.play();
-
-        int currentlyFillingIndex = 0;
-        Cart currentlyFilling;
-        currentlyFilling = currentRoundCarts.get(currentlyFillingIndex);
-        if (!currentlyFilling.isFull() && currentlyFilling.getResourceType().equals(tower1.getResourceType())) {
-            currentRound.fillCart(currentlyFilling, tower1);
-            updateLabels();
-            pause1.play();
-        } else {
-            currentlyFillingIndex++;
-        }
-    }
-
-
     /**
      * Closes round GUI and launches inventory GUI
      */
@@ -149,7 +148,7 @@ public class RoundController {
     /**
      * Closes round GUI and launches pre round GUI
      */
-    public void onEndRound(){
+    public void endRound(){
         game.closeRound();
         game.launchPreRound();
     }

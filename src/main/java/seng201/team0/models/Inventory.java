@@ -155,15 +155,4 @@ public class Inventory {
         items.get(itemIndex).useItem(tower);
         items.remove(itemIndex);
     }
-
-    /**
-     * Sells purchasable by increasing user's money by the selling price
-     * and removing purchasable from user's inventory
-     * @param purchasable Purchasable being sold
-     * @param game The game environment
-     */
-    public void sell(Purchasable purchasable, GameEnvironment game){
-        game.increaseMoney(purchasable.getSellingPrice());
-        remove(purchasable);
-    }
 }
