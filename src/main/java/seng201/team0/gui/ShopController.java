@@ -200,7 +200,7 @@ public class ShopController {
      */
     //Reference for use of Timeline: https://stackoverflow.com/questions/65252152/how-to-update-a-label-continually-in-javafx
     public void updateMoneyLabel(){
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), actionEvent -> moneyRemaining()));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), actionEvent -> moneyRemaining()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -299,12 +299,12 @@ public class ShopController {
                 game.buyUpgrades(upgradeXPItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
                 upgradeBoughtLabel.setText("Upgrade bought");
             }
-            else if (boughtTowerIndex == 2 && game.getMoney() - 15 >= 0) {
+            else if (boughtUpgradeIndex == 2 && game.getMoney() - 15 >= 0) {
                 Item upgradeReloadSpeedItem = new UpgradeReloadSpeedItem();
                 game.buyUpgrades(upgradeReloadSpeedItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
                 upgradeBoughtLabel.setText("Upgrade bought");
             }
-            else if (boughtTowerIndex == 3 && game.getMoney() - 15 >= 0) {
+            else if (boughtUpgradeIndex == 3 && game.getMoney() - 15 >= 0) {
                 Item upgradeResourceAmountItem = new UpgradeResourceAmountItem();
                 game.buyUpgrades(upgradeResourceAmountItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
                 upgradeBoughtLabel.setText("Upgrade bought");

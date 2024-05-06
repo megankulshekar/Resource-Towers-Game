@@ -75,10 +75,6 @@ public class InventoryController {
 
     public List<Label> reserveTowerLabels;
 
-//    public List<String> mainTowerDescriptions = List.of(game.getInventory().getMainTowerDescriptions(0), game.getInventory().getMainTowerDescriptions(1), game.getInventory().getMainTowerDescriptions(2), game.getInventory().getMainTowerDescriptions(3), game.getInventory().getMainTowerDescriptions(4));
-
-//    public List<String> reserveTowerDescriptions = List.of(game.getInventory().getReserveTowersDescriptions(0), game.getInventory().getReserveTowersDescriptions(1), game.getInventory().getReserveTowersDescriptions(2), game.getInventory().getReserveTowersDescriptions(3), game.getInventory().getReserveTowersDescriptions(4));
-
     /**
      * Constructor
      * @param game The game environment
@@ -95,9 +91,6 @@ public class InventoryController {
     public void initialize() {
         invenTowerButtons = List.of(invenTower1Button, invenTower2Button, invenTower3Button, invenTower4Button, invenTower5Button);
         reserveTowerButtons = List.of(reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button);
-
-//        mainTowerDescriptions = List.of(game.getInventory().getMainTowerDescriptions(0), game.getInventory().getMainTowerDescriptions(1), game.getInventory().getMainTowerDescriptions(2), game.getInventory().getMainTowerDescriptions(3), game.getInventory().getMainTowerDescriptions(4));
-//        reserveTowerDescriptions = List.of(game.getInventory().getReserveTowersDescriptions(0), game.getInventory().getReserveTowersDescriptions(1), game.getInventory().getReserveTowersDescriptions(2), game.getInventory().getReserveTowersDescriptions(3), game.getInventory().getReserveTowersDescriptions(4));
 
         mainTowerLabels = List.of(tower1Label, tower2Label, tower3Label, tower4Label, tower5Label);
         reserveTowerLabels = List.of(reserveTower1Label, reserveTower2Label, reserveTower3Label, reserveTower4Label, reserveTower5Label);
@@ -197,8 +190,8 @@ public class InventoryController {
      */
     @FXML
     public void onMoveTower(){
-        System.out.println(reserveTowerIndex);
-        System.out.println(mainTowerIndex);
+//        System.out.println(reserveTowerIndex);
+//        System.out.println(mainTowerIndex);
 
         game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
         String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
@@ -210,15 +203,18 @@ public class InventoryController {
     }
 
     /**
-     * Alerts user that the upgrade has been applied
+     * Sets index value of tower clicked and then launches Upgrade GUI
      */
     @FXML
     public void onUpgradeTower(){
-        //if (mainTowerIndex != -1 && reserveTowerIndex == -1 || mainTowerIndex == -1 && reserveTowerIndex != -1){
+        if (mainTowerIndex != -1 && reserveTowerIndex == -1){
+            game.getInventory().setTowerIndexValue(mainTowerIndex);
+        }
+        else if (mainTowerIndex == -1 && reserveTowerIndex != -1){
+            game.getInventory().setTowerIndexValue(reserveTowerIndex + 4);
+        }
         game.closeInventoryForUpgrade();
         game.launchUpgradePopup();
-        //}
-        //upgradeAppliedLabel.setText("Upgrade Applied");
     }
 
     /**

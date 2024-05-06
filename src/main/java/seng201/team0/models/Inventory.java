@@ -34,6 +34,8 @@ public class Inventory {
      */
     private List<Item> items = new ArrayList<Item>();
 
+    private int towerIndexValue;
+
     /**
      * Gets a tower at specified index in main towers list
      * @param indexValue Index used to get tower
@@ -42,6 +44,42 @@ public class Inventory {
     public Tower getMainTowers(int indexValue){
         if(indexValue >= 0 && indexValue <= 4){
             return mainTowers[indexValue];
+        }
+        return null;
+    }
+
+    /**
+     * Gets corresponding tower description at specified index in main tower descriptions list
+     * @param indexValue Index used to get tower description
+     * @return Tower description at specified index
+     */
+    public String getMainTowerDescriptions(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return mainTowerDescriptions[indexValue];
+        }
+        return null;
+    }
+
+    /**
+     * Gets a tower at specified index in reserve towers list
+     * @param indexValue Index used to get tower
+     * @return Tower at specified index
+     */
+    public Tower getReserveTowers(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return reserveTowers[indexValue];
+        }
+        return null;
+    }
+
+    /**
+     * Gets corresponding tower description at specified index in reserve tower descriptions list
+     * @param indexValue Index used to get tower description
+     * @return Tower description at specified index
+     */
+    public String getReserveTowerDescriptions(int indexValue){
+        if(indexValue >= 0 && indexValue <= 4){
+            return reserveTowerDescriptions[indexValue];
         }
         return null;
     }
@@ -121,25 +159,12 @@ public class Inventory {
         }
     }
 
-    public String getMainTowerDescriptions(int indexValue){
-        if(indexValue >= 0 && indexValue <= 4){
-            return mainTowerDescriptions[indexValue];
-        }
-        return null;
+    public void setTowerIndexValue(int indexValue){
+        towerIndexValue = indexValue;
     }
 
-    public Tower getReserveTowers(int indexValue){
-        if(indexValue >= 0 && indexValue <= 4){
-            return reserveTowers[indexValue];
-        }
-        return null;
-    }
-
-    public String getReserveTowerDescriptions(int indexValue){
-        if(indexValue >= 0 && indexValue <= 4){
-            return reserveTowerDescriptions[indexValue];
-        }
-        return null;
+    public int getTowerIndexValue(){
+        return towerIndexValue;
     }
 
     public void addUpgrade(Item item, String description){
