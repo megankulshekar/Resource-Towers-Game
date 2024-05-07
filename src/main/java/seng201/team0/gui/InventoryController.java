@@ -64,9 +64,9 @@ public class InventoryController {
 
     private int reserveTowerIndex = -1;
 
-    private int mainNotNullCount = 0;
+    private int mainContainsCount = 0;
 
-    private int reserveNotNullCount = 0;
+    private int reserveContainsCount = 0;
 
     /**
      * Lists for keeping track of all buttons and labels
@@ -194,52 +194,57 @@ public class InventoryController {
      */
     @FXML
     public void onMoveTower() {
-//        System.out.println("Reserve tower index: " + reserveTowerIndex);
-//        System.out.println("Main tower index: " + mainTowerIndex);
-//
-//        game.getInventory().printMainTowers();
-//        game.getInventory().printReserveTowers();
-//
-//        Tower[] mainTowers = game.getInventory().getAllMainTowers();
-//        Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
-//
-//        for (Tower mainTower : mainTowers){
-//            if (mainTower != null){
-//                mainNotNullCount++;
-//            }
-//        }
-//
-//        for (Tower reserveTower : reserveTowers){
-//            if (reserveTower != null){
-//                reserveNotNullCount++;
-//            }
-//        }
-//
-//        Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
-//        Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
-//
-//        if (mainNotNullCount > 4) {
-//            System.out.println("Main Not Null Count: " + mainNotNullCount);
-//            System.out.println("Reserve Not Null Count: " + reserveNotNullCount);
-//            if (mainTower != null && reserveTower != null) {
-//                swappingTowers();
-//            }
-//            else if (mainTower != null && reserveTower == null) {
-//                swappingTowers();
-//                mainNotNullCount--;
-//            }
-//            else if (mainTower == null && reserveTower != null) {
-//                swappingTowers();
-//                mainNotNullCount++;
-//            }
-//            else{
-//                swappingTowers();
-//            }
-//        }
-//        else{
-//            System.out.println("Not swapped");
-//        }
-        swappingTowers();
+        System.out.println("Reserve tower index: " + reserveTowerIndex);
+        System.out.println("Main tower index: " + mainTowerIndex);
+
+        game.getInventory().printMainTowers();
+        game.getInventory().printReserveTowers();
+
+        Tower[] mainTowers = game.getInventory().getAllMainTowers();
+        Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
+
+        for (Tower mainTower : mainTowers){
+            if (mainTower != null){
+                mainContainsCount++;
+            }
+        }
+
+        for (Tower reserveTower : reserveTowers){
+            if (reserveTower != null){
+                reserveContainsCount++;
+            }
+        }
+
+        System.out.println("Main " + mainContainsCount);
+        System.out.println("Reserve " + reserveContainsCount);
+
+        Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
+        Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
+
+        if (mainContainsCount > 1) {
+            //System.out.println("Main Contains Count: " + mainContainsCount);
+            //System.out.println("Reserve Contains Count: " + reserveContainsCount);
+            if (mainTower != null && reserveTower != null) {
+                swappingTowers();
+            }
+            else if (mainTower != null && reserveTower == null) {
+                swappingTowers();
+                //mainContainsCount--;
+            }
+            else if (mainTower == null && reserveTower != null) {
+                swappingTowers();
+                //mainContainsCount++;
+            }
+            else{
+                swappingTowers();
+            }
+        }
+        else{
+            System.out.println("Not swapped");
+        }
+        mainContainsCount = 0;
+        reserveContainsCount = 0;
+        //swappingTowers();
     }
 
     public void swappingTowers(){
@@ -248,8 +253,8 @@ public class InventoryController {
         String mainText = mainTowerLabels.get(mainTowerIndex).getText();
         reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
         mainTowerLabels.get(mainTowerIndex).setText(reserveText);
-        mainTowerIndex = -1;
-        reserveTowerIndex = -1;
+        //mainTowerIndex = -1;
+        //reserveTowerIndex = -1;
     }
 
     /**
