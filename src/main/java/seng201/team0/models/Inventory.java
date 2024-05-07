@@ -104,8 +104,16 @@ public class Inventory {
         System.out.println(Arrays.toString(mainTowers));
     }
 
+    public void printMainTowerDescriptions(){
+        System.out.println(Arrays.toString(mainTowerDescriptions));
+    }
+
     public void printReserveTowers(){
         System.out.println(Arrays.toString(reserveTowers));
+    }
+
+    public void printReserveTowerDescriptions(){
+        System.out.println(Arrays.toString(reserveTowerDescriptions));
     }
 
     public ArrayList<String> getUpgradesBought() {
@@ -167,12 +175,14 @@ public class Inventory {
             for (int i = 0; i < 5; i++) {
                 if (mainTowers[i] == tower) {
                     mainTowers[i] = null;
+                    mainTowerDescriptions[i] = "";
                     return;
                 }
             }
             for (int i = 0; i < 5; i++) {
                 if (reserveTowers[i] == tower) {
                     reserveTowers[i] = null;
+                    reserveTowerDescriptions[i] = "";
                     return;
                 }
             }
