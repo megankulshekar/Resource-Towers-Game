@@ -64,6 +64,8 @@ public class RoundController {
         roundService = new RoundService(this.game);
         currentRoundIndex = game.getCurrentRoundIndex();
         currentRound = roundService.getCurrentRound();
+        System.out.println("Current round index: " + currentRoundIndex);
+        System.out.println("Current round: " + currentRound.toString());
     }
 
     /**

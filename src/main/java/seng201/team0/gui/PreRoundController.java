@@ -50,6 +50,8 @@ public class PreRoundController {
         this.game = game;
         preRoundService = new PreRoundService(this.game);
         nextRound = preRoundService.getNextRound();
+        System.out.println("Current round index before pre round: " + game.getCurrentRoundIndex());
+        System.out.println("Next round (Pre round): " + nextRound.toString());
     }
 
     /**
@@ -123,6 +125,7 @@ public class PreRoundController {
      */
     @FXML
     public void onStartRound(){
+        //game.increaseCurrentRoundIndex();
         if (chosenDifficulty.equals("Easy")){
             preRoundService.setEasyDifficulty();
         }

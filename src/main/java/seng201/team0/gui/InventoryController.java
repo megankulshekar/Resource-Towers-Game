@@ -64,6 +64,10 @@ public class InventoryController {
 
     private int reserveTowerIndex = -1;
 
+    private int mainNotNullCount = 0;
+
+    private int reserveNotNullCount = 0;
+
     /**
      * Lists for keeping track of all buttons and labels
      */
@@ -189,10 +193,56 @@ public class InventoryController {
      * When the move tower button is clicked, tower indices and labels are swapped
      */
     @FXML
-    public void onMoveTower(){
-//        System.out.println(reserveTowerIndex);
-//        System.out.println(mainTowerIndex);
+    public void onMoveTower() {
+//        System.out.println("Reserve tower index: " + reserveTowerIndex);
+//        System.out.println("Main tower index: " + mainTowerIndex);
+//
+//        game.getInventory().printMainTowers();
+//        game.getInventory().printReserveTowers();
+//
+//        Tower[] mainTowers = game.getInventory().getAllMainTowers();
+//        Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
+//
+//        for (Tower mainTower : mainTowers){
+//            if (mainTower != null){
+//                mainNotNullCount++;
+//            }
+//        }
+//
+//        for (Tower reserveTower : reserveTowers){
+//            if (reserveTower != null){
+//                reserveNotNullCount++;
+//            }
+//        }
+//
+//        Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
+//        Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
+//
+//        if (mainNotNullCount > 4) {
+//            System.out.println("Main Not Null Count: " + mainNotNullCount);
+//            System.out.println("Reserve Not Null Count: " + reserveNotNullCount);
+//            if (mainTower != null && reserveTower != null) {
+//                swappingTowers();
+//            }
+//            else if (mainTower != null && reserveTower == null) {
+//                swappingTowers();
+//                mainNotNullCount--;
+//            }
+//            else if (mainTower == null && reserveTower != null) {
+//                swappingTowers();
+//                mainNotNullCount++;
+//            }
+//            else{
+//                swappingTowers();
+//            }
+//        }
+//        else{
+//            System.out.println("Not swapped");
+//        }
+        swappingTowers();
+    }
 
+    public void swappingTowers(){
         game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
         String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
         String mainText = mainTowerLabels.get(mainTowerIndex).getText();

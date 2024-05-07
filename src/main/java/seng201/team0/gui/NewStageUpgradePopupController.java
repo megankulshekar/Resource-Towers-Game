@@ -32,7 +32,11 @@ public class NewStageUpgradePopupController {
 
     private int indexOfUpgradeItem;
 
-    private String description;
+    private String upgradeDescription;
+
+    private String originalDescription;
+
+    private String newDescription;
 
     /**
      * Constructor
@@ -47,9 +51,9 @@ public class NewStageUpgradePopupController {
      */
     @FXML
     public void onRepair(){
-        description = repairItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + description);
-        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(description);
+        upgradeDescription = repairItem.getText();
+        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
@@ -57,9 +61,9 @@ public class NewStageUpgradePopupController {
      */
     @FXML
     public void onUpgradeXP(){
-        description = upgradeXPItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + description);
-        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(description);
+        upgradeDescription = upgradeXPItem.getText();
+        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
@@ -67,9 +71,9 @@ public class NewStageUpgradePopupController {
      */
     @FXML
     public void onUpgradeReloadSpeed(){
-        description = upgradeReloadSpeedItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + description);
-        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(description);
+        upgradeDescription = upgradeReloadSpeedItem.getText();
+        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
@@ -77,9 +81,9 @@ public class NewStageUpgradePopupController {
      */
     @FXML
     public void onUpgradeResourceAmount(){
-        description = upgradeResourceAmountItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + description);
-        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(description);
+        upgradeDescription = upgradeResourceAmountItem.getText();
+        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
@@ -93,11 +97,17 @@ public class NewStageUpgradePopupController {
             if (towerIndexValue < 4){
                 Tower tower = game.getInventory().getMainTowers(towerIndexValue);
                 game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                originalDescription = game.getInventory().getMainTowerDescriptions(towerIndexValue);
+                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                game.getInventory().setMainTowerDescriptions(towerIndexValue, newDescription);
             }
             else if (towerIndexValue >= 4){
                 towerIndexValue = towerIndexValue - 4;
                 Tower tower = game.getInventory().getReserveTowers(towerIndexValue);
                 game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndexValue);
+                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                game.getInventory().setReserveTowerDescriptions(towerIndexValue, newDescription);
             }
             //game.getInventory().getUpgradesBought().remove(index);
             messageLabel.setText("Success! Upgrade applied!");

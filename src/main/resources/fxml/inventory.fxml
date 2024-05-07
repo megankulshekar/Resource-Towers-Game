@@ -10,21 +10,21 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
    <children>
-      <ButtonBar layoutX="157.0" layoutY="499.0" prefHeight="40.0" prefWidth="406.0">
+      <ButtonBar layoutX="184.0" layoutY="538.0" prefHeight="40.0" prefWidth="406.0">
         <buttons>
             <Button fx:id="moveTowerButton" mnemonicParsing="false" onAction="#onMoveTower" text="Move Tower" />
             <Button fx:id="upgradeTowerButton" mnemonicParsing="false" onAction="#onUpgradeTower" text="Upgrade Tower" />
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExit" text="Exit" />
         </buttons>
       </ButtonBar>
-      <Label alignment="CENTER" layoutX="73.0" layoutY="53.0" prefHeight="23.0" prefWidth="600.0" text="Towers">
+      <Label alignment="CENTER" layoutX="101.0" layoutY="50.0" prefHeight="23.0" prefWidth="600.0" text="Main Towers">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <GridPane layoutX="10.0" layoutY="74.0" prefHeight="154.0" prefWidth="740.0">
+      <GridPane layoutX="15.0" layoutY="100.0" prefHeight="168.0" prefWidth="771.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,7 +43,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower1Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="tower1Label" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -56,7 +56,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower2Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="tower2Label" layoutX="2.0" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -68,7 +68,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower3Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="tower3Label" layoutX="2.0" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -80,7 +80,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower4Label" layoutX="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="tower4Label" layoutX="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -92,7 +92,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="tower5Label" layoutY="2.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="tower5Label" layoutY="2.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -102,15 +102,15 @@
                </graphic></Button>
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="79.0" layoutY="249.0" prefHeight="23.0" prefWidth="600.0" text="Reserve Towers">
+      <Label alignment="CENTER" layoutX="100.0" layoutY="281.0" prefHeight="23.0" prefWidth="600.0" text="Reserve Towers">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
          </font>
          <padding>
             <Insets top="10.0" />
          </padding>
       </Label>
-      <GridPane layoutX="14.0" layoutY="291.0" prefHeight="154.0" prefWidth="740.0">
+      <GridPane layoutX="15.0" layoutY="337.0" prefHeight="168.0" prefWidth="771.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -129,7 +129,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower1Label" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="reserveTower1Label" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -142,7 +142,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower2Label" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="reserveTower2Label" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -154,7 +154,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower3Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="reserveTower3Label" layoutX="2.0" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -166,7 +166,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower4Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="reserveTower4Label" layoutX="2.0" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -178,7 +178,7 @@
                <graphic>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="reserveTower5Label" layoutX="2.0" layoutY="3.0" prefHeight="100.0" prefWidth="110.0">
+                        <Label fx:id="reserveTower5Label" layoutX="2.0" layoutY="3.0" prefHeight="191.0" prefWidth="130.0">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -190,7 +190,7 @@
          </children>
       </GridPane>
       <Label fx:id="upgradeAppliedLabel" layoutX="320.0" layoutY="542.0" prefHeight="16.0" prefWidth="118.0" />
-      <Label alignment="CENTER" layoutX="77.0" layoutY="5.0" prefHeight="23.0" prefWidth="600.0" text="Inventory">
+      <Label alignment="CENTER" layoutX="100.0" layoutY="6.0" prefHeight="23.0" prefWidth="600.0" text="Inventory">
          <font>
             <Font size="24.0" />
          </font>

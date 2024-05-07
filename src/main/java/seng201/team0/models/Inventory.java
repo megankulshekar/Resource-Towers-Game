@@ -36,6 +36,14 @@ public class Inventory {
 
     private int towerIndexValue;
 
+    public Tower[] getAllMainTowers() {
+        return mainTowers;
+    }
+
+    public Tower[] getAllReserveTowers() {
+        return reserveTowers;
+    }
+
     /**
      * Gets a tower at specified index in main towers list
      * @param indexValue Index used to get tower
@@ -60,6 +68,10 @@ public class Inventory {
         return null;
     }
 
+    public void setMainTowerDescriptions(int indexValue, String description){
+        mainTowerDescriptions[indexValue] = description;
+    }
+
     /**
      * Gets a tower at specified index in reserve towers list
      * @param indexValue Index used to get tower
@@ -82,6 +94,18 @@ public class Inventory {
             return reserveTowerDescriptions[indexValue];
         }
         return null;
+    }
+
+    public void setReserveTowerDescriptions(int indexValue, String description){
+        reserveTowerDescriptions[indexValue] = description;
+    }
+
+    public void printMainTowers(){
+        System.out.println(Arrays.toString(mainTowers));
+    }
+
+    public void printReserveTowers(){
+        System.out.println(Arrays.toString(reserveTowers));
     }
 
     public ArrayList<String> getUpgradesBought() {
