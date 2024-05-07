@@ -22,11 +22,26 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="mainTower1" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Tower" textAlignment="CENTER" />
-            <Label fx:id="mainTower2" alignment="CENTER" prefHeight="115.0" prefWidth="195.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <Label fx:id="mainTower3" alignment="CENTER" prefHeight="131.0" prefWidth="182.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="2" />
-            <Label fx:id="mainTower4" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="3" />
-            <Label fx:id="mainTower5" alignment="CENTER" prefHeight="119.0" prefWidth="191.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS" />
+            <Label fx:id="mainTower1" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Tower" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="mainTower2" alignment="CENTER" prefHeight="115.0" prefWidth="195.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="mainTower3" alignment="CENTER" prefHeight="131.0" prefWidth="182.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="mainTower4" alignment="CENTER" prefHeight="150.0" prefWidth="210.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="mainTower5" alignment="CENTER" prefHeight="119.0" prefWidth="191.0" text="Tower" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.hgrow="ALWAYS">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </GridPane>
       <GridPane focusTraversable="true" gridLinesVisible="true" layoutX="2.0" layoutY="282.0" prefHeight="219.0" prefWidth="800.0">
@@ -42,16 +57,46 @@
           <RowConstraints vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Label fx:id="cart1" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" />
-            <Label fx:id="cart2" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="1" />
-            <Label fx:id="cart3" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="2" />
-            <Label fx:id="cart4" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="3" />
-            <Label fx:id="cart5" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="4" />
-            <Label fx:id="cart6" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <Label fx:id="cart7" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="cart8" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="cart9" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="cart10" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="cart1" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart2" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart3" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart4" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart5" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart6" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart7" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart8" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart9" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="cart10" alignment="CENTER" prefHeight="136.0" prefWidth="164.0" text="Cart" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </GridPane>
       <GridPane alignment="CENTER" layoutX="221.0" layoutY="502.0" prefHeight="60.0" prefWidth="362.0">

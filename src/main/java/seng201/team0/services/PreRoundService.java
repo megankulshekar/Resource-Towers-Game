@@ -16,12 +16,12 @@ public class PreRoundService {
     /**
      * The index of the next round in round list
      */
-    private int nextRoundIndex;
+    private int currentRoundIndex;
 
     /**
      * The next round of the game
      */
-    private Round nextRound;
+    private Round currentRound;
 
     /**
      * Constructor
@@ -29,18 +29,17 @@ public class PreRoundService {
      */
     public PreRoundService(GameEnvironment game){
         this.game = game;
-        this.game.increaseCurrentRoundIndex();
-        nextRoundIndex = game.getCurrentRoundIndex();
-        nextRound = game.getRounds().get(nextRoundIndex);
+        currentRoundIndex = game.getCurrentRoundIndex();
+        currentRound = game.getRounds().get(currentRoundIndex);
     }
 
     /**
      * Gets the next round
      * @return Next round
      */
-    public Round getNextRound(){
+    public Round getCurrentRound(){
         System.out.println(game.getCurrentRoundIndex());
-        return nextRound;
+        return currentRound;
     }
 
     /**
@@ -48,14 +47,13 @@ public class PreRoundService {
      * @return Amount of money given
      */
     public String giveMoney(){
-        Round lastRound = game.getRounds().get(nextRoundIndex - 1);
-        if (lastRound.getDifficulty() == "Easy"){
+        if (currentRound.getDifficulty().equals("Easy")){
             game.increaseMoney(5);
             return "$5";
-        } else if (lastRound.getDifficulty() == "Medium"){
+        } else if (currentRound.getDifficulty().equals("Medium")){
             game.increaseMoney(10);
             return "$10";
-        } else{
+        } else {
             game.increaseMoney(15);
             return "$15";
         }
@@ -78,16 +76,16 @@ public class PreRoundService {
      * Adds new resource type a cart can have in a round
      */
     public void addNewResourceType(){
-        if (nextRoundIndex == 2){
-            nextRound.addResourceType("Copper");
-        } else if (nextRoundIndex == 4){
-            nextRound.addResourceType("Iron");
-        } else if (nextRoundIndex == 6) {
-            nextRound.addResourceType("Gold");
-        } else if (nextRoundIndex == 8){
-            nextRound.addResourceType("Diamond");
-        } else if (nextRoundIndex == 10){
-            nextRound.addResourceType("Uranium");
+        if (currentRoundIndex+1 == 2){
+            currentRound.addResourceType("Copper");
+        } else if (currentRoundIndex+1 == 4){
+            currentRound.addResourceType("Iron");
+        } else if (currentRoundIndex+1 == 6) {
+            currentRound.addResourceType("Gold");
+        } else if (currentRoundIndex+1 == 8){
+            currentRound.addResourceType("Diamond");
+        } else if (currentRoundIndex+1 == 10){
+            currentRound.addResourceType("Uranium");
         }
     }
 
@@ -95,8 +93,8 @@ public class PreRoundService {
      * Increases the number of carts in a round by 1
      */
     public void addNewCart(){
-        if (nextRoundIndex % 2 == 0){
-            nextRound.increaseNumCarts(1);
+        if (currentRoundIndex % 2 == 1){
+            currentRound.increaseNumCarts(1);
         }
     }
 
@@ -104,26 +102,26 @@ public class PreRoundService {
      * Sets the easy difficulty option for the next round
      */
     public void setEasyDifficulty(){
-        nextRound.increaseCartSize(1);
-        nextRound.increaseCartSpeed(1);
-        nextRound.setDifficulty("Easy");
+        currentRound.increaseCartSize(1);
+        currentRound.increaseCartSpeed(1);
+        currentRound.setDifficulty("Easy");
     }
 
     /**
      * Sets the medium difficulty option for the next round
      */
     public void setMediumDifficulty(){
-        nextRound.increaseCartSize(2);
-        nextRound.increaseCartSpeed(2);
-        nextRound.setDifficulty("Medium");
+        currentRound.increaseCartSize(2);
+        currentRound.increaseCartSpeed(2);
+        currentRound.setDifficulty("Medium");
     }
 
     /**
      * Sets the hard difficulty option for the next round
      */
     public void setHardDifficulty(){
-        nextRound.increaseCartSize(3);
-        nextRound.increaseCartSpeed(3);
-        nextRound.setDifficulty("Hard");
+        currentRound.increaseCartSize(3);
+        currentRound.increaseCartSpeed(3);
+        currentRound.setDifficulty("Hard");
     }
 }

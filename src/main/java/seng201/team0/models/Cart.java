@@ -92,7 +92,8 @@ public class Cart {
     }
 
     public String getDescription(){
-        return "Cart Type: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size;
+        return "Cart Type: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size+"\n\n" +
+                "Time left: "+time;
     }
 
     /**
@@ -108,5 +109,13 @@ public class Cart {
                 setFullToTrue();
             }
         }
+    }
+
+    public int getTime(){
+        return time;
+    }
+
+    public void decreaseTime(){
+        time--;
     }
 }

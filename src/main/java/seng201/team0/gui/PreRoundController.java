@@ -26,7 +26,7 @@ public class PreRoundController {
     /**
      * The next round
      */
-    private Round nextRound;
+    private Round currentRound;
 
     /**
      * The difficulty of the next round chosen by the user
@@ -49,9 +49,9 @@ public class PreRoundController {
     public PreRoundController(GameEnvironment game) {
         this.game = game;
         preRoundService = new PreRoundService(this.game);
-        nextRound = preRoundService.getNextRound();
+        currentRound = preRoundService.getCurrentRound();
         System.out.println("Current round index before pre round: " + game.getCurrentRoundIndex());
-        System.out.println("Next round (Pre round): " + nextRound.toString());
+        System.out.println("Next round (Pre round): " + currentRound.toString());
     }
 
     /**
@@ -86,20 +86,20 @@ public class PreRoundController {
      * Displays three options for the next round
      */
     public void displayOptions(){
-        String resourceTypes = nextRound.getResourceTypes()
+        String resourceTypes = currentRound.getResourceTypes()
                 .toString().replace("[","").replace("]","");
         easyOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(nextRound.getCartSize()+1)+"\n\n" +
-                "Cart Speed: "+(nextRound.getCartSpeed()+1));
+                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(currentRound.getCartSize()+1)+"\n\n" +
+                "Cart Speed: "+(currentRound.getCartSpeed()+1));
         mediumOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(nextRound.getCartSize()+2)+"\n\n" +
-                "Cart Speed: "+(nextRound.getCartSpeed()+2));
+                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(currentRound.getCartSize()+2)+"\n\n" +
+                "Cart Speed: "+(currentRound.getCartSpeed()+2));
         hardOption.setText("Types of carts: "+resourceTypes+"\n\n" +
-                "Number of Carts: "+nextRound.getNumCarts()+"\n\n" +
-                "Cart Size: "+(nextRound.getCartSize()+3)+"\n\n" +
-                "Cart Speed: "+(nextRound.getCartSpeed()+3));
+                "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
+                "Cart Size: "+(currentRound.getCartSize()+3)+"\n\n" +
+                "Cart Speed: "+(currentRound.getCartSpeed()+3));
     }
 
     /**
@@ -125,7 +125,6 @@ public class PreRoundController {
      */
     @FXML
     public void onStartRound(){
-        //game.increaseCurrentRoundIndex();
         if (chosenDifficulty.equals("Easy")){
             preRoundService.setEasyDifficulty();
         }
@@ -135,7 +134,9 @@ public class PreRoundController {
         else if (chosenDifficulty.equals("Hard")){
             preRoundService.setHardDifficulty();
         }
-        nextRound.createCarts();
+        game.increaseCurrentRoundIndex();
+        int nextRoundIndex = game.getCurrentRoundIndex();
+        game.getRounds().get(nextRoundIndex).createCarts();
         game.closePreRound();
     }
 }
