@@ -11,7 +11,7 @@ public class Round {
     /**
      * Difficulty of round
      */
-    private String difficulty;
+    private static String difficulty;
 
     /**
      * Number of carts in round
@@ -47,13 +47,13 @@ public class Round {
         numCarts = 3;
         if (difficulty == "Easy"){
             cartSize = 4;
-            cartSpeed = 4;
+            cartSpeed = 1;
         } else if (difficulty == "Medium"){
             cartSize = 5;
-            cartSpeed = 5;
+            cartSpeed = 2;
         } else{
             cartSize = 6;
-            cartSpeed = 6;
+            cartSpeed = 3;
         }
         if (!resourceTypes.contains("Coal")){
             resourceTypes.add("Coal");
@@ -103,6 +103,7 @@ public class Round {
      */
     public void createCarts(){
         Random random = new Random();
+        System.out.println(numCarts);
         for (int i = 0; i < numCarts; i++){
             int index = random.nextInt(resourceTypes.size());
             String cartResourceType = resourceTypes.get(index);
@@ -143,7 +144,9 @@ public class Round {
      * @param type Cart resource type that is added
      */
     public void addResourceType(String type){
-        resourceTypes.add(type);
+        if (!resourceTypes.contains(type)) {
+            resourceTypes.add(type);
+        }
     }
 
     /**

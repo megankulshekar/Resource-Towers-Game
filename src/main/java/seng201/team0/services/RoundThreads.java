@@ -45,6 +45,5 @@ public class RoundThreads implements Runnable {
 
             }
         }
-        //System.out.println("Thread is running");
     }
 }

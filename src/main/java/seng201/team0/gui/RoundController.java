@@ -1,12 +1,12 @@
 package seng201.team0.gui;
 
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import javafx.util.Duration;
 import seng201.team0.models.*;
+import seng201.team0.services.CartThreads;
 import seng201.team0.services.RoundService;
 import seng201.team0.services.RoundThreads;
 
@@ -75,7 +75,7 @@ public class RoundController {
      */
     //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
-    public void initialize() {
+    public void initialize() throws InterruptedException {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
         this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
@@ -86,12 +86,18 @@ public class RoundController {
         for (int i = 0; i < 5; i++) {
             Tower tower = inventory.getMainTowers(i);
             if (tower != null) {
-                Thread thread = new Thread(new RoundThreads(game, tower));
-                thread.start();
+                Thread roundthread = new Thread(new RoundThreads(game, tower));
+                roundthread.start();
             }
         }
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.01));
+        List<Cart> carts = currentRound.getCarts();
+        for (Cart cart : carts){
+            Thread cartThread = new Thread(new CartThreads(cart));
+            cartThread.start();
+        }
+
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
             updateLabels();
             boolean allFull = roundService.allCartsFull();

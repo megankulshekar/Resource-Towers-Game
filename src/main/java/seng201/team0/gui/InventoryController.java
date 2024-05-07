@@ -239,7 +239,10 @@ public class InventoryController {
                 swappingTowers();
             }
         }
-        else{
+        else if (mainContainsCount == 1 && (mainTower == null && reserveTower != null)){
+            swappingTowers();
+        }
+        else {
             System.out.println("Not swapped");
         }
         mainContainsCount = 0;
