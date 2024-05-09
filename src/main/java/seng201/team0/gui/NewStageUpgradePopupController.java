@@ -1,12 +1,14 @@
 package seng201.team0.gui;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 
 public class NewStageUpgradePopupController {
@@ -22,10 +24,22 @@ public class NewStageUpgradePopupController {
     private Label upgradeChosenLabel;
 
     @FXML
+    private Label towerChosenLabel;
+
+    @FXML
+    private ListView<Tower>sellTowerList;
+
+    @FXML
     private MenuButton upgradesMenuButton;
 
     @FXML
     private MenuItem repairItem, upgradeXPItem, upgradeReloadSpeedItem, upgradeResourceAmountItem;
+
+    @FXML
+    private Button okayTowerButton;
+
+    @FXML
+    private Button okayButton;
 
     @FXML
     private Button exitButton;
@@ -44,6 +58,28 @@ public class NewStageUpgradePopupController {
      */
     public NewStageUpgradePopupController(GameEnvironment game) {
         this.game = game;
+    }
+
+    public void initialize(){
+        Tower[] mainTowers = game.getInventory().getAllMainTowers();
+        Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
+
+        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
+//                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
+                .filter(tower -> tower != null)
+                .toList();
+
+        System.out.println("Sellable towers" + sellableTowers);
+
+        sellTowerList.setCellFactory(new TowerCellFactory());
+        sellTowerList.setItems(FXCollections.observableArrayList(sellableTowers));
+        sellTowerList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+
+    @FXML
+    public void onOkayTower(){
+        int descriptionIndex = sellTowerList.getSelectionModel().getSelectedIndex();
+        System.out.println("Description index: " + descriptionIndex);
     }
 
     /**

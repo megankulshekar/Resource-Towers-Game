@@ -239,7 +239,7 @@ public class GameEnvironment {
         inventory.remove(purchasable);
     }
 
-    public void buyInShop(Purchasable purchasable, GameEnvironment game, String description){
+    public void buyTowerInShop(Purchasable purchasable, GameEnvironment game, String description){
         shop.buy(purchasable, game, description);
     }
 
@@ -249,6 +249,18 @@ public class GameEnvironment {
 
     public void buyUpgrades(Item item, GameEnvironment game, String description){
         shop.buyUpgrade(item, game, description);
+    }
+
+    public void sellTowerInShop(Purchasable purchasable, GameEnvironment game){
+        shop.sell(purchasable, game);
+    }
+
+    public void sellUpgrades(Item item, GameEnvironment game){
+        shop.sellUpgrade(item, game);
+    }
+
+    public void removeFromUpgrades(Item item){
+        inventory.removeUpgrade(item);
     }
 
     /**

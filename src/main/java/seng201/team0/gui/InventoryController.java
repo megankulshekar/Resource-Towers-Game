@@ -3,7 +3,6 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import seng201.team0.models.Cart;
 import seng201.team0.models.CoalTower;
 import seng201.team0.models.GameEnvironment;
@@ -50,12 +49,6 @@ public class InventoryController {
 
     @FXML
     private Button exitButton;
-
-    @FXML
-    private Label upgradeAppliedLabel;
-
-    @FXML
-    private ListView<String> upgradesList;
 
     /**
      * Starting indices when the GUI is initially launched
@@ -139,66 +132,16 @@ public class InventoryController {
         }
     }
 
-    @FXML
-    public void onSelectedInvenTower1(){
-        mainTowerIndex = 0;
-    }
-
-    @FXML
-    public void onSelectedInvenTower2(){
-        mainTowerIndex = 1;
-    }
-
-    @FXML
-    public void onSelectedInvenTower3(){
-        mainTowerIndex = 2;
-    }
-
-    @FXML
-    public void onSelectedInvenTower4(){
-        mainTowerIndex = 3;
-    }
-
-    @FXML
-    public void onSelectedInvenTower5(){
-        mainTowerIndex = 4;
-    }
-
-    @FXML
-    public void onSelectedReserve1(){
-        reserveTowerIndex = 0;
-    }
-
-    @FXML
-    public void onSelectedReserve2(){
-        reserveTowerIndex = 1;
-    }
-
-    @FXML
-    public void onSelectedReserve3(){
-        reserveTowerIndex = 2;
-    }
-
-    @FXML
-    public void onSelectedReserve4(){
-        reserveTowerIndex = 3;
-    }
-
-    @FXML
-    public void onSelectedReserve5(){
-        reserveTowerIndex = 4;
-    }
-
     /**
      * When the move tower button is clicked, tower indices and labels are swapped
      */
     @FXML
     public void onMoveTower() {
-        System.out.println("Reserve tower index: " + reserveTowerIndex);
-        System.out.println("Main tower index: " + mainTowerIndex);
-
-        game.getInventory().printMainTowers();
-        game.getInventory().printReserveTowers();
+//        System.out.println("Reserve tower index: " + reserveTowerIndex);
+//        System.out.println("Main tower index: " + mainTowerIndex);
+//
+//        game.getInventory().printMainTowers();
+//        game.getInventory().printReserveTowers();
 
         Tower[] mainTowers = game.getInventory().getAllMainTowers();
         Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
@@ -215,8 +158,8 @@ public class InventoryController {
             }
         }
 
-        System.out.println("Main " + mainContainsCount);
-        System.out.println("Reserve " + reserveContainsCount);
+//        System.out.println("Main " + mainContainsCount);
+//        System.out.println("Reserve " + reserveContainsCount);
 
         Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
         Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
@@ -256,8 +199,8 @@ public class InventoryController {
         String mainText = mainTowerLabels.get(mainTowerIndex).getText();
         reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
         mainTowerLabels.get(mainTowerIndex).setText(reserveText);
-        //mainTowerIndex = -1;
-        //reserveTowerIndex = -1;
+        mainTowerIndex = -1;
+        reserveTowerIndex = -1;
     }
 
     /**
@@ -265,6 +208,8 @@ public class InventoryController {
      */
     @FXML
     public void onUpgradeTower(){
+        System.out.println("Main tower index: " + mainTowerIndex);
+        System.out.println("Reserve tower index: " + reserveTowerIndex);
         if (mainTowerIndex != -1 && reserveTowerIndex == -1){
             game.getInventory().setTowerIndexValue(mainTowerIndex);
         }
