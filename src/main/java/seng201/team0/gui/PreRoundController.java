@@ -64,7 +64,7 @@ public class PreRoundController {
     public void initialize(){
         String name = game.getName();
         if (name != null) {
-            completionLabel.setText("You completed the round, " + name + "!");
+            completionLabel.setText("You completed the round, "+name+"!");
         }
 
         String amountGiven = preRoundService.giveMoney();
@@ -95,11 +95,11 @@ public class PreRoundController {
         mediumOption.setText("Types of carts: "+resourceTypes+"\n\n" +
                 "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
                 "Cart Size: "+(currentRound.getCartSize()+2)+"\n\n" +
-                "Cart Speed: "+(currentRound.getCartSpeed()+2));
+                "Cart Speed: "+(currentRound.getCartSpeed()+1));
         hardOption.setText("Types of carts: "+resourceTypes+"\n\n" +
                 "Number of Carts: "+currentRound.getNumCarts()+"\n\n" +
                 "Cart Size: "+(currentRound.getCartSize()+3)+"\n\n" +
-                "Cart Speed: "+(currentRound.getCartSpeed()+3));
+                "Cart Speed: "+(currentRound.getCartSpeed()+1));
     }
 
     /**

@@ -40,7 +40,7 @@ public class RoundThreads implements Runnable {
                 try {
                     Thread.sleep(fillingTower.getReloadSpeed() * 1000L);
                 } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    return;
                 }
 
             }

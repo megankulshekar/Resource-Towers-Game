@@ -10,6 +10,7 @@ import seng201.team0.services.CartThreads;
 import seng201.team0.services.RoundService;
 import seng201.team0.services.RoundThreads;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,15 +37,6 @@ public class RoundController {
      */
     private Round currentRound;
 
-    @FXML
-    private Label roundNumber;
-
-    @FXML
-    private Label mainTower1, mainTower2, mainTower3, mainTower4, mainTower5;
-
-    @FXML
-    private Label cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10;
-
     /**
      * List of labels for user's main towers
      */
@@ -54,6 +46,17 @@ public class RoundController {
      * List of labels for carts in the round
      */
     private List<Label> cartLabels;
+    private List<Thread> towerThreads = new ArrayList<Thread>();
+    private List<Thread> cartThreads = new ArrayList<Thread>();
+
+    @FXML
+    private Label roundNumber;
+
+    @FXML
+    private Label mainTower1, mainTower2, mainTower3, mainTower4, mainTower5;
+
+    @FXML
+    private Label cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10;
 
     /**
      * Constructor
@@ -75,7 +78,7 @@ public class RoundController {
      */
     //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
-    public void initialize() throws InterruptedException {
+    public void initialize() {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
         this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
@@ -86,23 +89,28 @@ public class RoundController {
         for (int i = 0; i < 5; i++) {
             Tower tower = inventory.getMainTowers(i);
             if (tower != null) {
-                Thread roundthread = new Thread(new RoundThreads(game, tower));
-                roundthread.start();
+                Thread towerThread = new Thread(new RoundThreads(game, tower));
+                towerThreads.add(towerThread);
+                towerThread.start();
             }
         }
 
         List<Cart> carts = currentRound.getCarts();
         for (Cart cart : carts){
             Thread cartThread = new Thread(new CartThreads(cart));
+            cartThreads.add(cartThread);
             cartThread.start();
         }
 
         PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
         pause.setOnFinished(event -> {
             updateLabels();
+            boolean timeRunOut = roundService.cartTimeRunOut();
             boolean allFull = roundService.allCartsFull();
-            if (allFull){
-                endRound();
+            if (timeRunOut){
+                loseRound();
+            } else if (allFull){
+                winRound();
             } else {
                 pause.play();
             }
@@ -138,6 +146,13 @@ public class RoundController {
      */
     @FXML
     public void onInventory(){
+        for (Thread thread : towerThreads){
+            thread.interrupt();
+        }
+        for (Thread thread : cartThreads){
+            thread.interrupt();
+        }
+
         game.closeRound();
         game.launchInventory();
     }
@@ -147,15 +162,49 @@ public class RoundController {
      */
     @FXML
     public void onShop(){
+        for (Thread thread : towerThreads){
+            thread.interrupt();
+        }
+        for (Thread thread : cartThreads){
+            thread.interrupt();
+        }
+
         game.closeRound();
         game.launchShop();
     }
 
     /**
-     * Closes round GUI and launches pre round GUI
+     * Closes round GUI and launches end screen GUI if all rounds have been completed,
+     * otherwise it launches pre round GUI
      */
-    public void endRound(){
+    public void winRound(){
+        for (Thread thread : towerThreads){
+            thread.interrupt();
+        }
+        for (Thread thread : cartThreads){
+            thread.interrupt();
+        }
+
         game.closeRound();
-        game.launchPreRound();
+        if (currentRoundIndex+1 == game.getRounds().size()){
+            game.launchEndScreen();
+        } else {
+            game.launchPreRound();
+        }
+    }
+
+    /**
+     * Closes round GUI and launches end screen GUI
+     */
+    public void loseRound(){
+        for (Thread thread : towerThreads){
+            thread.interrupt();
+        }
+        for (Thread thread : cartThreads){
+            thread.interrupt();
+        }
+
+        game.closeRound();
+        game.launchEndScreen();
     }
 }

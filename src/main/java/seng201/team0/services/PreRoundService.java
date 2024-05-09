@@ -112,7 +112,7 @@ public class PreRoundService {
      */
     public void setMediumDifficulty(){
         currentRound.increaseCartSize(2);
-        currentRound.increaseCartSpeed(2);
+        currentRound.increaseCartSpeed(1);
         currentRound.setDifficulty("Medium");
     }
 
@@ -121,7 +121,7 @@ public class PreRoundService {
      */
     public void setHardDifficulty(){
         currentRound.increaseCartSize(3);
-        currentRound.increaseCartSpeed(3);
+        currentRound.increaseCartSpeed(1);
         currentRound.setDifficulty("Hard");
     }
 }

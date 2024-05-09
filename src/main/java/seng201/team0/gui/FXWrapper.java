@@ -31,7 +31,7 @@ public class FXWrapper {
     public void init(Stage stage) {
         this.stage = stage;
         new GameEnvironment(this::clearPane, this::launchStartScreen, this::launchPreRound, this::launchRound,
-                            this::launchInventory, this::launchUpgradePopup, this::launchShop);
+                            this::launchInventory, this::launchUpgradePopup, this::launchShop, this::launchEndScreen);
     }
 
     /**
@@ -124,6 +124,17 @@ public class FXWrapper {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/shop.fxml"));
             setupLoader.setControllerFactory(param -> new ShopController(game));
+            Parent setupParent  = setupLoader.load();
+            pane.getChildren().add(setupParent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchEndScreen(GameEnvironment game){
+        try {
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/end_screen.fxml"));
+            setupLoader.setControllerFactory(param -> new EndScreenController(game));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
         } catch (IOException e) {

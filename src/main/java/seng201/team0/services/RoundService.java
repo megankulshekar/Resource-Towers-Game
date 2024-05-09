@@ -28,6 +28,15 @@ public class RoundService {
         return currentRound;
     }
 
+    public boolean cartTimeRunOut(){
+        boolean timeRunOut = false;
+        for (Cart cart : currentRound.getCarts()){
+            if (cart.getTime() <= 0 && !cart.isFull()){
+                timeRunOut = true;
+            }
+        }
+        return timeRunOut;
+    }
     /**
      * Checks if all carts in the round are full
      * @return Boolean value representing if all carts are full

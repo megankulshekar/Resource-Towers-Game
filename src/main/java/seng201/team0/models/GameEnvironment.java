@@ -61,22 +61,24 @@ public class GameEnvironment {
     /**
      * Method for launching the round GUI
      */
-    private final Consumer<GameEnvironment> RoundLauncher;
+    private final Consumer<GameEnvironment> roundLauncher;
 
     /**
      * Method for launching the inventory GUI
      */
-    private final Consumer<GameEnvironment> InventoryLauncher;
+    private final Consumer<GameEnvironment> inventoryLauncher;
 
     /**
      * Method for launching the upgrade popup GUI
      */
-    private final Consumer<GameEnvironment> UpgradePopupLauncher;
+    private final Consumer<GameEnvironment> upgradePopupLauncher;
 
     /**
      * Method for launching the shop GUI
      */
-    private final Consumer<GameEnvironment> ShopLauncher;
+    private final Consumer<GameEnvironment> shopLauncher;
+
+    private final Consumer<GameEnvironment> endScreenLauncher;
 
     /**
      * Method for clearing the game window
@@ -89,15 +91,17 @@ public class GameEnvironment {
      * @param startScreenLauncher Method that displays the start screen GUI on the game window
      */
     public GameEnvironment(Runnable clearScreen, Consumer<GameEnvironment> startScreenLauncher,
-                           Consumer<GameEnvironment> preRoundLauncher, Consumer<GameEnvironment> RoundLauncher,
-                           Consumer<GameEnvironment> InventoryLauncher, Consumer<GameEnvironment> UpgradePopupLauncher, Consumer<GameEnvironment> ShopLauncher){
+                           Consumer<GameEnvironment> preRoundLauncher, Consumer<GameEnvironment> roundLauncher,
+                           Consumer<GameEnvironment> inventoryLauncher, Consumer<GameEnvironment> upgradePopupLauncher,
+                           Consumer<GameEnvironment> shopLauncher, Consumer<GameEnvironment> endScreenLauncher){
         this.clearScreen = clearScreen;
         this.startScreenLauncher = startScreenLauncher;
         this.preRoundLauncher = preRoundLauncher;
-        this.RoundLauncher = RoundLauncher;
-        this.InventoryLauncher = InventoryLauncher;
-        this.UpgradePopupLauncher = UpgradePopupLauncher;
-        this.ShopLauncher = ShopLauncher;
+        this.roundLauncher = roundLauncher;
+        this.inventoryLauncher = inventoryLauncher;
+        this.upgradePopupLauncher = upgradePopupLauncher;
+        this.shopLauncher = shopLauncher;
+        this.endScreenLauncher = endScreenLauncher;
         launchStartScreen();
     }
 
@@ -281,7 +285,7 @@ public class GameEnvironment {
      * Launches the round GUI
      */
     public void launchRound(){
-        RoundLauncher.accept(this);
+        roundLauncher.accept(this);
     }
 
     /**
@@ -295,7 +299,7 @@ public class GameEnvironment {
      * Launches the inventory GUI
      */
     public void launchInventory(){
-        InventoryLauncher.accept(this);
+        inventoryLauncher.accept(this);
     }
 
     /**
@@ -318,7 +322,7 @@ public class GameEnvironment {
      * Launches the upgrade popup GUI
      */
     public void launchUpgradePopup() {
-        UpgradePopupLauncher.accept(this);
+        upgradePopupLauncher.accept(this);
     }
 
     /**
@@ -333,7 +337,7 @@ public class GameEnvironment {
      * Launches the shop GUI
      */
     public void launchShop(){
-        ShopLauncher.accept(this);
+        shopLauncher.accept(this);
     }
 
     /**
@@ -342,5 +346,12 @@ public class GameEnvironment {
     public void closeShop(){
         clearScreen.run();
         launchRound();
+    }
+
+    /**
+     * Launches the end screen GUI
+     */
+    public void launchEndScreen(){
+        endScreenLauncher.accept(this);
     }
 }
