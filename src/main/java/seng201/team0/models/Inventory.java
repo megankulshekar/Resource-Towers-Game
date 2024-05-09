@@ -120,6 +120,10 @@ public class Inventory {
         return upgradesBought;
     }
 
+    public List<Item> getItems(){
+        return items;
+    }
+
     /**
      * Prints the user's inventory
      */
@@ -204,6 +208,11 @@ public class Inventory {
     public void addUpgrade(Item item, String description){
         items.add(item);
         upgradesBought.add(description);
+    }
+
+    public void removeUpgrade(Item item){
+        items.remove(item);
+//        upgradesBought.get(1).set
     }
 
     /**

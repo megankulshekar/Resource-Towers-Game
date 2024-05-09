@@ -9,19 +9,19 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 import seng201.team0.models.Item;
 
-public class UpgradeCellFactory implements Callback<ListView<Item>, ListCell<Item>> {
+public class UpgradeCellFactory implements Callback<ListView<String>, ListCell<String>> {
     @Override
-    public ListCell<Item> call(ListView<Item> param) {
+    public ListCell<String> call(ListView<String> param) {
         return new ListCell<>() {
             @Override
-            public void updateItem(Item item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
+            public void updateItem(String string, boolean empty) {
+                super.updateItem(string, empty);
+                if (empty || string == null) {
                     setGraphic(null);
                 } else {
                     HBox hBox = new HBox(110);
                     VBox vBox = new VBox(100);
-                    Label nameLabel = new Label(item.getDescription().replace("\n", " "));
+                    Label nameLabel = new Label(string.replace("\n", " "));
                     nameLabel.setFont(new Font(10));
                     setGraphic(nameLabel);
                 }

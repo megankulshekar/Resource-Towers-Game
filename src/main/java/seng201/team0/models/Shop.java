@@ -68,7 +68,13 @@ public class Shop {
      * @param game The game environment
      */
     public void sell(Purchasable purchasable, GameEnvironment game){
+        System.out.println(purchasable);
         game.increaseMoney(purchasable.getSellingPrice());
         game.removeFromInventory(purchasable);
+    }
+
+    public void sellUpgrade(Item item, GameEnvironment game) {
+        game.increaseMoney(item.getBuyingPrice());
+        game.removeFromUpgrades(item);
     }
 }
