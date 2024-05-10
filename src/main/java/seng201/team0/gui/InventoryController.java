@@ -164,33 +164,16 @@ public class InventoryController {
         Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
         Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
 
-        if (mainContainsCount > 1) {
+        if (mainContainsCount > 1 || mainContainsCount == 1 && (mainTower == null && reserveTower != null)) {
             //System.out.println("Main Contains Count: " + mainContainsCount);
             //System.out.println("Reserve Contains Count: " + reserveContainsCount);
-            if (mainTower != null && reserveTower != null) {
                 swappingTowers();
-            }
-            else if (mainTower != null && reserveTower == null) {
-                swappingTowers();
-                //mainContainsCount--;
-            }
-            else if (mainTower == null && reserveTower != null) {
-                swappingTowers();
-                //mainContainsCount++;
-            }
-            else{
-                swappingTowers();
-            }
-        }
-        else if (mainContainsCount == 1 && (mainTower == null && reserveTower != null)){
-            swappingTowers();
         }
         else {
             System.out.println("Not swapped");
         }
         mainContainsCount = 0;
         reserveContainsCount = 0;
-        //swappingTowers();
     }
 
     public void swappingTowers(){
@@ -199,8 +182,6 @@ public class InventoryController {
         String mainText = mainTowerLabels.get(mainTowerIndex).getText();
         reserveTowerLabels.get(reserveTowerIndex).setText(mainText);
         mainTowerLabels.get(mainTowerIndex).setText(reserveText);
-        mainTowerIndex = -1;
-        reserveTowerIndex = -1;
     }
 
     /**
@@ -208,14 +189,8 @@ public class InventoryController {
      */
     @FXML
     public void onUpgradeTower(){
-        System.out.println("Main tower index: " + mainTowerIndex);
-        System.out.println("Reserve tower index: " + reserveTowerIndex);
-        if (mainTowerIndex != -1 && reserveTowerIndex == -1){
-            game.getInventory().setTowerIndexValue(mainTowerIndex);
-        }
-        else if (mainTowerIndex == -1 && reserveTowerIndex != -1){
-            game.getInventory().setTowerIndexValue(reserveTowerIndex + 4);
-        }
+//        System.out.println("Main tower index: " + mainTowerIndex);
+//        System.out.println("Reserve tower index: " + reserveTowerIndex);
         game.closeInventoryForUpgrade();
         game.launchUpgradePopup();
     }

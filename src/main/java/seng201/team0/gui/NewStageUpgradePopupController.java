@@ -78,8 +78,13 @@ public class NewStageUpgradePopupController {
 
     @FXML
     public void onOkayTower(){
-        int descriptionIndex = sellTowerList.getSelectionModel().getSelectedIndex();
-        System.out.println("Description index: " + descriptionIndex);
+        Tower tower = sellTowerList.getSelectionModel().getSelectedItem();
+        if (tower != null) {
+            towerChosenLabel.setText("You selected: " + tower.getDescription().replace("\n", " "));
+        }
+        else{
+            towerChosenLabel.setText("");
+        }
     }
 
     /**
@@ -128,25 +133,42 @@ public class NewStageUpgradePopupController {
      */
     @FXML
     public void onOkay(){
-        if (indexOfUpgradeItem != -1){
-            int towerIndexValue = game.getInventory().getTowerIndexValue();
-            if (towerIndexValue < 4){
-                Tower tower = game.getInventory().getMainTowers(towerIndexValue);
-                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                originalDescription = game.getInventory().getMainTowerDescriptions(towerIndexValue);
-                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                game.getInventory().setMainTowerDescriptions(towerIndexValue, newDescription);
+        if (indexOfUpgradeItem != -1) {
+            Tower tower = sellTowerList.getSelectionModel().getSelectedItem();
+            System.out.println("Index " + sellTowerList.getSelectionModel().getSelectedIndex());
+            if (tower != null) {
+                int towerIndexValue = -1;
+                for (int i = 0; i < game.getInventory().getAllMainTowers().length; i++) {
+                    if (game.getInventory().getMainTowers(i) == tower) {
+                        towerIndexValue = i;
+                        break;
+                    }
+                }
+                if (towerIndexValue == -1) {
+                    for (int i = 0; i < game.getInventory().getAllReserveTowers().length; i++) {
+                        if (game.getInventory().getReserveTowers(i) == tower) {
+                            towerIndexValue = i + 4;
+                            break;
+                        }
+                    }
+                }
+                if (towerIndexValue != -1) {
+                    game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                    originalDescription = game.getInventory().getMainTowerDescriptions(towerIndexValue);
+                    newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                    game.getInventory().setMainTowerDescriptions(towerIndexValue, newDescription);
+                }
+                if (towerIndexValue >= 4) {
+                    towerIndexValue = towerIndexValue - 4;
+                    game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                    originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndexValue);
+                    newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                    game.getInventory().setReserveTowerDescriptions(towerIndexValue, newDescription);
+                }
+                System.out.println("Tower index value: "+ towerIndexValue);
+                //game.getInventory().getUpgradesBought().remove(index);
+                messageLabel.setText("Success! Upgrade applied!");
             }
-            else if (towerIndexValue >= 4){
-                towerIndexValue = towerIndexValue - 4;
-                Tower tower = game.getInventory().getReserveTowers(towerIndexValue);
-                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndexValue);
-                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                game.getInventory().setReserveTowerDescriptions(towerIndexValue, newDescription);
-            }
-            //game.getInventory().getUpgradesBought().remove(index);
-            messageLabel.setText("Success! Upgrade applied!");
         }
         else if (indexOfUpgradeItem == -1){
             messageLabel.setText("Sorry! You do not have that upgrade!");
