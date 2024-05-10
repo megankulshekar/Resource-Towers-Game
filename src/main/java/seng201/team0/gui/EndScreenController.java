@@ -4,16 +4,47 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team0.models.GameEnvironment;
 
+/**
+ * Class for controlling the end screen GUI
+ */
 public class EndScreenController {
+    /**
+     * The game environment
+     */
     private GameEnvironment game;
+
+    /**
+     * The number of rounds of the game
+     */
     private int numberOfRounds;
+
+    /**
+     * The index of the current round
+     */
     private int currentRoundIndex;
+
+    /**
+     * The amount of money the user has at the end of the game
+     */
     private int money;
+
+    /**
+     * Indicates whether the user lost or won the game
+     */
     private boolean gameOver;
 
+    /**
+     * Labels showing whether the user won or lost,
+     * number of rounds completed,
+     * and amount of money the user has at the end of the game
+     */
     @FXML
     private Label result, roundsCompleted, moneyGained;
 
+    /**
+     * Constructor
+     * @param game The game environment
+     */
     public EndScreenController(GameEnvironment game){
         this.game = game;
         numberOfRounds = this.game.getNumberRounds();
@@ -26,6 +57,9 @@ public class EndScreenController {
         }
     }
 
+    /**
+     * Initialises the GUI by setting text for the labels
+     */
     @FXML
     public void initialize(){
         String name = game.getName();

@@ -60,15 +60,35 @@ public class PreRoundService {
     }
 
     /**
-     * Sets a random main tower in the inventory as broken
+     * Chooses a random tower from main tower list
+     * @return Randomly chosen main tower
      */
-    public void towerBreaks() {
+    public Tower randomMainTower(){
         Random random = new Random();
         Tower randomTower;
         do {
             int randomIndex = random.nextInt(5);
             randomTower = game.getInventory().getMainTowers(randomIndex);
         } while (randomTower == null);
+        return randomTower;
+    }
+
+    /**
+     * Increases a random main tower's XP by a random amount
+     */
+    public int towerGainsXP(){
+        Tower randomTower = randomMainTower();
+        Random random = new Random();
+        int randomAmount = random.nextInt(1, 6);
+        randomTower.increaseXP(randomAmount);
+        return randomAmount;
+    }
+
+    /**
+     * Sets a random main tower in the inventory as broken
+     */
+    public void towerBreaks() {
+        Tower randomTower = randomMainTower();
         randomTower.setBroken(true);
     }
 

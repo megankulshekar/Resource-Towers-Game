@@ -16,11 +16,11 @@ public interface Purchasable {
      */
     public int getSellingPrice();
 
+    public String setDescription(String typeTower, int resourceAmount, int reloadSpeed);
+
     /**
      * Gets the description of item/tower
      * @return Description
      */
-    public String setDescription(String typeTower, int resourceAmount, int reloadSpeed);
-
     public String getDescription();
 }
