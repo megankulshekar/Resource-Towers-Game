@@ -8,7 +8,7 @@ import javafx.util.Duration;
 import seng201.team0.models.*;
 import seng201.team0.services.CartThreads;
 import seng201.team0.services.RoundService;
-import seng201.team0.services.RoundThreads;
+import seng201.team0.services.TowerThreads;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +46,15 @@ public class RoundController {
      * List of labels for carts in the round
      */
     private List<Label> cartLabels;
+
+    /**
+     * List of tower threads in the round
+     */
     private List<Thread> towerThreads = new ArrayList<Thread>();
+
+    /**
+     * List of cart threads in the round
+     */
     private List<Thread> cartThreads = new ArrayList<Thread>();
 
     @FXML
@@ -89,7 +97,7 @@ public class RoundController {
         for (int i = 0; i < 5; i++) {
             Tower tower = inventory.getMainTowers(i);
             if (tower != null) {
-                Thread towerThread = new Thread(new RoundThreads(game, tower));
+                Thread towerThread = new Thread(new TowerThreads(game, tower));
                 towerThreads.add(towerThread);
                 towerThread.start();
             }

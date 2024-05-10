@@ -8,7 +8,7 @@ import seng201.team0.models.Tower;
 /**
  * Class providing threads for round controller class
  */
-public class RoundThreads implements Runnable {
+public class TowerThreads implements Runnable {
     /**
      * The current round of the game
      */
@@ -24,7 +24,7 @@ public class RoundThreads implements Runnable {
      * @param game The game environment
      * @param fillingTower The tower that will fill carts in a thread
      */
-    public RoundThreads(GameEnvironment game, Tower fillingTower){
+    public TowerThreads(GameEnvironment game, Tower fillingTower){
         int currentRoundIndex = game.getCurrentRoundIndex();
         currentRound = game.getRounds().get(currentRoundIndex);
         this.fillingTower = fillingTower;
