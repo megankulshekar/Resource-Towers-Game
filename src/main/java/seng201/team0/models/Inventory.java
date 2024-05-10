@@ -44,6 +44,14 @@ public class Inventory {
         return reserveTowers;
     }
 
+    public String[] getAllMainTowerDescriptions(){
+        return mainTowerDescriptions;
+    }
+
+    public String[] getAllReserveTowerDescriptions(){
+        return reserveTowerDescriptions;
+    }
+
     /**
      * Gets a tower at specified index in main towers list
      * @param indexValue Index used to get tower
@@ -238,5 +246,10 @@ public class Inventory {
     public void upgradeTower(int itemIndex, Tower tower){
         items.get(itemIndex).useItem(tower);
         items.remove(itemIndex);
+        upgradesBought.remove(itemIndex);
+    }
+
+    public void removeUpgradeTower(int itemIndex, Tower tower){
+        items.get(itemIndex).noUseItem(tower);
     }
 }

@@ -39,4 +39,8 @@ public class UpgradeXPItem extends Item {
         tower.increaseXP(10);
         used = true;
     }
+
+    public void noUseItem(Tower tower){
+        tower.increaseXP(-10);
+    }
 }

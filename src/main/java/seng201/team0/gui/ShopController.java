@@ -52,16 +52,25 @@ public class ShopController {
      * List view of player's tower inventory
      */
     @FXML
-    private ListView <Tower>sellTowerList;
+    private ListView <Tower>sellMainTowerList;
+
+    @FXML
+    private ListView <Tower>sellReserveTowerList;
 
     /**
      * Selling tower button and corresponding label
      */
     @FXML
-    private Button sellTowerButton;
+    private Button sellMainTowerButton;
 
     @FXML
-    private Label towerSoldLabel;
+    private Button sellReserveTowerButton;
+
+    @FXML
+    private Label mainTowerSoldLabel;
+
+    @FXML
+    private Label reserveTowerSoldLabel;
 
     /**
      * Buttons and labels for each of the upgrades available
@@ -108,6 +117,8 @@ public class ShopController {
     private int boughtTowerIndex = -1;
 
     private int boughtUpgradeIndex = -1;
+
+    private String description;
 
     /**
      * Stores upgrade descriptions for use in other classes
@@ -176,15 +187,16 @@ public class ShopController {
         Tower[] mainTowers = game.getInventory().getAllMainTowers();
         Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
 
-        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
-//                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
-                        .filter(tower -> tower != null)
-                        .toList();
+//        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
+////                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
+//                        .filter(tower -> tower != null)
+//                        .toList();
 
-        System.out.println("Sellable towers" + sellableTowers);
+        sellMainTowerList.setCellFactory(new TowerCellFactory());
+        sellMainTowerList.setItems(FXCollections.observableArrayList(mainTowers));
 
-        sellTowerList.setCellFactory(new TowerCellFactory());
-        sellTowerList.setItems(FXCollections.observableArrayList(sellableTowers));
+        sellReserveTowerList.setCellFactory(new TowerCellFactory());
+        sellReserveTowerList.setItems(FXCollections.observableArrayList(reserveTowers));
 
         List<String> upgrades = game.getInventory().getUpgradesBought();
         sellUpgradeList.setCellFactory(new UpgradeCellFactory());
@@ -286,34 +298,25 @@ public class ShopController {
      * When the sell tower button is clicked, displays that the tower has been sold
      */
     @FXML
-    public void onSellTower(){
-//        System.out.println("Before");
-//        game.getInventory().printMainTowerDescriptions();
-//        game.getInventory().printReserveTowerDescriptions();
-
-        for (Integer index : sellTowerList.getSelectionModel().getSelectedIndices()){
-            System.out.println("in sell tower");
-            System.out.println(game.getInventory().getAllReserveTowers());
+    public void onSellMainTower(){
+        for (Integer index : sellMainTowerList.getSelectionModel().getSelectedIndices()){
             System.out.println(index);
-            if (index <= 4){
-                Tower tower = game.getInventory().getMainTowers(index);
-                game.sellTowerInShop(tower, game);
-            }
-            else if (index > 4){
-                index = index - 5;
-                Tower tower = game.getInventory().getReserveTowers(index);
-
-                game.sellTowerInShop(tower, game);
-            }
+            Tower tower = game.getInventory().getMainTowers(index);
+            game.sellTowerInShop(tower, game);
         }
+        mainTowerSoldLabel.setText("Main Tower Sold");
+        setLabelVisibility(mainTowerSoldLabel);
+    }
 
-//        System.out.println("After");
-//        game.getInventory().printMainTowerDescriptions();
-//        game.getInventory().printReserveTowerDescriptions();
-
-        towerSoldLabel.setText("Tower sold");
-        setLabelVisibility(towerSoldLabel);
-
+    @FXML
+    public void onSellReserveTower(){
+        for (Integer index : sellReserveTowerList.getSelectionModel().getSelectedIndices()) {
+            System.out.println(index);
+            Tower tower = game.getInventory().getReserveTowers(index);
+            game.sellTowerInShop(tower, game);
+        }
+        reserveTowerSoldLabel.setText("Reserve Tower Sold");
+        setLabelVisibility(reserveTowerSoldLabel);
     }
 
     /**
@@ -350,7 +353,6 @@ public class ShopController {
         else{
             upgradeBoughtLabel.setText("You do not have enough money");
         }
-        //System.out.println(game.getInventory().getUpgradesBought());
     }
 
     /**
@@ -362,6 +364,16 @@ public class ShopController {
             Item item = game.getInventory().getItems().get(index);
             game.sellUpgrades(item, game);
         }
+
+        String[] mainTowerDescriptions = game.getInventory().getAllMainTowerDescriptions();
+        String[] reserveTowerDescriptions = game.getInventory().getAllReserveTowerDescriptions();
+
+//        for (int i = 0; i < mainTowerDescriptions.length; i++){
+//            if (mainTowerDescriptions[i].endsWith("\n\n" + repairItem.getText())){
+//                description = mainTowerDescriptions[i].substring(mainTowerDescriptions[i].lastIndexOf("\n\n"))
+//                game.getInventory().setMainTowerDescriptions(i, game.g);
+//            }
+//        }
 
         upgradeSoldLabel.setText("Upgrade sold");
         setLabelVisibility(upgradeSoldLabel);

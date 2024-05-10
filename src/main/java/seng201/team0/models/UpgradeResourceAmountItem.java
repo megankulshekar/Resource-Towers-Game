@@ -39,4 +39,8 @@ public class UpgradeResourceAmountItem extends Item {
         tower.increaseResourceAmount(2);
         used = true;
     }
+
+    public void noUseItem(Tower tower){
+        tower.increaseResourceAmount(-2);
+    }
 }

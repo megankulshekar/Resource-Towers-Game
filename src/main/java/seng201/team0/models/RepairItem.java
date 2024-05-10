@@ -39,4 +39,8 @@ public class RepairItem extends Item {
         tower.setBroken(false);
         used = true;
     }
+
+    public void noUseItem(Tower tower){
+        tower.setBroken(true);
+    }
 }

@@ -24,10 +24,16 @@ public class NewStageUpgradePopupController {
     private Label upgradeChosenLabel;
 
     @FXML
-    private Label towerChosenLabel;
+    private Label mainTowerChosenLabel;
 
     @FXML
-    private ListView<Tower>sellTowerList;
+    private Label reserveTowerChosenLabel;
+
+    @FXML
+    private ListView<Tower>mainTowerList;
+
+    @FXML
+    private ListView<Tower>reserveTowerList;
 
     @FXML
     private MenuButton upgradesMenuButton;
@@ -36,7 +42,10 @@ public class NewStageUpgradePopupController {
     private MenuItem repairItem, upgradeXPItem, upgradeReloadSpeedItem, upgradeResourceAmountItem;
 
     @FXML
-    private Button okayTowerButton;
+    private Button okayMainTowerButton;
+
+    @FXML
+    private Button okayReserveTowerButton;
 
     @FXML
     private Button okayButton;
@@ -52,6 +61,12 @@ public class NewStageUpgradePopupController {
 
     private String newDescription;
 
+    private Boolean mainSelected = false;
+
+    private Boolean reserveSelected = false;
+
+    private int towerIndex = -1;
+
     /**
      * Constructor
      * @param game The game environment
@@ -64,26 +79,59 @@ public class NewStageUpgradePopupController {
         Tower[] mainTowers = game.getInventory().getAllMainTowers();
         Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
 
-        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
-//                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
-                .filter(tower -> tower != null)
-                .toList();
+//        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
+////                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
+//                .filter(tower -> tower != null)
+//                .toList();
 
-        System.out.println("Sellable towers" + sellableTowers);
+//        System.out.println("Sellable towers" + sellableTowers);
 
-        sellTowerList.setCellFactory(new TowerCellFactory());
-        sellTowerList.setItems(FXCollections.observableArrayList(sellableTowers));
-        sellTowerList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        mainTowerList.setCellFactory(new TowerCellFactory());
+        mainTowerList.setItems(FXCollections.observableArrayList(mainTowers));
+        mainTowerList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        reserveTowerList.setCellFactory(new TowerCellFactory());
+        reserveTowerList.setItems(FXCollections.observableArrayList(reserveTowers));
+        reserveTowerList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
-    public void onOkayTower(){
-        Tower tower = sellTowerList.getSelectionModel().getSelectedItem();
-        if (tower != null) {
-            towerChosenLabel.setText("You selected: " + tower.getDescription().replace("\n", " "));
+    public void onOkayMainTower(){
+//        System.out.println("m" + mainSelected);
+//        System.out.println("r" + reserveSelected);
+        if (reserveSelected == true){
+            mainTowerChosenLabel.setText("You have chosen a reserve tower to upgrade. A main tower cannot be chosen. \n" + "If this is a mistake, click exit and re-enter the upgrade page.");
         }
-        else{
-            towerChosenLabel.setText("");
+        else if (mainSelected == false) {
+            Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
+            if (tower != null) {
+                mainTowerChosenLabel.setText("You selected: " + tower.getDescription().replace("\n", " "));
+                towerIndex = mainTowerList.getSelectionModel().getSelectedIndex();
+            } else {
+                mainTowerChosenLabel.setText("");
+            }
+            mainSelected = true;
+        }
+
+    }
+
+    @FXML
+    public void onOkayReserveTower(){
+//        System.out.println("main" + mainSelected);
+//        System.out.println("reserve" + reserveSelected);
+        if (mainSelected == true){
+            reserveTowerChosenLabel.setText("You have chosen a main tower to upgrade. A reserve tower cannot be chosen. \n" + "If this is a mistake, click exit and re-enter the upgrade page.");
+        }
+        else if (reserveSelected == false){
+            Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
+            if (tower != null) {
+                reserveTowerChosenLabel.setText("You selected: " + tower.getDescription().replace("\n", " "));
+                towerIndex = reserveTowerList.getSelectionModel().getSelectedIndex() + 5;
+            }
+            else {
+                reserveTowerChosenLabel.setText("");
+            }
+            reserveSelected = true;
         }
     }
 
@@ -134,40 +182,27 @@ public class NewStageUpgradePopupController {
     @FXML
     public void onOkay(){
         if (indexOfUpgradeItem != -1) {
-            Tower tower = sellTowerList.getSelectionModel().getSelectedItem();
-            System.out.println("Index " + sellTowerList.getSelectionModel().getSelectedIndex());
-            if (tower != null) {
-                int towerIndexValue = -1;
-                for (int i = 0; i < game.getInventory().getAllMainTowers().length; i++) {
-                    if (game.getInventory().getMainTowers(i) == tower) {
-                        towerIndexValue = i;
-                        break;
-                    }
-                }
-                if (towerIndexValue == -1) {
-                    for (int i = 0; i < game.getInventory().getAllReserveTowers().length; i++) {
-                        if (game.getInventory().getReserveTowers(i) == tower) {
-                            towerIndexValue = i + 4;
-                            break;
-                        }
-                    }
-                }
-                if (towerIndexValue != -1) {
-                    game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                    originalDescription = game.getInventory().getMainTowerDescriptions(towerIndexValue);
-                    newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                    game.getInventory().setMainTowerDescriptions(towerIndexValue, newDescription);
-                }
-                if (towerIndexValue >= 4) {
-                    towerIndexValue = towerIndexValue - 4;
-                    game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                    originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndexValue);
-                    newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                    game.getInventory().setReserveTowerDescriptions(towerIndexValue, newDescription);
-                }
-                System.out.println("Tower index value: "+ towerIndexValue);
-                //game.getInventory().getUpgradesBought().remove(index);
+            System.out.println("Tower index: " + towerIndex);
+            if (towerIndex >= 5){
+                towerIndex = towerIndex - 5;
+                Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
+//                System.out.println(game.getInventory().getReserveTowerDescriptions(towerIndex));
+                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndex);
+                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                game.getInventory().setReserveTowerDescriptions(towerIndex, newDescription);
                 messageLabel.setText("Success! Upgrade applied!");
+            }
+            else if (towerIndex < 5){
+                Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
+                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
+                originalDescription = game.getInventory().getMainTowerDescriptions(towerIndex);
+                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
+                game.getInventory().setMainTowerDescriptions(towerIndex, newDescription);
+                messageLabel.setText("Success! Upgrade applied!");
+            }
+            else{
+                System.out.println("The tower does not exist.");
             }
         }
         else if (indexOfUpgradeItem == -1){
