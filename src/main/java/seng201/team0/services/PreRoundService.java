@@ -38,7 +38,6 @@ public class PreRoundService {
      * @return Next round
      */
     public Round getCurrentRound(){
-        System.out.println(game.getCurrentRoundIndex());
         return currentRound;
     }
 
@@ -79,7 +78,7 @@ public class PreRoundService {
     public int towerGainsXP(){
         Tower randomTower = randomMainTower();
         Random random = new Random();
-        int randomAmount = random.nextInt(1, 6);
+        int randomAmount = random.nextInt(2, 6);
         randomTower.increaseXP(randomAmount);
         return randomAmount;
     }

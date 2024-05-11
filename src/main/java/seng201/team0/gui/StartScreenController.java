@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.models.*;
 
-import java.util.List;
-
 /**
  * Class for controlling the start screen GUI
  */
@@ -91,8 +89,10 @@ public class StartScreenController {
      */
     @FXML
     public void onTower1Chosen(){
-        CoalTower coalTower1 = new CoalTower();
-        descriptionLabel.setText(coalTower1.setDescription("Coal", 10, 10));
+        Tower coalTower = new CoalTower();
+        coalTower.increaseResourceAmount(8);
+        coalTower.decreaseReloadSpeed(-8);
+        descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 0;
     }
 
@@ -101,8 +101,10 @@ public class StartScreenController {
      */
     @FXML
     public void onTower2Chosen(){
-        CoalTower coalTower2 = new CoalTower();
-        descriptionLabel.setText(coalTower2.setDescription("Coal", 5, 5));
+        Tower coalTower = new CoalTower();
+        coalTower.increaseResourceAmount(3);
+        coalTower.decreaseReloadSpeed(-3);
+        descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 1;
     }
 
@@ -111,8 +113,10 @@ public class StartScreenController {
      */
     @FXML
     public void onTower3Chosen(){
-        CoalTower coalTower1 = new CoalTower();
-        descriptionLabel.setText(coalTower1.setDescription("Coal", 1, 3));
+        Tower coalTower = new CoalTower();
+        coalTower.increaseResourceAmount(-1);
+        coalTower.decreaseReloadSpeed(-1);
+        descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 2;
     }
 
@@ -122,24 +126,24 @@ public class StartScreenController {
      * @param name Label to change
      */
     public void towerTypeChosen(int towerChosen, Label name){
-        CoalTower coalTower = new CoalTower();
+        Tower coalTower = new CoalTower();
         if(towerChosen == 0){
-            name.setText(coalTower.setDescription("Coal", 10, 10));
             coalTower.increaseResourceAmount(8);
             coalTower.decreaseReloadSpeed(-8);
-            game.addToInventory(coalTower, coalTower.setDescription("Coal", 10, 10));
+            name.setText(coalTower.getDescription());
+            game.addToInventory(coalTower, coalTower.getDescription());
         }
         else if(towerChosen == 1){
-            name.setText(coalTower.setDescription("Coal", 5, 5));
             coalTower.increaseResourceAmount(3);
             coalTower.decreaseReloadSpeed(-3);
-            game.addToInventory(coalTower, coalTower.setDescription("Coal", 5, 5));
+            name.setText(coalTower.getDescription());
+            game.addToInventory(coalTower, coalTower.getDescription());
         }
         else if(towerChosen == 2){
-            name.setText(coalTower.setDescription("Coal", 1, 3));
             coalTower.increaseResourceAmount(-1);
             coalTower.decreaseReloadSpeed(-1);
-            game.addToInventory(coalTower, coalTower.setDescription("Coal", 1, 3));
+            name.setText(coalTower.getDescription());
+            game.addToInventory(coalTower, coalTower.getDescription());
         }
     }
 

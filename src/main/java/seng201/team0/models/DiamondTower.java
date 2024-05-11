@@ -19,17 +19,6 @@ public class DiamondTower extends Tower{
         return getBuyingPrice() / 2;
     }
 
-    public String getDescription(){
-        if (broken){
-            return "Tower is broken";
-        } else{
-            return "Tower Type: " + resourceType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
-        }
-    }
-    public String getDescription(String typeTower, int resourceAmount, int reloadSpeed){
-        return "Tower that extracts and supplies diamonds to mine carts that carry diamonds";
-    }
-
     public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
         return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
     }
@@ -42,6 +31,7 @@ public class DiamondTower extends Tower{
     @Override
     public void levelUp() {
         level++;
+        XP = XP % 10;
         increaseResourceAmount(5);
         decreaseReloadSpeed(5);
     }

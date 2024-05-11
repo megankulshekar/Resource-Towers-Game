@@ -28,6 +28,11 @@ public class RoundService {
         return currentRound;
     }
 
+    /**
+     * Checks if one of the carts in the round has reached the end of the track
+     * and is not full
+     * @return Boolean value representing if one cart has reached the end of the track while not full
+     */
     public boolean cartTimeRunOut(){
         boolean timeRunOut = false;
         for (Cart cart : currentRound.getCarts()){

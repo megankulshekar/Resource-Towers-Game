@@ -95,6 +95,18 @@ public abstract class Tower implements Purchasable {
         return reloadSpeed;
     }
 
+    public String getDescription(){
+        if (broken){
+            return "Tower is broken";
+        } else{
+            return "Tower Type: " + resourceType + "\n" +
+                    "Level: " + level + "\n" +
+                    "XP: " + XP + "\n" +
+                    "Resource Amount: " + resourceAmount + "\n" +
+                    "Reload Speed: " + reloadSpeed;
+        }
+    }
+
     /**
      * Increases tower's level by 1
      * Increases tower's resource amount by 2
@@ -102,6 +114,7 @@ public abstract class Tower implements Purchasable {
      */
     public void levelUp(){
         level++;
+        XP = XP % 10;
         increaseResourceAmount(2);
         decreaseReloadSpeed(2);
     }
@@ -112,6 +125,9 @@ public abstract class Tower implements Purchasable {
      */
     public void increaseXP(int increaseAmount){
         XP += increaseAmount;
+        if (XP >= 10){
+            levelUp();
+        }
     }
 
     /**

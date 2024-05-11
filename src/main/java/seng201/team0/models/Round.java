@@ -87,9 +87,14 @@ public class Round {
         return cartSpeed;
     }
 
+    /**
+     * Gets the list of cart resource types in the round
+     * @return Cart resource types list
+     */
     public List<String> getResourceTypes(){
         return resourceTypes;
     }
+
     /**
      * Gets the carts used in the round
      * @return List of carts used in round
@@ -103,7 +108,6 @@ public class Round {
      */
     public void createCarts(){
         Random random = new Random();
-        System.out.println(numCarts);
         for (int i = 0; i < numCarts; i++){
             int index = random.nextInt(resourceTypes.size());
             String cartResourceType = resourceTypes.get(index);
@@ -112,9 +116,14 @@ public class Round {
         }
     }
 
+    /**
+     * Sets the difficulty of the round
+     * @param difficultySetting The setting being set as the difficulty
+     */
     public void setDifficulty(String difficultySetting){
         difficulty = difficultySetting;
     }
+
     /**
      * Increases number of carts
      * @param increaseAmount Amount number of carts increased by

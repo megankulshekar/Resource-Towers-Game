@@ -133,15 +133,6 @@ public class Inventory {
     }
 
     /**
-     * Prints the user's inventory
-     */
-    public void view(){
-        System.out.println("Main Towers: " + Arrays.toString(mainTowers));
-        System.out.println("Reserve Towers: " + Arrays.toString(reserveTowers));
-        System.out.println("Items: " + items);
-    }
-
-    /**
      * Adds new purchasable to the inventory.
      * If purchasable is a tower, purchasable is added to mainTowers array.
      * If mainTowers is full, then purchasable is added to reserveTowers array.

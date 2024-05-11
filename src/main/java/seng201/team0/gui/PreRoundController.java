@@ -33,12 +33,27 @@ public class PreRoundController {
      */
     private String chosenDifficulty;
 
+    /**
+     * Label for telling the user they completed the last round
+     */
     @FXML
     private Label completionLabel;
+
+    /**
+     * Labels for showing money earned and random events after a round
+     */
     @FXML
     private Label moneyEarned, randomEvents;
+
+    /**
+     * Labels for showing the difficulty options for the next round
+     */
     @FXML
     private Label easyOption, mediumOption, hardOption;
+
+    /**
+     * Radio buttons for choosing the difficulty of the next round
+     */
     @FXML
     private RadioButton easyButton, mediumButton, hardButton;
 
@@ -50,8 +65,6 @@ public class PreRoundController {
         this.game = game;
         preRoundService = new PreRoundService(this.game);
         currentRound = preRoundService.getCurrentRound();
-        System.out.println("Current round index before pre round: " + game.getCurrentRoundIndex());
-        System.out.println("Next round (Pre round): " + currentRound.toString());
     }
 
     /**

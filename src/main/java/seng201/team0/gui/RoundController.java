@@ -57,12 +57,21 @@ public class RoundController {
      */
     private List<Thread> cartThreads = new ArrayList<Thread>();
 
+    /**
+     * Label for showing the round number
+     */
     @FXML
     private Label roundNumber;
 
+    /**
+     * Labels for showing each tower in main towers list in inventory
+     */
     @FXML
     private Label mainTower1, mainTower2, mainTower3, mainTower4, mainTower5;
 
+    /**
+     * Labels for showing each cart in the round
+     */
     @FXML
     private Label cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10;
 
@@ -75,8 +84,6 @@ public class RoundController {
         roundService = new RoundService(this.game);
         currentRoundIndex = game.getCurrentRoundIndex();
         currentRound = roundService.getCurrentRound();
-        System.out.println("Current round index: " + currentRoundIndex);
-        System.out.println("Current round: " + currentRound.toString());
     }
 
     /**
@@ -84,6 +91,7 @@ public class RoundController {
      * creates a new thread for each tower in user's main towers
      * which fills carts in the round, and constantly checks if all carts are full
      */
+    //Code for creating tower and cart threads is reused from Tutorial 3 - Advanced Java
     //Source for PauseTransition: https://stackoverflow.com/questions/30543619/how-to-use-pausetransition-method-in-javafx
     @FXML
     public void initialize() {

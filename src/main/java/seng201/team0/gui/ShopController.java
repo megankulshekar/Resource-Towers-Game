@@ -155,11 +155,11 @@ public class ShopController {
         Tower goldTower = new GoldTower();
         Tower uraniumTower = new UraniumTower();
         Tower diamondTower = new DiamondTower();
-        copperLabel.setText(copperTower.setDescription("Copper", 11, 11));
-        ironLabel.setText(ironTower.setDescription("Iron", 12, 12));
-        goldLabel.setText(goldTower.setDescription("Gold", 13, 13));
-        uraniumLabel.setText(uraniumTower.setDescription("Uranium", 15, 15));
-        diamondLabel.setText(diamondTower.setDescription("Diamond", 16, 16));
+        copperLabel.setText(copperTower.getDescription());
+        ironLabel.setText(ironTower.getDescription());
+        goldLabel.setText(goldTower.getDescription());
+        uraniumLabel.setText(uraniumTower.getDescription());
+        diamondLabel.setText(diamondTower.getDescription());
 
         boughtTowerButtons = List.of(copperButton, ironButton, goldButton, uraniumButton, diamondButton);
         boughtUpgradeButtons = List.of(repairItemButton, upgradeXPButton, upgradeReloadSpeedButton, upgradeResourceAmountButton);
@@ -246,27 +246,27 @@ public class ShopController {
         if (game.getMoney() >= 0) {
             if (boughtTowerIndex == 0 && game.getMoney() - 7 >= 0){
                 Tower copperTower = new CopperTower();
-                game.buyTowerInShop(copperTower, game, copperTower.setDescription("Copper", 11, 11));
+                game.buyTowerInShop(copperTower, game, copperTower.getDescription());
                 towerBoughtLabel.setText("Tower bought");
             }
             else if (boughtTowerIndex == 1 && game.getMoney() - 8 >= 0) {
                 Tower ironTower = new IronTower();
-                game.buyTowerInShop(ironTower, game, ironTower.setDescription("Iron", 12, 12));
+                game.buyTowerInShop(ironTower, game, ironTower.getDescription());
                 towerBoughtLabel.setText("Tower bought");
             }
             else if (boughtTowerIndex == 2 && game.getMoney() - 9 >= 0) {
                 Tower goldTower = new GoldTower();
-                game.buyTowerInShop(goldTower, game, goldTower.setDescription("Gold", 13, 13));
+                game.buyTowerInShop(goldTower, game, goldTower.getDescription());
                 towerBoughtLabel.setText("Tower bought");
             }
             else if (boughtTowerIndex == 3 && game.getMoney() - 12 >= 0) {
                 Tower uraniumTower = new UraniumTower();
-                game.buyTowerInShop(uraniumTower, game, uraniumTower.setDescription("Uranium", 15, 15));
+                game.buyTowerInShop(uraniumTower, game, uraniumTower.getDescription());
                 towerBoughtLabel.setText("Tower bought");
             }
             else if (boughtTowerIndex == 4 && game.getMoney() - 14 >= 0) {
                 Tower diamondTower = new DiamondTower();
-                game.buyTowerInShop(diamondTower, game, diamondTower.setDescription("Diamond", 16, 16));
+                game.buyTowerInShop(diamondTower, game, diamondTower.getDescription());
                 towerBoughtLabel.setText("Tower bought");
             }
             else{

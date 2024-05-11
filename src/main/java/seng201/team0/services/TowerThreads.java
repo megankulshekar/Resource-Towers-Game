@@ -1,12 +1,12 @@
 package seng201.team0.services;
-
+// Some of the following code is reused from Tutorial 3 - Advanced Java
 import seng201.team0.models.Cart;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Round;
 import seng201.team0.models.Tower;
 
 /**
- * Class providing threads for round controller class
+ * Class providing threads for the main towers for the round controller class
  */
 public class TowerThreads implements Runnable {
     /**
