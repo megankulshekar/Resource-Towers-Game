@@ -23,10 +23,6 @@ public class UpgradeReloadSpeedItem extends Item {
         return "Decreases a tower's reload speed";
     }
 
-    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
-        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
-    }
-
     /**
      * Decreases reload speed of tower
      * @param tower Tower item is used on

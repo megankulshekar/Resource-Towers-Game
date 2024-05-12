@@ -18,8 +18,4 @@ public class CoalTower extends Tower {
     public int getSellingPrice(){
         return getBuyingPrice() / 2;
     }
-
-    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
-        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
-    }
 }

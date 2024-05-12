@@ -60,9 +60,14 @@ public class Round {
         }
     }
 
+    /**
+     * Gets the difficulty of the round
+     * @return Difficulty of the round
+     */
     public String getDifficulty(){
         return difficulty;
     }
+
     /**
      * Gets the number of carts in the round
      * @return Number of carts
@@ -167,12 +172,5 @@ public class Round {
         if (!tower.isBroken()){
             cart.increaseCurrentLevel(tower.getResourceAmount());
         }
-    }
-
-    /**
-     * Removes the cart at beginning of carts list
-     */
-    public void removeFirstCart(){
-        carts.remove(0);
     }
 }

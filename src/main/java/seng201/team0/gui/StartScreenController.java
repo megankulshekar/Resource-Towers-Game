@@ -13,30 +13,39 @@ public class StartScreenController {
      */
     private GameEnvironment game;
 
+    /**
+     * Text field for entering the user's name
+     */
     @FXML
     private TextField nameTextField;
 
-    @FXML
-    private Button startGameButton;
-
+    /**
+     * Slider for choosing the number of rounds
+     */
     @FXML
     private Slider numRoundsField;
 
+    /**
+     * Radio buttons for choosing the difficulty of the game
+     */
     @FXML
     private RadioButton easyButton, mediumButton, hardButton;
 
-    @FXML
-    private Button selectedTower1Button, selectedTower2Button, selectedTower3Button;
-
-    @FXML
-    private Button tower1Button, tower2Button, tower3Button;
-
+    /**
+     * Label for showing the descriptions of the three tower options
+     */
     @FXML
     private Label descriptionLabel;
 
+    /**
+     * Labels for showing the selected towers
+     */
     @FXML
     private Label selectedTower1Label, selectedTower2Label, selectedTower3Label;
 
+    /**
+     * Index of a chosen tower
+     */
     private int towerChosen = -1;
 
     /**
@@ -90,8 +99,8 @@ public class StartScreenController {
     @FXML
     public void onTower1Chosen(){
         Tower coalTower = new CoalTower();
-        coalTower.increaseResourceAmount(8);
-        coalTower.decreaseReloadSpeed(-8);
+        coalTower.increaseResourceAmount(1);
+        coalTower.decreaseReloadSpeed(-1);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 0;
     }
@@ -102,8 +111,8 @@ public class StartScreenController {
     @FXML
     public void onTower2Chosen(){
         Tower coalTower = new CoalTower();
-        coalTower.increaseResourceAmount(3);
-        coalTower.decreaseReloadSpeed(-3);
+        coalTower.increaseResourceAmount(0);
+        coalTower.decreaseReloadSpeed(0);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 1;
     }
@@ -115,7 +124,7 @@ public class StartScreenController {
     public void onTower3Chosen(){
         Tower coalTower = new CoalTower();
         coalTower.increaseResourceAmount(-1);
-        coalTower.decreaseReloadSpeed(-1);
+        coalTower.decreaseReloadSpeed(1);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 2;
     }
@@ -128,20 +137,20 @@ public class StartScreenController {
     public void towerTypeChosen(int towerChosen, Label name){
         Tower coalTower = new CoalTower();
         if(towerChosen == 0){
-            coalTower.increaseResourceAmount(8);
-            coalTower.decreaseReloadSpeed(-8);
+            coalTower.increaseResourceAmount(1);
+            coalTower.decreaseReloadSpeed(-1);
             name.setText(coalTower.getDescription());
             game.addToInventory(coalTower, coalTower.getDescription());
         }
         else if(towerChosen == 1){
-            coalTower.increaseResourceAmount(3);
-            coalTower.decreaseReloadSpeed(-3);
+            coalTower.increaseResourceAmount(0);
+            coalTower.decreaseReloadSpeed(0);
             name.setText(coalTower.getDescription());
             game.addToInventory(coalTower, coalTower.getDescription());
         }
         else if(towerChosen == 2){
             coalTower.increaseResourceAmount(-1);
-            coalTower.decreaseReloadSpeed(-1);
+            coalTower.decreaseReloadSpeed(1);
             name.setText(coalTower.getDescription());
             game.addToInventory(coalTower, coalTower.getDescription());
         }

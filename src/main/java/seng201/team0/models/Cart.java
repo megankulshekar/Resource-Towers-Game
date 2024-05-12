@@ -29,6 +29,9 @@ public class Cart {
      */
     private int currentLevel = 0;
 
+    /**
+     * The amount of time until cart reaches the end of the track
+     */
     private int time;
 
     /**
@@ -91,6 +94,10 @@ public class Cart {
         return currentLevel;
     }
 
+    /**
+     * Gets the description of the cart's type, how full it is and amount of time it has left
+     * @return Description of the cart
+     */
     public String getDescription(){
         return "Cart Type: "+resourceType+"\n\nAmount full: "+currentLevel+"/"+size+"\n\n" +
                 "Time left: "+time;
@@ -111,10 +118,17 @@ public class Cart {
         }
     }
 
+    /**
+     * Gets the time of the cart
+     * @return
+     */
     public int getTime(){
         return time;
     }
 
+    /**
+     * Decreases the cart's time by 1
+     */
     public void decreaseTime(){
         time--;
     }

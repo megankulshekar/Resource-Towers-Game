@@ -8,19 +8,17 @@ public interface Purchasable {
      * Gets the buying price of item/tower
      * @return Buying price
      */
-    public int getBuyingPrice();
+    int getBuyingPrice();
 
     /**
      * Gets the selling price of item/tower
      * @return Selling price
      */
-    public int getSellingPrice();
-
-    public String setDescription(String typeTower, int resourceAmount, int reloadSpeed);
+    int getSellingPrice();
 
     /**
      * Gets the description of item/tower
      * @return Description
      */
-    public String getDescription();
+    String getDescription();
 }

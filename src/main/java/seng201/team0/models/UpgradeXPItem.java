@@ -23,10 +23,6 @@ public class UpgradeXPItem extends Item {
         return "Increases a tower's XP level";
     }
 
-    public String setDescription(String towerType, int resourceAmount, int reloadSpeed){
-        return "Tower Type: " + towerType + "\n\nResource Amount: " + resourceAmount + "\n\nReload Speed: " + reloadSpeed;
-    }
-
     /**
      * Increases XP level of tower
      * @param tower Tower item is used on

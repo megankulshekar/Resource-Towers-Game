@@ -78,6 +78,9 @@ public class GameEnvironment {
      */
     private final Consumer<GameEnvironment> shopLauncher;
 
+    /**
+     * Method for launching the end screen GUI
+     */
     private final Consumer<GameEnvironment> endScreenLauncher;
 
     /**
