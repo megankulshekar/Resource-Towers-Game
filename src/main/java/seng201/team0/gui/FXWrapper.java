@@ -107,8 +107,8 @@ public class FXWrapper {
      */
     public void launchUpgradePopup(GameEnvironment game){
         try {
-            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/new_stage_upgrade_popup.fxml"));
-            setupLoader.setControllerFactory(param -> new NewStageUpgradePopupController(game));
+            FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/upgrade.fxml"));
+            setupLoader.setControllerFactory(param -> new UpgradeController(game));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
         } catch (IOException e) {

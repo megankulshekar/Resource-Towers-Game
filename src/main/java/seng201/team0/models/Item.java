@@ -17,6 +17,4 @@ public abstract class Item implements Purchasable {
     }
 
     public abstract void useItem(Tower tower);
-
-    public abstract void noUseItem(Tower tower);
 }

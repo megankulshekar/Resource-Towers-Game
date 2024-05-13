@@ -21,12 +21,6 @@ public class Shop {
      */
     private List<Item> allItems = new ArrayList<Item>();
 
-    public ObservableList<String> getItems() {
-        return items;
-    }
-
-    private ObservableList<String> items = FXCollections.observableArrayList("Placeholder");
-
     /**
      * Constructor
      */
@@ -46,25 +40,33 @@ public class Shop {
     }
 
     /**
-     * Buys purchasable by decreasing user's money by the buying price
-     * and adding purchasable to user's inventory
-     * @param purchasable Purchasable being bought
+     * Buys tower by decreasing user's money by the buying price
+     * and adding tower and corresponding description to user's inventory
+     * @param purchasable Tower being bought
      * @param game The game environment
+     * @param description Tower description
      */
     public void buy(Purchasable purchasable, GameEnvironment game, String description){
         game.decreaseMoney(purchasable.getBuyingPrice());
         game.addToInventory(purchasable, description);
     }
 
+    /**
+     * Buys upgrade by decreasing user's money by the buying price
+     * and adding upgrade and corresponding description to user's inventory
+     * @param item Upgrade
+     * @param game The game environment
+     * @param description Upgrade description
+     */
     public void buyUpgrade(Item item, GameEnvironment game, String description) {
         game.decreaseMoney(item.getBuyingPrice());
         game.addToUpgrades(item, description);
     }
 
     /**
-     * Sells purchasable by increasing user's money by the selling price
-     * and removing purchasable from user's inventory
-     * @param purchasable Purchasable being sold
+     * Sells tower by increasing user's money by the selling price
+     * and removing tower and tower description from user's inventory
+     * @param purchasable Tower being sold
      * @param game The game environment
      */
     public void sell(Purchasable purchasable, GameEnvironment game){
@@ -72,8 +74,15 @@ public class Shop {
         game.removeFromInventory(purchasable);
     }
 
-    public void sellUpgrade(Item item, GameEnvironment game) {
+    /**
+     * Sells upgrade by increasing user's money by the selling price
+     * and removing upgrade and upgrade description from user's inventory
+     * @param item Upgrade
+     * @param index Location of item description
+     * @param game The game environment
+     */
+    public void sellUpgrade(Item item, int index, GameEnvironment game) {
         game.increaseMoney(item.getBuyingPrice());
-        game.removeFromUpgrades(item);
+        game.removeFromUpgrades(item, index);
     }
 }

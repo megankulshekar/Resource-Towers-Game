@@ -133,16 +133,10 @@ public class InventoryController {
     }
 
     /**
-     * When the move tower button is clicked, tower indices and labels are swapped
+     * Initiates which towers are being swapped and ensures there is always at least one tower in main
      */
     @FXML
     public void onMoveTower() {
-//        System.out.println("Reserve tower index: " + reserveTowerIndex);
-//        System.out.println("Main tower index: " + mainTowerIndex);
-//
-//        game.getInventory().printMainTowers();
-//        game.getInventory().printReserveTowers();
-
         Tower[] mainTowers = game.getInventory().getAllMainTowers();
         Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
 
@@ -151,23 +145,17 @@ public class InventoryController {
                 mainContainsCount++;
             }
         }
-
         for (Tower reserveTower : reserveTowers){
             if (reserveTower != null){
                 reserveContainsCount++;
             }
         }
 
-//        System.out.println("Main " + mainContainsCount);
-//        System.out.println("Reserve " + reserveContainsCount);
-
         Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
         Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
 
         if (mainContainsCount > 1 || mainContainsCount == 1 && (mainTower == null && reserveTower != null)) {
-            //System.out.println("Main Contains Count: " + mainContainsCount);
-            //System.out.println("Reserve Contains Count: " + reserveContainsCount);
-                swappingTowers();
+            swappingTowers();
         }
         else {
             System.out.println("Not swapped");
@@ -176,6 +164,9 @@ public class InventoryController {
         reserveContainsCount = 0;
     }
 
+    /**
+     * Helper function for swapping towers and corresponding labels
+     */
     public void swappingTowers(){
         game.getInventory().swapTowers(mainTowerIndex, reserveTowerIndex);
         String reserveText = reserveTowerLabels.get(reserveTowerIndex).getText();
@@ -185,12 +176,10 @@ public class InventoryController {
     }
 
     /**
-     * Sets index value of tower clicked and then launches Upgrade GUI
+     * Closes the Inventory GUI and launches the Upgrade GUI
      */
     @FXML
     public void onUpgradeTower(){
-//        System.out.println("Main tower index: " + mainTowerIndex);
-//        System.out.println("Reserve tower index: " + reserveTowerIndex);
         game.closeInventoryForUpgrade();
         game.launchUpgradePopup();
     }

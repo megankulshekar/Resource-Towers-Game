@@ -34,22 +34,20 @@ public class Inventory {
      */
     private List<Item> items = new ArrayList<Item>();
 
-    private int towerIndexValue;
-
+    /**
+     * Gets all main towers in the array
+     * @return Main towers
+     */
     public Tower[] getAllMainTowers() {
         return mainTowers;
     }
 
+    /**
+     * Gets all reserve towers in the array
+     * @return Reserve towers
+     */
     public Tower[] getAllReserveTowers() {
         return reserveTowers;
-    }
-
-    public String[] getAllMainTowerDescriptions(){
-        return mainTowerDescriptions;
-    }
-
-    public String[] getAllReserveTowerDescriptions(){
-        return reserveTowerDescriptions;
     }
 
     /**
@@ -76,6 +74,11 @@ public class Inventory {
         return null;
     }
 
+    /**
+     * Sets new tower description if upgrade has been applied to a main tower
+     * @param indexValue The main tower's description that will be modified
+     * @param description New description of main tower
+     */
     public void setMainTowerDescriptions(int indexValue, String description){
         mainTowerDescriptions[indexValue] = description;
     }
@@ -104,30 +107,27 @@ public class Inventory {
         return null;
     }
 
+    /**
+     * Sets new tower description if upgrade has been applied to a reserve tower
+     * @param indexValue The reserve tower's description that will be modified
+     * @param description New description of reserve tower
+     */
     public void setReserveTowerDescriptions(int indexValue, String description){
         reserveTowerDescriptions[indexValue] = description;
     }
 
-    public void printMainTowers(){
-        System.out.println(Arrays.toString(mainTowers));
-    }
-
-    public void printMainTowerDescriptions(){
-        System.out.println(Arrays.toString(mainTowerDescriptions));
-    }
-
-    public void printReserveTowers(){
-        System.out.println(Arrays.toString(reserveTowers));
-    }
-
-    public void printReserveTowerDescriptions(){
-        System.out.println(Arrays.toString(reserveTowerDescriptions));
-    }
-
+    /**
+     * Gets list of upgrades descriptions
+     * @return Descriptions of all upgrades the player has
+     */
     public ArrayList<String> getUpgradesBought() {
         return upgradesBought;
     }
 
+    /**
+     * Gets list of upgrades
+     * @return Upgrades the player has
+     */
     public List<Item> getItems(){
         return items;
     }
@@ -196,22 +196,24 @@ public class Inventory {
         }
     }
 
-    public void setTowerIndexValue(int indexValue){
-        towerIndexValue = indexValue;
-    }
-
-    public int getTowerIndexValue(){
-        return towerIndexValue;
-    }
-
+    /**
+     * Adds upgrade to upgrades array list and the corresponding description to upgrades description array list
+     * @param item Upgrade
+     * @param description Description of upgrade
+     */
     public void addUpgrade(Item item, String description){
         items.add(item);
         upgradesBought.add(description);
     }
 
-    public void removeUpgrade(Item item){
+    /**
+     * Removes upgrade from upgrades array list and removes the corresponding description from upgrades description array list
+     * @param item Upgrade
+     * @param index Location of upgrade description in array list
+     */
+    public void removeUpgrade(Item item, int index){
         items.remove(item);
-//        upgradesBought.get(1).set
+        upgradesBought.remove(index);
     }
 
     /**
@@ -238,9 +240,5 @@ public class Inventory {
         items.get(itemIndex).useItem(tower);
         items.remove(itemIndex);
         upgradesBought.remove(itemIndex);
-    }
-
-    public void removeUpgradeTower(int itemIndex, Tower tower){
-        items.get(itemIndex).noUseItem(tower);
     }
 }

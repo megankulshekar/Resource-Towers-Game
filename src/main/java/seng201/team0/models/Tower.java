@@ -95,6 +95,10 @@ public abstract class Tower implements Purchasable {
         return reloadSpeed;
     }
 
+    /**
+     * Gets description of tower statistics
+     * @return Tower statistics
+     */
     public String getDescription(){
         if (broken){
             return "Tower is broken";

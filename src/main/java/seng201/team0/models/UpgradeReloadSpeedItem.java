@@ -31,8 +31,4 @@ public class UpgradeReloadSpeedItem extends Item {
         tower.decreaseReloadSpeed(2);
         used = true;
     }
-
-    public void noUseItem(Tower tower){
-        tower.decreaseReloadSpeed(-2);
-    }
 }

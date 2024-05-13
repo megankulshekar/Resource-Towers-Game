@@ -242,28 +242,61 @@ public class GameEnvironment {
         inventory.remove(purchasable);
     }
 
+    /**
+     * Adds tower to inventory
+     * @param purchasable Tower that has been bought
+     * @param game Game environment
+     * @param description Description of tower
+     */
     public void buyTowerInShop(Purchasable purchasable, GameEnvironment game, String description){
         shop.buy(purchasable, game, description);
     }
 
-    public void addToUpgrades(Item item, String description){
-        inventory.addUpgrade(item, description);
-    }
-
-    public void buyUpgrades(Item item, GameEnvironment game, String description){
-        shop.buyUpgrade(item, game, description);
-    }
-
+    /**
+     * Removes tower from inventory and increase player's money
+     * @param purchasable Tower
+     * @param game Game environment
+     */
     public void sellTowerInShop(Purchasable purchasable, GameEnvironment game){
         shop.sell(purchasable, game);
     }
 
-    public void sellUpgrades(Item item, GameEnvironment game){
-        shop.sellUpgrade(item, game);
+    /**
+     * Adds upgrade to inventory
+     * @param item Upgrade
+     * @param description Description of upgrade
+     */
+    public void addToUpgrades(Item item, String description){
+        inventory.addUpgrade(item, description);
     }
 
-    public void removeFromUpgrades(Item item){
-        inventory.removeUpgrade(item);
+    /**
+     * Adds upgrade description to inventory and decreases player's money
+     * @param item Upgrade
+     * @param game Game environment
+     * @param description Description of upgrade
+     */
+    public void buyUpgrades(Item item, GameEnvironment game, String description){
+        shop.buyUpgrade(item, game, description);
+    }
+
+    /**
+     * Removes upgrade description from inventory and increases player's money
+     * @param item Upgrade
+     * @param index Index of upgrade description within upgrade description array list
+     * @param game Game environment
+     */
+    public void sellUpgrades(Item item, int index, GameEnvironment game){
+        shop.sellUpgrade(item, index, game);
+    }
+
+    /**
+     * Removes upgrade from inventory
+     * @param item Upgrade
+     * @param index Index of upgrade item
+     */
+    public void removeFromUpgrades(Item item, int index){
+        inventory.removeUpgrade(item, index);
     }
 
     /**

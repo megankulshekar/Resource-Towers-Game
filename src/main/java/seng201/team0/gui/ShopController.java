@@ -118,13 +118,6 @@ public class ShopController {
 
     private int boughtUpgradeIndex = -1;
 
-    private String description;
-
-    /**
-     * Stores upgrade descriptions for use in other classes
-     */
-    private ArrayList<String> upgradesBought = new ArrayList<String>();
-
     /**
      * Lists are created for tower type and upgrade buttons to keep track of the index selected by the user
      */
@@ -147,7 +140,7 @@ public class ShopController {
 
     /**
      * Creates an instance of each tower and initializes the buttons and output text
-     * When certain buttons are clicked, index value of that button is stored in a variable for later use
+     * Selling items buttons cannot initially be clicked unless there is an item that can be sold
      */
     public void initialize(){
         Tower copperTower = new CopperTower();
@@ -187,11 +180,6 @@ public class ShopController {
         Tower[] mainTowers = game.getInventory().getAllMainTowers();
         Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
 
-//        List<Tower> sellableTowers = Stream.concat(Arrays.stream(mainTowers), Arrays.stream(reserveTowers))
-////                        .filter(tower -> tower != null && !(tower.getDescription().isEmpty()))
-//                        .filter(tower -> tower != null)
-//                        .toList();
-
         sellMainTowerList.setCellFactory(new TowerCellFactory());
         sellMainTowerList.setItems(FXCollections.observableArrayList(mainTowers));
 
@@ -201,6 +189,28 @@ public class ShopController {
         List<String> upgrades = game.getInventory().getUpgradesBought();
         sellUpgradeList.setCellFactory(new UpgradeCellFactory());
         sellUpgradeList.setItems(FXCollections.observableArrayList(upgrades));
+
+        sellMainTowerButton.setDisable(true);
+        sellReserveTowerButton.setDisable(true);
+        sellUpgradeButton.setDisable(true);
+
+        disableButtons(sellMainTowerList, sellMainTowerButton);
+        disableButtons(sellReserveTowerList, sellReserveTowerButton);
+        disableButtons(sellUpgradeList, sellUpgradeButton);
+    }
+
+    /**
+     * Helper function for buttons that cannot initially be clicked
+     */
+    public <T> void disableButtons(ListView<T> items, Button button){
+        items.getSelectionModel().selectedItemProperty().addListener((observer, oldSelection, newSelection) -> {
+            if (newSelection != null){
+                button.setDisable(false);
+            }
+            else{
+                button.setDisable(true);
+            }
+        });
     }
 
     /**
@@ -210,8 +220,8 @@ public class ShopController {
         if (game.getCurrentRoundIndex() < 8){
             uraniumButton.setDisable(true);
             diamondButton.setDisable(true);
-            uraniumCostLabel.setVisible(false);
-            diamondCostLabel.setVisible(false);
+//            uraniumCostLabel.setVisible(false);
+//            diamondCostLabel.setVisible(false);
         }
     }
 
@@ -235,6 +245,21 @@ public class ShopController {
         else{
             moneyLabel.setText("$0 remaining");
         }
+    }
+
+    /**
+     * Displays the visibility of labels for 3 seconds at a time when the buy, sell, or upgrade button is clicked
+     */
+    //Reference for Label Visibility: https://stackoverflow.com/questions/29487645/how-to-make-a-label-visible-for-a-certain-time-and-then-should-be-invisible-with
+    public void setLabelVisibility(Label label){
+        label.setVisible(true);
+        PauseTransition labelDisappear = new PauseTransition(
+                Duration.seconds(3)
+        );
+        labelDisappear.setOnFinished(
+                event -> label.setVisible(false)
+        );
+        labelDisappear.play();
     }
 
     /**
@@ -280,22 +305,7 @@ public class ShopController {
     }
 
     /**
-     * Displays the visibility of labels for 3 seconds at a time when the buy, sell, or upgrade button is clicked
-     */
-    //Reference for Label Visibility: https://stackoverflow.com/questions/29487645/how-to-make-a-label-visible-for-a-certain-time-and-then-should-be-invisible-with
-    public void setLabelVisibility(Label label){
-        label.setVisible(true);
-        PauseTransition labelDisappear = new PauseTransition(
-                Duration.seconds(3)
-        );
-        labelDisappear.setOnFinished(
-                event -> label.setVisible(false)
-        );
-        labelDisappear.play();
-    }
-
-    /**
-     * When the sell tower button is clicked, displays that the tower has been sold
+     * When the sell tower button is clicked, displays that the main tower has been sold
      */
     @FXML
     public void onSellMainTower(){
@@ -308,6 +318,9 @@ public class ShopController {
         setLabelVisibility(mainTowerSoldLabel);
     }
 
+    /**
+     * When the sell tower button is clicked, displays that the reserve tower has been sold
+     */
     @FXML
     public void onSellReserveTower(){
         for (Integer index : sellReserveTowerList.getSelectionModel().getSelectedIndices()) {
@@ -320,7 +333,7 @@ public class ShopController {
     }
 
     /**
-     * When an upgrade is bought, adds the upgrade to the Array List for future access
+     * When an upgrade is bought, adds the upgrade to the Items array list for future access
      */
     @FXML
     public void onBuyUpgrade(){
@@ -362,19 +375,8 @@ public class ShopController {
     public void onSellUpgrade(){
         for (Integer index : sellUpgradeList.getSelectionModel().getSelectedIndices()){
             Item item = game.getInventory().getItems().get(index);
-            game.sellUpgrades(item, game);
+            game.sellUpgrades(item, index, game);
         }
-
-        String[] mainTowerDescriptions = game.getInventory().getAllMainTowerDescriptions();
-        String[] reserveTowerDescriptions = game.getInventory().getAllReserveTowerDescriptions();
-
-//        for (int i = 0; i < mainTowerDescriptions.length; i++){
-//            if (mainTowerDescriptions[i].endsWith("\n\n" + repairItem.getText())){
-//                description = mainTowerDescriptions[i].substring(mainTowerDescriptions[i].lastIndexOf("\n\n"))
-//                game.getInventory().setMainTowerDescriptions(i, game.g);
-//            }
-//        }
-
         upgradeSoldLabel.setText("Upgrade sold");
         setLabelVisibility(upgradeSoldLabel);
     }
