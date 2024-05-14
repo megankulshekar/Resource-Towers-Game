@@ -157,5 +157,8 @@ public abstract class Tower implements Purchasable {
      */
     public void decreaseReloadSpeed(int decreaseAmount){
         reloadSpeed -= decreaseAmount;
+        if (reloadSpeed < 1){
+            reloadSpeed = 1;
+        }
     }
 }

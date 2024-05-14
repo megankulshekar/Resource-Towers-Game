@@ -51,7 +51,7 @@ public class Round {
         } else if (difficulty == "Medium"){
             cartSize = 5;
             cartSpeed = 2;
-        } else{
+        } else if (difficulty == "Hard"){
             cartSize = 6;
             cartSpeed = 3;
         }
