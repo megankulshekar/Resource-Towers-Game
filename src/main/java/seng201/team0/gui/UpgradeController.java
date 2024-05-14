@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
+import seng201.team0.services.ShopService;
+import seng201.team0.services.UpgradeService;
 
 
 public class UpgradeController {
@@ -12,6 +14,11 @@ public class UpgradeController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+
+    /**
+     * The service class for the controller
+     */
+    private UpgradeService upgradeService;
 
     /**
      * Label for outputting success message of upgrade being applied or not applied
@@ -96,6 +103,8 @@ public class UpgradeController {
 
     private String newDescription;
 
+    private int towerDescriptionIndex = 0;
+
     /**
      * Keeps track of whether a main tower or reserve tower has been selected to upgrade
      */
@@ -111,6 +120,7 @@ public class UpgradeController {
      */
     public UpgradeController(GameEnvironment game) {
         this.game = game;
+        upgradeService = new UpgradeService(this.game);
     }
 
     /**
@@ -241,19 +251,15 @@ public class UpgradeController {
             if (towerIndex >= 5){
                 towerIndex = towerIndex - 5;
                 Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
-                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                originalDescription = game.getInventory().getReserveTowerDescriptions(towerIndex);
-                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                game.getInventory().setReserveTowerDescriptions(towerIndex, newDescription);
-                messageLabel.setText("Success! Upgrade applied!");
+                towerDescriptionIndex = 1;
+                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                messageLabel.setText(message);
             }
             else if (towerIndex < 5){
                 Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
-                game.getInventory().upgradeTower(indexOfUpgradeItem, tower);
-                originalDescription = game.getInventory().getMainTowerDescriptions(towerIndex);
-                newDescription = originalDescription.concat("\n\n" + upgradeDescription);
-                game.getInventory().setMainTowerDescriptions(towerIndex, newDescription);
-                messageLabel.setText("Success! Upgrade applied!");
+                towerDescriptionIndex = 2;
+                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                messageLabel.setText(message);
             }
             else{
                 System.out.println("The tower does not exist.");
