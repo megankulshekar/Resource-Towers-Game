@@ -25,6 +25,9 @@ public class ShopController {
      */
     private GameEnvironment game;
 
+    /**
+     * The service class for the controller
+     */
     private ShopService shopService;
 
     /**

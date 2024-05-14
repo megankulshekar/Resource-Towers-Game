@@ -24,7 +24,7 @@ public class InventoryService {
      * @param game The game environment
      * @param mainTowerIndex Location of main tower
      * @param reserveTowerIndex Location of reserve tower
-     * @return
+     * @return Returns true if there is at least one main tower in the inventory
      */
     public boolean selectTowers(GameEnvironment game, int mainTowerIndex, int reserveTowerIndex){
         Tower[] mainTowers = game.getInventory().getAllMainTowers();

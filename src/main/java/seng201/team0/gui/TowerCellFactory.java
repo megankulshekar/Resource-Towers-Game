@@ -9,7 +9,15 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 import seng201.team0.models.Tower;
 
+/**
+ * Class for controlling the creation of tower cells in the list view of GUI
+ */
 public class TowerCellFactory implements Callback<ListView<Tower>, ListCell<Tower>> {
+    /**
+     * Creates the tower cell for list view
+     * @param param List of towers to make cells for
+     * @return Tower description
+     */
     @Override
     public ListCell<Tower> call(ListView<Tower> param) {
         return new ListCell<>() {

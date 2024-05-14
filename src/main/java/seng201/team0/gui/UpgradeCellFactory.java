@@ -9,7 +9,15 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 import seng201.team0.models.Item;
 
+/**
+ * Class for controlling the creation of upgrade cells in the list view of GUI
+ */
 public class UpgradeCellFactory implements Callback<ListView<String>, ListCell<String>> {
+    /**
+     * Creates the upgrade cell for list view
+     * @param param List of upgrades to make cells for
+     * @return Upgrade description
+     */
     @Override
     public ListCell<String> call(ListView<String> param) {
         return new ListCell<>() {

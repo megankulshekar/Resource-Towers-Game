@@ -238,7 +238,6 @@ public class UpgradeController {
     @FXML
     public void onOkay(){
         if (indexOfUpgradeItem != -1) {
-            System.out.println("Tower index: " + towerIndex);
             if (towerIndex >= 5){
                 towerIndex = towerIndex - 5;
                 Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();

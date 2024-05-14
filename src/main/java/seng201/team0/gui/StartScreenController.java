@@ -3,6 +3,7 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.models.*;
+import seng201.team0.services.StartScreenService;
 
 /**
  * Class for controlling the start screen GUI
@@ -12,6 +13,11 @@ public class StartScreenController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+
+    /**
+     * The service class for the controller
+     */
+    private StartScreenService startScreenService;
 
     /**
      * Text field for entering the user's name
@@ -54,6 +60,7 @@ public class StartScreenController {
      */
     public StartScreenController(GameEnvironment game){
         this.game = game;
+        startScreenService = new StartScreenService(this.game);
         this.game.setNumberRounds(5);
     }
 
@@ -98,9 +105,7 @@ public class StartScreenController {
      */
     @FXML
     public void onTower1Chosen(){
-        Tower coalTower = new CoalTower();
-        coalTower.increaseResourceAmount(1);
-        coalTower.decreaseReloadSpeed(-1);
+        Tower coalTower = startScreenService.towerCreation(0);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 0;
     }
@@ -110,9 +115,7 @@ public class StartScreenController {
      */
     @FXML
     public void onTower2Chosen(){
-        Tower coalTower = new CoalTower();
-        coalTower.increaseResourceAmount(0);
-        coalTower.decreaseReloadSpeed(0);
+        Tower coalTower = startScreenService.towerCreation(1);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 1;
     }
@@ -122,9 +125,7 @@ public class StartScreenController {
      */
     @FXML
     public void onTower3Chosen(){
-        Tower coalTower = new CoalTower();
-        coalTower.increaseResourceAmount(-1);
-        coalTower.decreaseReloadSpeed(1);
+        Tower coalTower = startScreenService.towerCreation(2);
         descriptionLabel.setText(coalTower.getDescription());
         towerChosen = 2;
     }
@@ -135,25 +136,9 @@ public class StartScreenController {
      * @param name Label to change
      */
     public void towerTypeChosen(int towerChosen, Label name){
-        Tower coalTower = new CoalTower();
-        if(towerChosen == 0){
-            coalTower.increaseResourceAmount(1);
-            coalTower.decreaseReloadSpeed(-1);
-            name.setText(coalTower.getDescription());
-            game.addToInventory(coalTower, coalTower.getDescription());
-        }
-        else if(towerChosen == 1){
-            coalTower.increaseResourceAmount(0);
-            coalTower.decreaseReloadSpeed(0);
-            name.setText(coalTower.getDescription());
-            game.addToInventory(coalTower, coalTower.getDescription());
-        }
-        else if(towerChosen == 2){
-            coalTower.increaseResourceAmount(-1);
-            coalTower.decreaseReloadSpeed(1);
-            name.setText(coalTower.getDescription());
-            game.addToInventory(coalTower, coalTower.getDescription());
-        }
+        Tower coalTower = startScreenService.towerCreation(towerChosen);
+        name.setText(coalTower.getDescription());
+        game.addToInventory(coalTower, coalTower.getDescription());
     }
 
     /**
