@@ -1,8 +1,5 @@
 package seng201.team0.models;
 
-import javafx.scene.control.Label;
-
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
