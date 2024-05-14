@@ -57,10 +57,6 @@ public class InventoryController {
 
     private int reserveTowerIndex = -1;
 
-    private int mainContainsCount = 0;
-
-    private int reserveContainsCount = 0;
-
     /**
      * Lists for keeping track of all buttons and labels
      */
@@ -137,31 +133,9 @@ public class InventoryController {
      */
     @FXML
     public void onMoveTower() {
-        Tower[] mainTowers = game.getInventory().getAllMainTowers();
-        Tower[] reserveTowers = game.getInventory().getAllReserveTowers();
-
-        for (Tower mainTower : mainTowers){
-            if (mainTower != null){
-                mainContainsCount++;
-            }
-        }
-        for (Tower reserveTower : reserveTowers){
-            if (reserveTower != null){
-                reserveContainsCount++;
-            }
-        }
-
-        Tower mainTower = game.getInventory().getMainTowers(mainTowerIndex);
-        Tower reserveTower = game.getInventory().getReserveTowers(reserveTowerIndex);
-
-        if (mainContainsCount > 1 || mainContainsCount == 1 && (mainTower == null && reserveTower != null)) {
+        if (inventoryService.selectTowers(game, mainTowerIndex, reserveTowerIndex)) {
             swappingTowers();
         }
-        else {
-            System.out.println("Not swapped");
-        }
-        mainContainsCount = 0;
-        reserveContainsCount = 0;
     }
 
     /**

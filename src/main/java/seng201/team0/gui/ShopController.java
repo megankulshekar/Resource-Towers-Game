@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.Duration;
 import seng201.team0.models.*;
+import seng201.team0.services.ShopService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,8 @@ public class ShopController {
      * Sets the game environment attribute
      */
     private GameEnvironment game;
+
+    private ShopService shopService;
 
     /**
      * Buttons and labels for each of the tower types
@@ -136,6 +139,7 @@ public class ShopController {
      */
     public ShopController(GameEnvironment game) {
         this.game = game;
+        shopService = new ShopService(this.game);
     }
 
     /**
@@ -268,40 +272,9 @@ public class ShopController {
      */
     @FXML
     public void onBuyTower(){
-        if (game.getMoney() >= 0) {
-            if (boughtTowerIndex == 0 && game.getMoney() - 7 >= 0){
-                Tower copperTower = new CopperTower();
-                game.buyTowerInShop(copperTower, game, copperTower.getDescription());
-                towerBoughtLabel.setText("Tower bought");
-            }
-            else if (boughtTowerIndex == 1 && game.getMoney() - 8 >= 0) {
-                Tower ironTower = new IronTower();
-                game.buyTowerInShop(ironTower, game, ironTower.getDescription());
-                towerBoughtLabel.setText("Tower bought");
-            }
-            else if (boughtTowerIndex == 2 && game.getMoney() - 9 >= 0) {
-                Tower goldTower = new GoldTower();
-                game.buyTowerInShop(goldTower, game, goldTower.getDescription());
-                towerBoughtLabel.setText("Tower bought");
-            }
-            else if (boughtTowerIndex == 3 && game.getMoney() - 12 >= 0) {
-                Tower uraniumTower = new UraniumTower();
-                game.buyTowerInShop(uraniumTower, game, uraniumTower.getDescription());
-                towerBoughtLabel.setText("Tower bought");
-            }
-            else if (boughtTowerIndex == 4 && game.getMoney() - 14 >= 0) {
-                Tower diamondTower = new DiamondTower();
-                game.buyTowerInShop(diamondTower, game, diamondTower.getDescription());
-                towerBoughtLabel.setText("Tower bought");
-            }
-            else{
-                towerBoughtLabel.setText("You do not have enough money");
-            }
-            setLabelVisibility(towerBoughtLabel);
-        }
-        else{
-            towerBoughtLabel.setText("You do not have enough money");
-        }
+        String message = shopService.buyTower(boughtTowerIndex);
+        towerBoughtLabel.setText(message);
+        setLabelVisibility(towerBoughtLabel);
     }
 
     /**
@@ -310,12 +283,10 @@ public class ShopController {
     @FXML
     public void onSellMainTower(){
         for (Integer index : sellMainTowerList.getSelectionModel().getSelectedIndices()){
-            System.out.println(index);
-            Tower tower = game.getInventory().getMainTowers(index);
-            game.sellTowerInShop(tower, game);
+            String message = shopService.sellMainTower(index);
+            mainTowerSoldLabel.setText(message);
+            setLabelVisibility(mainTowerSoldLabel);
         }
-        mainTowerSoldLabel.setText("Main Tower Sold");
-        setLabelVisibility(mainTowerSoldLabel);
     }
 
     /**
@@ -324,12 +295,10 @@ public class ShopController {
     @FXML
     public void onSellReserveTower(){
         for (Integer index : sellReserveTowerList.getSelectionModel().getSelectedIndices()) {
-            System.out.println(index);
-            Tower tower = game.getInventory().getReserveTowers(index);
-            game.sellTowerInShop(tower, game);
+            String message = shopService.sellReserveTower(index);
+            reserveTowerSoldLabel.setText(message);
+            setLabelVisibility(reserveTowerSoldLabel);
         }
-        reserveTowerSoldLabel.setText("Reserve Tower Sold");
-        setLabelVisibility(reserveTowerSoldLabel);
     }
 
     /**
@@ -337,35 +306,10 @@ public class ShopController {
      */
     @FXML
     public void onBuyUpgrade(){
-        if (game.getMoney() >= 0) {
-            if (boughtUpgradeIndex == 0 && game.getMoney() - 15 >= 0){
-                Item repairItem = new RepairItem();
-                game.buyUpgrades(repairItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
-                upgradeBoughtLabel.setText("Upgrade bought");
-            }
-            else if (boughtUpgradeIndex == 1 && game.getMoney() - 15 >= 0) {
-                Item upgradeXPItem = new UpgradeXPItem();
-                game.buyUpgrades(upgradeXPItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
-                upgradeBoughtLabel.setText("Upgrade bought");
-            }
-            else if (boughtUpgradeIndex == 2 && game.getMoney() - 15 >= 0) {
-                Item upgradeReloadSpeedItem = new UpgradeReloadSpeedItem();
-                game.buyUpgrades(upgradeReloadSpeedItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
-                upgradeBoughtLabel.setText("Upgrade bought");
-            }
-            else if (boughtUpgradeIndex == 3 && game.getMoney() - 15 >= 0) {
-                Item upgradeResourceAmountItem = new UpgradeResourceAmountItem();
-                game.buyUpgrades(upgradeResourceAmountItem, game, upgradesLabels.get(boughtUpgradeIndex).getText());
-                upgradeBoughtLabel.setText("Upgrade bought");
-            }
-            else{
-                upgradeBoughtLabel.setText("You do not have enough money");
-            }
-            setLabelVisibility(upgradeBoughtLabel);
-        }
-        else{
-            upgradeBoughtLabel.setText("You do not have enough money");
-        }
+        String upgradesLabel = upgradesLabels.get(boughtUpgradeIndex).getText();
+        String message = shopService.buyUpgrade(boughtUpgradeIndex, upgradesLabel);
+        upgradeBoughtLabel.setText(message);
+        setLabelVisibility(upgradeBoughtLabel);
     }
 
     /**
@@ -373,12 +317,11 @@ public class ShopController {
      */
     @FXML
     public void onSellUpgrade(){
-        for (Integer index : sellUpgradeList.getSelectionModel().getSelectedIndices()){
-            Item item = game.getInventory().getItems().get(index);
-            game.sellUpgrades(item, index, game);
+        for (Integer index : sellUpgradeList.getSelectionModel().getSelectedIndices()) {
+            String message = shopService.sellUpgrade(index);
+            upgradeSoldLabel.setText(message);
+            setLabelVisibility(upgradeSoldLabel);
         }
-        upgradeSoldLabel.setText("Upgrade sold");
-        setLabelVisibility(upgradeSoldLabel);
     }
 
     /**

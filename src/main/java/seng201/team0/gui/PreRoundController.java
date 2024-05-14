@@ -68,7 +68,7 @@ public class PreRoundController {
     }
 
     /**
-     * Initiliases the GUI by setting text for the labels,
+     * Initialises the GUI by setting text for the labels,
      * giving money to the user, performing a random event,
      * and increasing number of carts and cart resource types
      * for next round
