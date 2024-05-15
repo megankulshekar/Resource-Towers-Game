@@ -51,42 +51,42 @@ public class GameEnvironment {
     /**
      * Method for launching the start screen GUI
      */
-    private final Consumer<GameEnvironment> startScreenLauncher;
+    private Consumer<GameEnvironment> startScreenLauncher;
 
     /**
      * Method for launching the pre round GUI
      */
-    private final Consumer<GameEnvironment> preRoundLauncher;
+    private Consumer<GameEnvironment> preRoundLauncher;
 
     /**
      * Method for launching the round GUI
      */
-    private final Consumer<GameEnvironment> roundLauncher;
+    private Consumer<GameEnvironment> roundLauncher;
 
     /**
      * Method for launching the inventory GUI
      */
-    private final Consumer<GameEnvironment> inventoryLauncher;
+    private Consumer<GameEnvironment> inventoryLauncher;
 
     /**
      * Method for launching the upgrade popup GUI
      */
-    private final Consumer<GameEnvironment> upgradePopupLauncher;
+    private Consumer<GameEnvironment> upgradePopupLauncher;
 
     /**
      * Method for launching the shop GUI
      */
-    private final Consumer<GameEnvironment> shopLauncher;
+    private Consumer<GameEnvironment> shopLauncher;
 
     /**
      * Method for launching the end screen GUI
      */
-    private final Consumer<GameEnvironment> endScreenLauncher;
+    private Consumer<GameEnvironment> endScreenLauncher;
 
     /**
      * Method for clearing the game window
      */
-    private final Runnable clearScreen;
+    private Runnable clearScreen;
 
     /**
      * Constructor
@@ -106,6 +106,14 @@ public class GameEnvironment {
         this.shopLauncher = shopLauncher;
         this.endScreenLauncher = endScreenLauncher;
         launchStartScreen();
+    }
+
+    /**
+     * Test Constructor
+     */
+    public GameEnvironment(){
+        setName("Calan");
+        setNumberRounds(15);
     }
 
     /**
