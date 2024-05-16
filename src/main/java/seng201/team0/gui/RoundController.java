@@ -96,8 +96,8 @@ public class RoundController {
     @FXML
     public void initialize() {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
-        this.mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
-        this.cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
+        mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
+        cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
         updateLabels();
 
@@ -158,7 +158,8 @@ public class RoundController {
     }
 
     /**
-     * Closes round GUI and launches inventory GUI
+     * Stops all threads current running,
+     * closes round GUI and launches inventory GUI
      */
     @FXML
     public void onInventory(){
@@ -174,7 +175,8 @@ public class RoundController {
     }
 
     /**
-     * Closes round GUI and launches shop GUI
+     * Stops all threads currently running,
+     * closes round GUI and launches shop GUI
      */
     @FXML
     public void onShop(){
@@ -190,7 +192,8 @@ public class RoundController {
     }
 
     /**
-     * Closes round GUI and launches end screen GUI if all rounds have been completed,
+     * Stops all threads currently running,
+     * closes round GUI and launches end screen GUI if all rounds have been completed,
      * otherwise it launches pre round GUI
      */
     public void winRound(){
@@ -210,7 +213,8 @@ public class RoundController {
     }
 
     /**
-     * Closes round GUI and launches end screen GUI
+     * Stops all threads currently running,
+     * closes round GUI and launches end screen GUI
      */
     public void loseRound(){
         for (Thread thread : towerThreads){

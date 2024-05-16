@@ -7,8 +7,6 @@ import seng201.team0.models.Round;
 import seng201.team0.models.Tower;
 import seng201.team0.services.PreRoundService;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -181,7 +179,7 @@ public class PreRoundServiceTest {
     }
 
     /**
-     * Tests the addResourceType method
+     * Tests the addResourceType method by validating that new resource types are added at specific rounds
      */
     @Test
     public void testAddResourceType(){
@@ -308,5 +306,61 @@ public class PreRoundServiceTest {
         assertTrue(testCurrentRound.getResourceTypes().contains("Gold"));
         assertTrue(testCurrentRound.getResourceTypes().contains("Diamond"));
         assertTrue(testCurrentRound.getResourceTypes().contains("Uranium"));
+
+        game.increaseCurrentRoundIndex();
+        index = game.getCurrentRoundIndex();
+        assertEquals(10, index);
+        testPreRoundService = new PreRoundService(game);
+        testCurrentRound = testPreRoundService.getCurrentRound();
+        testPreRoundService.addNewResourceType();
+        assertTrue(testCurrentRound.getResourceTypes().contains("Copper"));
+        assertTrue(testCurrentRound.getResourceTypes().contains("Iron"));
+        assertTrue(testCurrentRound.getResourceTypes().contains("Gold"));
+        assertTrue(testCurrentRound.getResourceTypes().contains("Diamond"));
+        assertTrue(testCurrentRound.getResourceTypes().contains("Uranium"));
+    }
+
+    @Test
+    public void testAddNewCart(){
+        game = new GameEnvironment();
+        game.setDifficulty("Easy");
+        for (int i = 0; i < game.getNumberRounds(); i++){
+            Round newRound = new Round(game.getDifficulty());
+            game.addRound(newRound);
+        }
+        int index = game.getCurrentRoundIndex();
+        assertEquals(0, index);
+        testPreRoundService = new PreRoundService(game);
+        Round testCurrentRound = testPreRoundService.getCurrentRound();
+        testPreRoundService.addNewCart();
+        testCurrentRound.createCarts();
+        assertEquals(3, testCurrentRound.getCarts().size());
+
+        game.increaseCurrentRoundIndex();
+        index = game.getCurrentRoundIndex();
+        assertEquals(1, index);
+        testPreRoundService = new PreRoundService(game);
+        testCurrentRound = testPreRoundService.getCurrentRound();
+        testPreRoundService.addNewCart();
+        testCurrentRound.createCarts();
+        assertEquals(4, testCurrentRound.getCarts().size());
+
+        game.increaseCurrentRoundIndex();
+        index = game.getCurrentRoundIndex();
+        assertEquals(2, index);
+        testPreRoundService = new PreRoundService(game);
+        testCurrentRound = testPreRoundService.getCurrentRound();
+        testPreRoundService.addNewCart();
+        testCurrentRound.createCarts();
+        assertEquals(4, testCurrentRound.getCarts().size());
+
+        game.increaseCurrentRoundIndex();
+        index = game.getCurrentRoundIndex();
+        assertEquals(3, index);
+        testPreRoundService = new PreRoundService(game);
+        testCurrentRound = testPreRoundService.getCurrentRound();
+        testPreRoundService.addNewCart();
+        testCurrentRound.createCarts();
+        assertEquals(5, testCurrentRound.getCarts().size());
     }
 }

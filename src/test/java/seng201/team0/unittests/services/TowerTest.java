@@ -3,13 +3,20 @@ package seng201.team0.unittests.services;
 import org.junit.jupiter.api.Test;
 import seng201.team0.models.*;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class for testing units of Tower class and subclasses
+ */
 public class TowerTest {
+    /**
+     * The tower used for testing purposes
+     */
     private Tower testTower;
 
+    /**
+     * Tests the getter and setter methods that are inherited by all Tower subclasses
+     */
     @Test
     public void testMainGettersAndSetters(){
         testTower = new CoalTower();
@@ -41,6 +48,9 @@ public class TowerTest {
         assertEquals("Tower is broken", testTower.getDescription());
     }
 
+    /**
+     * Tests each implementation of buyingPrice and sellingPrice getters for each Tower subclass
+     */
     @Test
     public void testPriceGetters(){
         testTower = new CoalTower();

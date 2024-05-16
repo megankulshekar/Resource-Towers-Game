@@ -5,9 +5,18 @@ import seng201.team0.models.Cart;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class for testing units in Cart class
+ */
 public class CartTest {
+    /**
+     * The cart used for testing purposes
+     */
     private Cart testCart;
 
+    /**
+     * Tests the getter and setter methods
+     */
     @Test
     public void testGettersAndSetters(){
         testCart = new Cart(10, "Coal", 2);

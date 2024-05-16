@@ -138,26 +138,20 @@ public class Inventory {
      * @param purchasable The new purchasable being added to the inventory
      */
     public void add(Purchasable purchasable, String description){
-        if (purchasable instanceof Tower){
-            Tower tower = (Tower) purchasable;
-            for (int i = 0; i < 5; i++){
-                if (mainTowers[i] == null){
-                    mainTowers[i] = tower;
-                    mainTowerDescriptions[i] = description;
-                    return;
-                }
+        Tower tower = (Tower) purchasable;
+        for (int i = 0; i < 5; i++){
+            if (mainTowers[i] == null){
+                mainTowers[i] = tower;
+                mainTowerDescriptions[i] = description;
+                return;
             }
-            for (int i = 0; i < 5; i++){
-                if (reserveTowers[i] == null){
-                    reserveTowers[i] = tower;
-                    reserveTowerDescriptions[i] = description;
-                    return;
-                }
+        }
+        for (int i = 0; i < 5; i++){
+            if (reserveTowers[i] == null){
+                reserveTowers[i] = tower;
+                reserveTowerDescriptions[i] = description;
+                return;
             }
-            System.out.println("Could not add tower due to maximum number of towers reached");
-        } else {
-            Item item = (Item) purchasable;
-            items.add(item);
         }
     }
 
@@ -170,26 +164,20 @@ public class Inventory {
      * @param purchasable The purchasable being removed from the inventory
      */
     public void remove(Purchasable purchasable){
-        if (purchasable instanceof Tower) {
-            Tower tower = (Tower) purchasable;
-            for (int i = 0; i < 5; i++) {
-                if (mainTowers[i] == tower) {
-                    mainTowers[i] = null;
-                    mainTowerDescriptions[i] = "";
-                    return;
-                }
+        Tower tower = (Tower) purchasable;
+        for (int i = 0; i < 5; i++) {
+            if (mainTowers[i] == tower) {
+                mainTowers[i] = null;
+                mainTowerDescriptions[i] = "";
+                return;
             }
-            for (int i = 0; i < 5; i++) {
-                if (reserveTowers[i] == tower) {
-                    reserveTowers[i] = null;
-                    reserveTowerDescriptions[i] = "";
-                    return;
-                }
+        }
+        for (int i = 0; i < 5; i++) {
+            if (reserveTowers[i] == tower) {
+                reserveTowers[i] = null;
+                reserveTowerDescriptions[i] = "";
+                return;
             }
-            System.out.println("Could not remove tower as it is not in tower arrays");
-        } else {
-            Item item = (Item) purchasable;
-            items.remove(item);
         }
     }
 

@@ -6,9 +6,18 @@ import seng201.team0.models.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+/**
+ * Class for testing units in Item class and subclasses
+ */
 public class ItemTest {
+    /**
+     * The item used for testing purposes
+     */
     private Item testItem;
 
+    /**
+     * Tests each implementation of the useItem method for each Item subclass
+     */
     @Test
     public void testItemUses(){
         Tower testTower = new UraniumTower();
@@ -31,6 +40,9 @@ public class ItemTest {
         assertFalse(testTower.isBroken());
     }
 
+    /**
+     * Tests each implementation of buyingPrice and sellingPrice getters for each Item subclass
+     */
     @Test
     public void testPriceGetters(){
         testItem = new UpgradeXPItem();

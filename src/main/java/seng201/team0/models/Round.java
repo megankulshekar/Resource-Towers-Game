@@ -164,6 +164,14 @@ public class Round {
     }
 
     /**
+     * Resets resource type list to just having coal
+     */
+    public void resetResourceTypes(){
+        resourceTypes = new ArrayList<String>();
+        resourceTypes.add("Coal");
+    }
+
+    /**
      * Fills a cart with resources from a tower
      * @param cart Cart being filled
      * @param tower Tower used to fill cart

@@ -120,7 +120,7 @@ public class Cart {
 
     /**
      * Gets the time of the cart
-     * @return
+     * @return Time of the cart
      */
     public int getTime(){
         return time;

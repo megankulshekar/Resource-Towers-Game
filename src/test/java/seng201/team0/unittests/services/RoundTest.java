@@ -17,6 +17,7 @@ public class RoundTest {
     @Test
     public void testGettersAndSetters(){
         testRound = new Round("Medium");
+        testRound.resetResourceTypes();
         assertEquals("Medium", testRound.getDifficulty());
         assertEquals(3, testRound.getNumCarts());
         assertEquals(5, testRound.getCartSize());

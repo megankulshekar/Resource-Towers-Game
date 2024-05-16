@@ -112,7 +112,7 @@ public class GameEnvironment {
      * Test Constructor
      */
     public GameEnvironment(){
-        setName("Calan");
+        setName("");
         setNumberRounds(15);
     }
 
