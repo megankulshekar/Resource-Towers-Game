@@ -82,7 +82,7 @@ public class Shop {
      * @param game The game environment
      */
     public void sellUpgrade(Item item, int index, GameEnvironment game) {
-        game.increaseMoney(item.getBuyingPrice());
+        game.increaseMoney(item.getSellingPrice());
         game.removeFromUpgrades(item, index);
     }
 }
