@@ -133,8 +133,10 @@ public class InventoryController {
      */
     @FXML
     public void onMoveTower() {
-        if (inventoryService.selectTowers(game, mainTowerIndex, reserveTowerIndex)) {
-            swappingTowers();
+        if (mainTowerIndex != -1 && reserveTowerIndex != -1) {
+            if (inventoryService.selectTowers(game, mainTowerIndex, reserveTowerIndex)) {
+                swappingTowers();
+            }
         }
     }
 

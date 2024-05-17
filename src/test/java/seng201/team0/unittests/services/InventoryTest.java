@@ -39,7 +39,7 @@ public class InventoryTest {
                 "XP: 0\n" +
                 "Resource Amount: 3\n" +
                 "Reload Speed: 3", testInventory.getMainTowerDescriptions(1));
-        assertEquals(null, testInventory.getMainTowers(2));
+        assertNull(testInventory.getMainTowers(2));
         Tower testIronTower = new IronTower();
         String ironDescription = testIronTower.getDescription();
         testInventory.add(testIronTower, ironDescription);
@@ -49,13 +49,13 @@ public class InventoryTest {
                 "Resource Amount: 4\n" +
                 "Reload Speed: 4", testInventory.getMainTowerDescriptions(2));
         testInventory.remove(testCoalTower);
-        assertEquals(null, testInventory.getMainTowers(0));
+        assertNull(testInventory.getMainTowers(0));
         assertEquals("", testInventory.getMainTowerDescriptions(0));
         testInventory.add(testCoalTower, coalDescription);
         testInventory.add(testCoalTower, coalDescription);
         testInventory.add(testCoalTower, coalDescription);
-        assertEquals(null, testInventory.getReserveTowers(0));
-        assertEquals(null, testInventory.getReserveTowers(2));
+        assertNull(testInventory.getReserveTowers(0));
+        assertNull(testInventory.getReserveTowers(2));
         Tower testGoldTower = new GoldTower();
         String goldDescription = testGoldTower.getDescription();
         testInventory.add(testGoldTower, goldDescription);
@@ -81,7 +81,7 @@ public class InventoryTest {
                 "Resource Amount: 10\n" +
                 "Reload Speed: 8", testInventory.getReserveTowerDescriptions(2));
         testInventory.remove(testUraniumTower);
-        assertEquals(null, testInventory.getReserveTowers(2));
+        assertNull(testInventory.getReserveTowers(2));
         assertEquals("", testInventory.getReserveTowerDescriptions(2));
 
         assertEquals(null, testInventory.getMainTowers(10));

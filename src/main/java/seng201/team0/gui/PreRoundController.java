@@ -46,6 +46,12 @@ public class PreRoundController {
     private Label moneyEarned, randomEvents;
 
     /**
+     * Label for telling user to select a difficulty for the next round
+     */
+    @FXML
+    private Label selectDifficultyLabel;
+
+    /**
      * Labels for showing the difficulty options for the next round
      */
     @FXML
@@ -141,18 +147,21 @@ public class PreRoundController {
      */
     @FXML
     public void onStartRound(){
-        if (chosenDifficulty.equals("Easy")){
-            preRoundService.setEasyDifficulty();
+        if (chosenDifficulty == null){
+            selectDifficultyLabel.setText("Please select a difficulty option for the next round!");
+        } else {
+            if (chosenDifficulty.equals("Easy")) {
+                preRoundService.setEasyDifficulty();
+            } else if (chosenDifficulty.equals("Medium")) {
+                preRoundService.setMediumDifficulty();
+            } else if (chosenDifficulty.equals("Hard")) {
+                preRoundService.setHardDifficulty();
+            }
+
+            game.increaseCurrentRoundIndex();
+            int nextRoundIndex = game.getCurrentRoundIndex();
+            game.getRounds().get(nextRoundIndex).createCarts();
+            game.closePreRound();
         }
-        else if (chosenDifficulty.equals("Medium")){
-            preRoundService.setMediumDifficulty();
-        }
-        else if (chosenDifficulty.equals("Hard")){
-            preRoundService.setHardDifficulty();
-        }
-        game.increaseCurrentRoundIndex();
-        int nextRoundIndex = game.getCurrentRoundIndex();
-        game.getRounds().get(nextRoundIndex).createCarts();
-        game.closePreRound();
     }
 }
