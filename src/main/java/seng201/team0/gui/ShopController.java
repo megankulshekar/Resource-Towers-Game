@@ -227,8 +227,6 @@ public class ShopController {
         if (game.getCurrentRoundIndex() < 8){
             uraniumButton.setDisable(true);
             diamondButton.setDisable(true);
-//            uraniumCostLabel.setVisible(false);
-//            diamondCostLabel.setVisible(false);
         }
     }
 
@@ -309,7 +307,12 @@ public class ShopController {
      */
     @FXML
     public void onBuyUpgrade(){
-        String upgradesLabel = upgradesLabels.get(boughtUpgradeIndex).getText();
+        String upgradesLabel;
+        if (boughtUpgradeIndex == -1) {
+            upgradesLabel = "";
+        } else {
+            upgradesLabel = upgradesLabels.get(boughtUpgradeIndex).getText();
+        }
         String message = shopService.buyUpgrade(boughtUpgradeIndex, upgradesLabel);
         upgradeBoughtLabel.setText(message);
         setLabelVisibility(upgradeBoughtLabel);

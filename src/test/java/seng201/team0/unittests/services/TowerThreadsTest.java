@@ -88,7 +88,7 @@ public class TowerThreadsTest {
         testTowerThreads = new TowerThreads(game, testTower);
         Thread testThread = new Thread(testTowerThreads);
         testThread.start();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         testThread.interrupt();
         boolean allFull = true;
         for (Cart cart : testCurrentRound.getCarts()){

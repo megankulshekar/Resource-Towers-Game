@@ -247,7 +247,7 @@ public class UpgradeController {
      */
     @FXML
     public void onOkay(){
-        if (indexOfUpgradeItem != -1) {
+        if (indexOfUpgradeItem != -1 && towerIndex != -1) {
             if (towerIndex >= 5){
                 towerIndex = towerIndex - 5;
                 Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
@@ -260,9 +260,6 @@ public class UpgradeController {
                 towerDescriptionIndex = 2;
                 String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
                 messageLabel.setText(message);
-            }
-            else{
-                System.out.println("The tower does not exist.");
             }
         }
         else if (indexOfUpgradeItem == -1){

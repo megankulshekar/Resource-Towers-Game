@@ -48,7 +48,7 @@ public class ShopTest {
         assertEquals(testCoalTower2, game.getInventory().getMainTowers(1));
         assertEquals(testCoalTower3, game.getInventory().getMainTowers(2));
         assertEquals(testCopperTower, game.getInventory().getMainTowers(3));
-        assertEquals(null, game.getInventory().getMainTowers(4));
+        assertNull(game.getInventory().getMainTowers(4));
         assertEquals(copperDescription, game.getInventory().getMainTowerDescriptions(3));
 
         Tower testCoalTower4 = new CoalTower();
@@ -66,15 +66,15 @@ public class ShopTest {
 
         testShop.sell(testCoalTower5, game);
         assertEquals(17, game.getMoney());
-        assertEquals(null, game.getInventory().getReserveTowers(0));
+        assertNull(game.getInventory().getReserveTowers(0));
         assertEquals("", game.getInventory().getReserveTowerDescriptions(0));
         testShop.sell(testCopperTower, game);
         assertEquals(20, game.getMoney());
-        assertEquals(null, game.getInventory().getMainTowers(3));
+        assertNull(game.getInventory().getMainTowers(3));
         assertEquals("", game.getInventory().getMainTowerDescriptions(3));
         testShop.sell(testGoldTower, game);
         assertEquals(24, game.getMoney());
-        assertEquals(null, game.getInventory().getReserveTowers(2));
+        assertNull(game.getInventory().getReserveTowers(2));
         assertEquals("", game.getInventory().getReserveTowerDescriptions(0));
     }
 

@@ -17,8 +17,14 @@ public class Inventory {
      */
     private Tower[] reserveTowers = new Tower[5];
 
+    /**
+     * Array of descriptions for each tower in mainTowers
+     */
     private String[] mainTowerDescriptions = new String[5];
 
+    /**
+     * Array of descriptions for each tower in reserveTowers
+     */
     private String[] reserveTowerDescriptions = new String[5];
 
     /**
@@ -134,7 +140,6 @@ public class Inventory {
      * If purchasable is a tower, purchasable is added to mainTowers array.
      * If mainTowers is full, then purchasable is added to reserveTowers array.
      * If reserveTowers is also full, purchasable is not added.
-     * Otherwise, if purchasable is an item, purchasable is added to items array.
      * @param purchasable The new purchasable being added to the inventory
      */
     public void add(Purchasable purchasable, String description){
@@ -160,7 +165,6 @@ public class Inventory {
      * If purchasable is a tower, purchasable is removed from mainTowers array.
      * If purchasable not in mainTowers, purchasable is removed from reserveTowers array.
      * If purchasable not in reserveTowers, tower is not removed.
-     * Otherwise, if purchasable is an item, purchasable is removed from items array.
      * @param purchasable The purchasable being removed from the inventory
      */
     public void remove(Purchasable purchasable){

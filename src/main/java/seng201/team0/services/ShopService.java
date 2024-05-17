@@ -50,7 +50,7 @@ public class ShopService {
                     cost = 14;
                     break;
                 default:
-                    return "Tower index does not exist";
+                    return "You haven't selected a tower";
             }
             if (game.getMoney() - cost >= 0) {
                 game.buyTowerInShop(tower, game, tower.getDescription());
@@ -122,7 +122,7 @@ public class ShopService {
                     item = new UpgradeResourceAmountItem();
                     break;
                 default:
-                    return "Upgrade index does not exist";
+                    return "You haven't selected an upgrade";
             }
             game.buyUpgrades(item, game, upgradesLabel);
             return "Upgrade bought";

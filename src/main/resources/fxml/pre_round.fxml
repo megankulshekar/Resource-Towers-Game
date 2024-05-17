@@ -62,9 +62,9 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="288.0" prefHeight="25.0" prefWidth="800.0" text="Select difficulty for next round">
+      <Label fx:id="selectDifficultyLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="288.0" prefHeight="25.0" prefWidth="800.0" text="Select difficulty for next round">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Label>
       <GridPane layoutY="58.0" prefHeight="214.0" prefWidth="800.0">

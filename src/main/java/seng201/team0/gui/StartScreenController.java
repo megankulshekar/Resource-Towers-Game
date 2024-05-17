@@ -38,6 +38,12 @@ public class StartScreenController {
     private RadioButton easyButton, mediumButton, hardButton;
 
     /**
+     * Label for showing if user hasn't chosen a difficulty
+     */
+    @FXML
+    private Label difficultyWarningLabel;
+
+    /**
      * Label for showing the descriptions of the three tower options
      */
     @FXML
@@ -48,6 +54,12 @@ public class StartScreenController {
      */
     @FXML
     private Label selectedTower1Label, selectedTower2Label, selectedTower3Label;
+
+    /**
+     * Label for showing if user hasn't selected a tower
+     */
+    @FXML
+    private Label towerWarningLabel;
 
     /**
      * Index of a chosen tower
@@ -164,11 +176,17 @@ public class StartScreenController {
      */
     @FXML
     public void onStartGame(){
-        for (int i = 0; i < game.getNumberRounds(); i++){
-            Round newRound = new Round(game.getDifficulty());
-            game.addRound(newRound);
+        if (game.getDifficulty() == null){
+            difficultyWarningLabel.setText("Please choose a difficulty to start the game!");
+        } else if (game.getInventory().getMainTowers(0) == null){
+            towerWarningLabel.setText("Please select at least one tower to start the game!");
+        } else {
+            for (int i = 0; i < game.getNumberRounds(); i++) {
+                Round newRound = new Round(game.getDifficulty());
+                game.addRound(newRound);
+            }
+            game.getRounds().get(0).createCarts();
+            game.closeStartScreen();
         }
-        game.getRounds().get(0).createCarts();
-        game.closeStartScreen();
     }
 }
