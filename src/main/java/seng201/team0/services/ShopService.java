@@ -70,21 +70,25 @@ public class ShopService {
      * @return Success message
      */
     public String sellMainTower(int index){
-        Tower[] mainTowers = game.getInventory().getAllMainTowers();
-        int mainContainsCount = 0;
+        if (index >= 0 && index <= 4) {
+            Tower[] mainTowers = game.getInventory().getAllMainTowers();
+            int mainContainsCount = 0;
 
-        for (Tower mainTower : mainTowers){
-            if (mainTower != null){
-                mainContainsCount++;
+            for (Tower mainTower : mainTowers) {
+                if (mainTower != null) {
+                    mainContainsCount++;
+                }
+            }
+            if (mainContainsCount > 1) {
+                Tower tower = game.getInventory().getMainTowers(index);
+                game.sellTowerInShop(tower, game);
+                return "Main Tower Sold";
+            } else {
+                return "Only one tower left! You cannot sell this tower.";
             }
         }
-        if (mainContainsCount > 1) {
-            Tower tower = game.getInventory().getMainTowers(index);
-            game.sellTowerInShop(tower, game);
-            return "Main Tower Sold";
-        }
         else{
-            return "Only one tower left! You cannot sell this tower.";
+            return "Index value does not exist";
         }
     }
 
@@ -94,9 +98,14 @@ public class ShopService {
      * @return Success message
      */
     public String sellReserveTower(int index){
-        Tower tower = game.getInventory().getReserveTowers(index);
-        game.sellTowerInShop(tower, game);
-        return "Reserve Tower Sold";
+        if (index >= 0 && index <= 4) {
+            Tower tower = game.getInventory().getReserveTowers(index);
+            game.sellTowerInShop(tower, game);
+            return "Reserve Tower Sold";
+        }
+        else{
+            return "Index value does not exist";
+        }
     }
 
     /**
@@ -138,8 +147,13 @@ public class ShopService {
      * @return Success message
      */
     public String sellUpgrade(int index){
-        Item item = game.getInventory().getItems().get(index);
-        game.sellUpgrades(item, index, game);
-        return "Upgrade sold";
+        try{
+            Item item = game.getInventory().getItems().get(index);
+            game.sellUpgrades(item, index, game);
+            return "Upgrade sold";
+        }
+        catch (IndexOutOfBoundsException e){
+            return "Index value does not exist";
+        }
     }
 }

@@ -20,7 +20,7 @@ public class UpgradeService {
     /**
      * Adds upgrade to tower and corresponding description if upgrade exists in player's inventory
      * @param towerIndex Location of tower in main or reserve tower array
-     * @param towerDescriptionIndex Corresponding description of tower in descriptions array
+     * @param towerDescriptionIndex Signifies main or reserve tower description
      * @param tower Type of tower
      * @param indexOfUpgradeItem Location of upgrade in upgrade array list
      * @param upgradeDescription Description of upgrade

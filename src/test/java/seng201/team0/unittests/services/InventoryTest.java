@@ -83,6 +83,11 @@ public class InventoryTest {
         testInventory.remove(testUraniumTower);
         assertEquals(null, testInventory.getReserveTowers(2));
         assertEquals("", testInventory.getReserveTowerDescriptions(2));
+
+        assertEquals(null, testInventory.getMainTowers(10));
+        assertEquals(null, testInventory.getMainTowerDescriptions(-4));
+        assertEquals(null, testInventory.getReserveTowers(5));
+        assertEquals(null, testInventory.getReserveTowerDescriptions(-1));
     }
 
     /**
@@ -93,10 +98,10 @@ public class InventoryTest {
     public void testUpgradeGetters(){
         testInventory = new Inventory();
         Item repairItem = new RepairItem();
-        String upgradeResourceAmountDescription = "Repair Item";
-        testInventory.addUpgrade(repairItem, upgradeResourceAmountDescription);
+        String upgradeRepairItemDescription = "Repair Item";
+        testInventory.addUpgrade(repairItem, upgradeRepairItemDescription);
         assertEquals(repairItem, testInventory.getItems().get(0));
-        assertEquals(upgradeResourceAmountDescription, testInventory.getUpgradesBought().get(0));
+        assertEquals(upgradeRepairItemDescription, testInventory.getUpgradesBought().get(0));
         Item upgradeXPItem = new UpgradeXPItem();
         String upgradeXPDescription = "Upgrade XP";
         testInventory.addUpgrade(upgradeXPItem, upgradeXPDescription);
