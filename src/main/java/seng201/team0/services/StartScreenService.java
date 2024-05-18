@@ -20,6 +20,21 @@ public class StartScreenService {
     }
 
     /**
+     * Helper function to check if name has no special characters
+     * @param name Player's name
+     * @return true if name is valid or false if name is not valid
+     */
+    public Boolean validCharacters(String name){
+        char[] characters = name.toCharArray();
+        for (char c : characters) {
+            if (!Character.isLetter(c) && !Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Creates the type of tower depending on which one the player has selected
      * @param towerType Index of button clicked
      * @return Coal tower with specific attributes

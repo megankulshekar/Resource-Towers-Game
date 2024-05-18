@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="564.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ShopController">
    <children>
-      <Label fx:id="moneyLabel" layoutX="437.0" layoutY="12.0" prefHeight="41.0" prefWidth="229.0">
+      <Label fx:id="moneyLabel" layoutX="437.0" layoutY="1.0" prefHeight="41.0" prefWidth="229.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -127,7 +127,7 @@
       <Label fx:id="uraniumCostLabel" layoutX="513.0" layoutY="184.0" text="\$12" />
       <Label fx:id="diamondCostLabel" layoutX="658.0" layoutY="184.0" text="\$14" />
       <Button fx:id="buyUpgradeButton" layoutX="321.0" layoutY="403.0" mnemonicParsing="false" onAction="#onBuyUpgrade" prefHeight="41.0" prefWidth="114.0" text="Buy Upgrade" />
-      <Label layoutX="84.0" layoutY="420.0" prefHeight="48.0" prefWidth="166.0" text="Sell a Tower">
+      <Label layoutX="15.0" layoutY="416.0" prefHeight="48.0" prefWidth="166.0" text="Sell a Tower">
          <font>
             <Font size="18.0" />
          </font>
@@ -246,5 +246,13 @@
             </Tab>
          </tabs>
       </TabPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="34.0" prefHeight="35.0" prefWidth="561.0" text="If you sell a tower or upgrade, exit and re enter the Shop to see the updated view">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="131.0" layoutY="444.0" prefHeight="16.0" prefWidth="247.0" text="Towers sell for 1/2 of buying price" />
+      <Label layoutX="131.0" layoutY="428.0" prefHeight="16.0" prefWidth="247.0" text="Coal towers sell for $3" />
+      <Label layoutX="461.0" layoutY="436.0" prefHeight="16.0" prefWidth="247.0" text="Upgrades sell for 1/2 of buying price" />
    </children>
 </AnchorPane>

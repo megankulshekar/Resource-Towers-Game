@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import seng201.team0.models.*;
 import seng201.team0.services.StartScreenService;
 
+import java.lang.reflect.Array;
+
 /**
  * Class for controlling the start screen GUI
  */
@@ -24,6 +26,12 @@ public class StartScreenController {
      */
     @FXML
     private TextField nameTextField;
+
+    /**
+     * Label for outputting error message if name is invalid
+     */
+    @FXML
+    private Label nameWarningLabel;
 
     /**
      * Slider for choosing the number of rounds
@@ -65,6 +73,12 @@ public class StartScreenController {
      * Index of a chosen tower
      */
     private int towerChosen = -1;
+
+    private String description;
+
+    private String selectedDescription1, selectedDescription2, selectedDescription3;
+
+    private String[] selectedDescriptions = new String[3];
 
     /**
      * Starts the display page
@@ -117,8 +131,12 @@ public class StartScreenController {
      */
     @FXML
     public void onTower1Chosen(){
-        Tower coalTower = startScreenService.towerCreation(0);
-        descriptionLabel.setText(coalTower.getDescription());
+        description = "Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 3\n" +
+                "Reload Speed: 3";
+        descriptionLabel.setText(description);
         towerChosen = 0;
     }
 
@@ -127,8 +145,12 @@ public class StartScreenController {
      */
     @FXML
     public void onTower2Chosen(){
-        Tower coalTower = startScreenService.towerCreation(1);
-        descriptionLabel.setText(coalTower.getDescription());
+        description = "Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 2\n" +
+                "Reload Speed: 2";
+        descriptionLabel.setText(description);
         towerChosen = 1;
     }
 
@@ -137,8 +159,12 @@ public class StartScreenController {
      */
     @FXML
     public void onTower3Chosen(){
-        Tower coalTower = startScreenService.towerCreation(2);
-        descriptionLabel.setText(coalTower.getDescription());
+        description = "Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 1\n" +
+                "Reload Speed: 1";
+        descriptionLabel.setText(description);
         towerChosen = 2;
     }
 
@@ -148,9 +174,47 @@ public class StartScreenController {
      * @param name Label to change
      */
     public void towerTypeChosen(int towerChosen, Label name){
-        Tower coalTower = startScreenService.towerCreation(towerChosen);
-        name.setText(coalTower.getDescription());
-        game.addToInventory(coalTower, coalTower.getDescription());
+        if (towerChosen == 0){
+            description = "Tower Type: Coal\n" +
+                    "Level: 1\n" +
+                    "XP: 0\n" +
+                    "Resource Amount: 3\n" +
+                    "Reload Speed: 3";
+            name.setText(description);
+        }
+        else if (towerChosen == 1){
+            description = "Tower Type: Coal\n" +
+                    "Level: 1\n" +
+                    "XP: 0\n" +
+                    "Resource Amount: 2\n" +
+                    "Reload Speed: 2";
+            name.setText(description);
+        }
+        else if (towerChosen == 2){
+            description = "Tower Type: Coal\n" +
+                    "Level: 1\n" +
+                    "XP: 0\n" +
+                    "Resource Amount: 1\n" +
+                    "Reload Speed: 1";
+            name.setText(description);
+        }
+    }
+
+    public void addingTower(){
+        for (int i = 0; i < selectedDescriptions.length; i++){
+            if (selectedDescriptions[i].contains("3")){
+                Tower coalTower = startScreenService.towerCreation(0);
+                game.addToInventory(coalTower, coalTower.getDescription());
+            }
+            else if (selectedDescriptions[i].contains("2")){
+                Tower coalTower = startScreenService.towerCreation(1);
+                game.addToInventory(coalTower, coalTower.getDescription());
+            }
+            else if (selectedDescriptions[i].contains("1")){
+                Tower coalTower = startScreenService.towerCreation(2);
+                game.addToInventory(coalTower, coalTower.getDescription());
+            }
+        }
     }
 
     /**
@@ -159,6 +223,8 @@ public class StartScreenController {
     @FXML
     public void onTower1Selected(){
         towerTypeChosen(towerChosen, selectedTower1Label);
+        selectedDescription1 = selectedTower1Label.getText();
+        selectedDescriptions[0] = selectedDescription1;
     }
 
     /**
@@ -167,6 +233,8 @@ public class StartScreenController {
     @FXML
     public void onTower2Selected(){
         towerTypeChosen(towerChosen, selectedTower2Label);
+        selectedDescription2 = selectedTower2Label.getText();
+        selectedDescriptions[1] = selectedDescription2;
     }
 
     /**
@@ -175,6 +243,8 @@ public class StartScreenController {
     @FXML
     public void onTower3Selected(){
         towerTypeChosen(towerChosen, selectedTower3Label);
+        selectedDescription3 = selectedTower3Label.getText();
+        selectedDescriptions[2] = selectedDescription3;
     }
 
     /**
@@ -182,17 +252,30 @@ public class StartScreenController {
      */
     @FXML
     public void onStartGame(){
-        if (game.getDifficulty() == null){
-            difficultyWarningLabel.setText("Please choose a difficulty to start the game!");
-        } else if (game.getInventory().getMainTowers(0) == null){
-            towerWarningLabel.setText("Please select at least one tower to start the game!");
-        } else {
-            for (int i = 0; i < game.getNumberRounds(); i++) {
-                Round newRound = new Round(game.getDifficulty());
-                game.addRound(newRound);
+        if (game.getName() == null){
+            nameWarningLabel.setText("Name must be between 3-15 characters");
+        }
+        else if (game.getName().length() >= 3 && game.getName().length() <= 15) {
+            if (startScreenService.validCharacters(game.getName())){
+                if (game.getDifficulty() == null){
+                    difficultyWarningLabel.setText("Please choose a difficulty to start the game!");
+                }
+                else {
+                    addingTower();
+                    for (int i = 0; i < game.getNumberRounds(); i++) {
+                        Round newRound = new Round(game.getDifficulty());
+                        game.addRound(newRound);
+                    }
+                    game.getRounds().get(0).createCarts();
+                    game.closeStartScreen();
+                }
             }
-            game.getRounds().get(0).createCarts();
-            game.closeStartScreen();
+            else{
+                nameWarningLabel.setText("No special characters allowed");
+            }
+        }
+        else{
+            nameWarningLabel.setText("Name must be between 3-15 characters");
         }
     }
 }

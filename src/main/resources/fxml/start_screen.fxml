@@ -201,6 +201,15 @@
             <Insets left="5.0" right="5.0" />
          </GridPane.margin>
       </Label>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Label fx:id="nameWarningLabel" layoutX="2.0" layoutY="65.0" prefHeight="25.0" prefWidth="206.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
    <opaqueInsets>
       <Insets left="30.0" />

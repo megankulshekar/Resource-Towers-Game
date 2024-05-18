@@ -21,6 +21,30 @@ public class StartScreenServiceTest {
     private StartScreenService testStartScreenService;
 
     /**
+     * Tests the validCharacters method
+     * Tests if the name is valid or invalid
+     */
+    @Test
+    public void testValidCharacters(){
+        game = new GameEnvironment();
+        testStartScreenService = new StartScreenService(game);
+        String name = "P!@#er";
+        assertFalse(testStartScreenService.validCharacters(name));
+        name = "Player";
+        assertTrue(testStartScreenService.validCharacters(name));
+        name = "123456789";
+        assertTrue(testStartScreenService.validCharacters(name));
+        name = "player";
+        assertTrue(testStartScreenService.validCharacters(name));
+        name = "!!!!";
+        assertFalse(testStartScreenService.validCharacters(name));
+        name = "P7684r";
+        assertTrue(testStartScreenService.validCharacters(name));
+        name = "P23!*%aplg";
+        assertFalse(testStartScreenService.validCharacters(name));
+    }
+
+    /**
      * Test the towerCreation method
      * Tests if the chosen Coal Tower is created with the correct resource amount and reload speed values
      */
