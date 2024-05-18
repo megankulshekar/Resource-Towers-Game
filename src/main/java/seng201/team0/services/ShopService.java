@@ -50,7 +50,7 @@ public class ShopService {
                     cost = 14;
                     break;
                 default:
-                    return "You haven't selected a tower";
+                    return "You haven't selected a valid tower";
             }
             if (game.getMoney() - cost >= 0) {
                 game.buyTowerInShop(tower, game, tower.getDescription());

@@ -32,7 +32,7 @@ public class ShopServiceTest {
         assertEquals("Tower bought", testShopService.buyTower(4));
         assertEquals("Tower bought", testShopService.buyTower(0));
         assertEquals("You do not have enough money", testShopService.buyTower(3));
-        assertEquals("Tower index does not exist", testShopService.buyTower(50));
+        assertEquals("You haven't selected a valid tower", testShopService.buyTower(50));
         game.decreaseMoney(10);
         assertEquals("You do not have enough money", testShopService.buyTower(1));
 

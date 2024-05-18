@@ -1,8 +1,10 @@
 package seng201.team0.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
 import seng201.team0.services.ShopService;
@@ -96,13 +98,6 @@ public class UpgradeController {
      */
     private String upgradeDescription;
 
-    /**
-     * Variable to store original and new description
-     */
-    private String originalDescription;
-
-    private String newDescription;
-
     private int towerDescriptionIndex = 0;
 
     /**
@@ -157,6 +152,21 @@ public class UpgradeController {
                 button.setDisable(true);
             }
         });
+    }
+
+    /**
+     * Displays the visibility of labels for 3 seconds at a time when the buy, sell, or upgrade button is clicked
+     */
+    //Reference for Label Visibility: https://stackoverflow.com/questions/29487645/how-to-make-a-label-visible-for-a-certain-time-and-then-should-be-invisible-with
+    public void setLabelVisibility(Label label){
+        label.setVisible(true);
+        PauseTransition labelDisappear = new PauseTransition(
+                Duration.seconds(3)
+        );
+        labelDisappear.setOnFinished(
+                event -> label.setVisible(false)
+        );
+        labelDisappear.play();
     }
 
     /**
@@ -247,23 +257,34 @@ public class UpgradeController {
      */
     @FXML
     public void onOkay(){
-        if (indexOfUpgradeItem != -1 && towerIndex != -1) {
-            if (towerIndex >= 5){
-                towerIndex = towerIndex - 5;
-                Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
-                towerDescriptionIndex = 1;
-                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
-                messageLabel.setText(message);
-            }
-            else if (towerIndex < 5){
-                Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
-                towerDescriptionIndex = 2;
-                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
-                messageLabel.setText(message);
-            }
+        if (upgradeChosenLabel.getText() == ""){
+            messageLabel.setText("You have not chosen an upgrade");
+            setLabelVisibility(messageLabel);
         }
-        else if (indexOfUpgradeItem == -1){
-            messageLabel.setText("Sorry! You do not have that upgrade!");
+        else if (mainTowerChosenLabel.getText() == "" && reserveTowerChosenLabel.getText() == ""){
+            messageLabel.setText("You have not chosen a tower");
+            setLabelVisibility(messageLabel);
+        }
+        else {
+            if (indexOfUpgradeItem != -1 && towerIndex != -1) {
+                if (towerIndex >= 5) {
+                    towerIndex = towerIndex - 5;
+                    Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
+                    towerDescriptionIndex = 1;
+                    String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                    messageLabel.setText(message);
+                    setLabelVisibility(messageLabel);
+                } else if (towerIndex < 5) {
+                    Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
+                    towerDescriptionIndex = 2;
+                    String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                    messageLabel.setText(message);
+                    setLabelVisibility(messageLabel);
+                }
+            } else if (indexOfUpgradeItem == -1) {
+                messageLabel.setText("Sorry! You do not have that upgrade!");
+                setLabelVisibility(messageLabel);
+            }
         }
     }
 

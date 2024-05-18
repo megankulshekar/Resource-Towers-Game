@@ -1,6 +1,9 @@
 package seng201.team0.gui;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -64,6 +67,18 @@ public class RoundController {
     private Label roundNumber;
 
     /**
+     * Label to show how much money the player has
+     */
+    @FXML
+    private Label moneyLabel;
+
+    /**
+     * Label to show how many rounds are remaining
+     */
+    @FXML
+    private Label remainingRoundsLabel;
+
+    /**
      * Labels for showing each tower in main towers list in inventory
      */
     @FXML
@@ -96,9 +111,11 @@ public class RoundController {
     @FXML
     public void initialize() {
         roundNumber.setText("Round " + (currentRoundIndex + 1));
+        remainingRoundsLabel.setText((game.getNumberRounds() - game.getCurrentRoundIndex() - 1) + " rounds remaining");
         mainTowerLabels = List.of(mainTower1, mainTower2, mainTower3, mainTower4, mainTower5);
         cartLabels = List.of(cart1, cart2, cart3, cart4, cart5, cart6, cart7, cart8, cart9, cart10);
 
+        updateMoneyLabel();
         updateLabels();
 
         Inventory inventory = game.getInventory();
@@ -154,6 +171,28 @@ public class RoundController {
             } else{
                 cartLabels.get(i).setText("");
             }
+        }
+    }
+
+    /**
+     * Function to update the display of the player's money
+     */
+    //Reference for use of Timeline: https://stackoverflow.com/questions/65252152/how-to-update-a-label-continually-in-javafx
+    public void updateMoneyLabel(){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.01), actionEvent -> moneyRemaining()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    /**
+     * Helper function for displaying the amount of money the player has
+     */
+    public void moneyRemaining(){
+        if (game.getMoney() > 0) {
+            moneyLabel.setText("$" + game.getMoney() + " remaining");
+        }
+        else{
+            moneyLabel.setText("$0 remaining");
         }
     }
 
