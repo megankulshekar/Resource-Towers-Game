@@ -73,7 +73,8 @@ public class PreRoundService {
     }
 
     /**
-     * Increases a random main tower's XP by a random amount
+     * Increases a random towers XP by a random amount
+     * @return The random amount of XP the tower gains
      */
     public int towerGainsXP(){
         Tower randomTower = randomMainTower();

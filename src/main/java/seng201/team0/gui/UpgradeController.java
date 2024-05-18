@@ -8,7 +8,9 @@ import seng201.team0.models.Tower;
 import seng201.team0.services.ShopService;
 import seng201.team0.services.UpgradeService;
 
-
+/**
+ * Class for controlling the upgrade popup GUI
+ */
 public class UpgradeController {
     /**
      * Sets the game environment attribute
@@ -147,6 +149,9 @@ public class UpgradeController {
 
     /**
      * Helper function for buttons that cannot initially be clicked
+     * @param items
+     * @param button
+     * @param <T>
      */
     public <T> void disableButtons(ListView<T> items, Button button){
         items.getSelectionModel().selectedItemProperty().addListener((observer, oldSelection, newSelection) -> {

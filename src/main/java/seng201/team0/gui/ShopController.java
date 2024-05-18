@@ -125,10 +125,13 @@ public class ShopController {
     private int boughtUpgradeIndex = -1;
 
     /**
-     * Lists are created for tower type and upgrade buttons to keep track of the index selected by the user
+     * List created for tower type buttons to keep track of the index selected by the user
      */
     public List<Button> boughtTowerButtons;
 
+    /**
+     * List created for upgrade buttons to keep track of the index selected by the user
+     */
     public List<Button> boughtUpgradeButtons;
 
     /**
@@ -208,6 +211,9 @@ public class ShopController {
 
     /**
      * Helper function for buttons that cannot initially be clicked
+     * @param items
+     * @param button
+     * @param <T>
      */
     public <T> void disableButtons(ListView<T> items, Button button){
         items.getSelectionModel().selectedItemProperty().addListener((observer, oldSelection, newSelection) -> {

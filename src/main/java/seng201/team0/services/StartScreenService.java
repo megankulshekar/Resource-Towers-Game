@@ -2,6 +2,9 @@ package seng201.team0.services;
 
 import seng201.team0.models.*;
 
+/**
+ * Class for providing services for the start screen controller
+ */
 public class StartScreenService {
     /**
      * The game environment

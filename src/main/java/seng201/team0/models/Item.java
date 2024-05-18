@@ -16,5 +16,9 @@ public abstract class Item implements Purchasable {
         used = false;
     }
 
+    /**
+     * Abstract method for using the item on a tower
+     * @param tower Tower the item is used on
+     */
     public abstract void useItem(Tower tower);
 }

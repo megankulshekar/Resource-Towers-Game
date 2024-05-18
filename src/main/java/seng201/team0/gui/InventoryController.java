@@ -3,12 +3,9 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import seng201.team0.models.Cart;
-import seng201.team0.models.CoalTower;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
 import seng201.team0.services.InventoryService;
-import seng201.team0.services.RoundService;
 
 import java.util.List;
 
@@ -51,21 +48,33 @@ public class InventoryController {
     private Button exitButton;
 
     /**
-     * Starting indices when the GUI is initially launched
+     * Starting index when the GUI is initially launched
      */
     private int mainTowerIndex = -1;
 
+    /**
+     * Starting index when the GUI is initially launched
+     */
     private int reserveTowerIndex = -1;
 
     /**
-     * Lists for keeping track of all buttons and labels
+     * Lists for keeping track of all main tower buttons
      */
     public List<Button> invenTowerButtons;
 
+    /**
+     * Lists for keeping track of all reserve tower buttons
+     */
     public List<Button> reserveTowerButtons;
 
+    /**
+     * Lists for keeping track of all main tower labels
+     */
     public List<Label> mainTowerLabels;
 
+    /**
+     * Lists for keeping track of all reserve tower labels
+     */
     public List<Label> reserveTowerLabels;
 
     /**

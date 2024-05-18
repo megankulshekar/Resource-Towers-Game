@@ -42,7 +42,6 @@ public class TowerThreads implements Runnable {
                 } catch (InterruptedException e) {
                     return;
                 }
-
             }
         }
     }

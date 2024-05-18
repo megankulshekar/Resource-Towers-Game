@@ -90,8 +90,14 @@ public class GameEnvironment {
 
     /**
      * Constructor
-     * @param clearScreen Method that clears current GUI displayed on the game window
-     * @param startScreenLauncher Method that displays the start screen GUI on the game window
+     * @param clearScreen Method that clears the game window
+     * @param startScreenLauncher Method that launches the start screen GUI on the game window
+     * @param preRoundLauncher Method that launches the pre round GUI on the game window
+     * @param roundLauncher Method that launches the round GUI on the game window
+     * @param inventoryLauncher Method that launches the inventory GUI on the game window
+     * @param upgradePopupLauncher Method that launches the upgrade popup GUI on the game window
+     * @param shopLauncher Method that launches the shop GUI on the game window
+     * @param endScreenLauncher Method that launches the end screen GUI on the game window
      */
     public GameEnvironment(Runnable clearScreen, Consumer<GameEnvironment> startScreenLauncher,
                            Consumer<GameEnvironment> preRoundLauncher, Consumer<GameEnvironment> roundLauncher,
@@ -237,6 +243,7 @@ public class GameEnvironment {
     /**
      * Adds purchasable to inventory
      * @param purchasable Purchasable being added
+     * @param description Description of the purchasable being added
      */
     public void addToInventory(Purchasable purchasable, String description){
         inventory.add(purchasable, description);

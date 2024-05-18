@@ -113,7 +113,7 @@ public class StartScreenController {
     }
 
     /**
-     * If the left most block is chosen, displays the high resource amount & high reload speed coal tower
+     * If the left most block is chosen, displays the high resource amount and high reload speed coal tower
      */
     @FXML
     public void onTower1Chosen(){
@@ -123,7 +123,7 @@ public class StartScreenController {
     }
 
     /**
-     * If the middle block is chosen, displays the medium resource amount & medium reload speed coal tower
+     * If the middle block is chosen, displays the medium resource amount and medium reload speed coal tower
      */
     @FXML
     public void onTower2Chosen(){
@@ -133,7 +133,7 @@ public class StartScreenController {
     }
 
     /**
-     * If the right most block is chosen, displays the low resource amount & high reload speed coal tower
+     * If the right most block is chosen, displays the low resource amount and high reload speed coal tower
      */
     @FXML
     public void onTower3Chosen(){
@@ -154,18 +154,24 @@ public class StartScreenController {
     }
 
     /**
-     * Displays the selected tower details in the chosen block
+     * Displays the details of the first tower in the chosen block
      */
     @FXML
     public void onTower1Selected(){
         towerTypeChosen(towerChosen, selectedTower1Label);
     }
 
+    /**
+     * Displays the details of the second tower in the chosen block
+     */
     @FXML
     public void onTower2Selected(){
         towerTypeChosen(towerChosen, selectedTower2Label);
     }
 
+    /**
+     * Displays the details of the third tower in the chosen block
+     */
     @FXML
     public void onTower3Selected(){
         towerTypeChosen(towerChosen, selectedTower3Label);

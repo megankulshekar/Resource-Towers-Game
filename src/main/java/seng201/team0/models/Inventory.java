@@ -141,6 +141,7 @@ public class Inventory {
      * If mainTowers is full, then purchasable is added to reserveTowers array.
      * If reserveTowers is also full, purchasable is not added.
      * @param purchasable The new purchasable being added to the inventory
+     * @param description The description of the purchasable being added
      */
     public void add(Purchasable purchasable, String description){
         Tower tower = (Tower) purchasable;

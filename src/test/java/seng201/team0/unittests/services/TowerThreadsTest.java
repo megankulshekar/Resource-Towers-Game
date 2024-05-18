@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import seng201.team0.models.*;
 import seng201.team0.services.TowerThreads;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -56,9 +58,10 @@ public class TowerThreadsTest {
         Thread testThread = new Thread(testTowerThreads);
         testThread.start();
         testThread.join();
-        for (Cart cart : testCurrentRound.getCarts()){
-            assertTrue(cart.isFull());
-        }
+        List<Cart> carts = testCurrentRound.getCarts();
+        assertTrue(carts.get(0).isFull());
+        assertTrue(carts.get(1).isFull());
+        assertTrue(carts.get(2).isFull());
     }
 
     /**

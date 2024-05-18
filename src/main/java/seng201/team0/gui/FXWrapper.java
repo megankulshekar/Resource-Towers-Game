@@ -131,6 +131,10 @@ public class FXWrapper {
         }
     }
 
+    /**
+     * Displays end screen GUI on the game window
+     * @param game The game environment
+     */
     public void launchEndScreen(GameEnvironment game){
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/end_screen.fxml"));

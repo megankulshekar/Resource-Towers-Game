@@ -3,6 +3,9 @@ package seng201.team0.services;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
 
+/**
+ * Class for providing services for the upgrade controller
+ */
 public class UpgradeService {
     /**
      * The game environment
