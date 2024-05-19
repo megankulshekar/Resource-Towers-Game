@@ -15,19 +15,11 @@
    <children>
       <AnchorPane prefHeight="564.0" prefWidth="759.0">
          <children>
-            <Label layoutX="281.0" layoutY="266.0" prefHeight="103.0" prefWidth="260.0" text="Select Type of Upgrade:">
+            <Label layoutX="281.0" layoutY="237.0" prefHeight="103.0" prefWidth="260.0" text="Select Type of Upgrade:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <MenuButton fx:id="upgradesMenuButton" alignment="CENTER" layoutX="312.0" layoutY="349.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="151.0" text="Upgrades">
-               <items>
-                  <MenuItem fx:id="repairItem" mnemonicParsing="false" onAction="#onRepair" text="Repair Item" />
-                  <MenuItem fx:id="upgradeXPItem" mnemonicParsing="false" onAction="#onUpgradeXP" text="Upgrade XP" />
-                  <MenuItem fx:id="upgradeReloadSpeedItem" mnemonicParsing="false" onAction="#onUpgradeReloadSpeed" text="Upgrade Reload Speed" />
-                  <MenuItem fx:id="upgradeResourceAmountItem" mnemonicParsing="false" onAction="#onUpgradeResourceAmount" text="Upgrade Resource Amount" />
-               </items>
-            </MenuButton>
             <Button fx:id="okayButton" layoutX="347.0" layoutY="465.0" mnemonicParsing="false" onAction="#onOkay" prefHeight="41.0" prefWidth="79.0" text="Okay" />
             <Button fx:id="exitButton" layoutX="596.0" layoutY="15.0" mnemonicParsing="false" onAction="#onExit" prefHeight="27.0" prefWidth="79.0" text="Exit" />
             <Label fx:id="messageLabel" alignment="CENTER" layoutX="248.0" layoutY="507.0" prefHeight="59.0" prefWidth="271.0">
@@ -35,13 +27,12 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="upgradeChosenLabel" alignment="CENTER" layoutX="215.0" layoutY="421.0" prefHeight="31.0" prefWidth="328.0" />
             <Label layoutX="324.0" layoutY="22.0" text="Select Tower:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TabPane layoutX="94.0" layoutY="49.0" prefHeight="252.0" prefWidth="582.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="94.0" layoutY="49.0" prefHeight="404.0" prefWidth="582.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Main Towers">
                   <content>
@@ -49,7 +40,16 @@
                            <children>
                               <ListView fx:id="mainTowerList" layoutX="100.0" layoutY="14.0" prefHeight="103.0" prefWidth="382.0" />
                               <Button fx:id="okayMainTowerButton" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#onOkayMainTower" prefHeight="31.0" prefWidth="62.0" text="Okay" />
-                              <Label fx:id="mainTowerChosenLabel" alignment="CENTER" layoutX="14.0" layoutY="160.0" prefHeight="59.0" prefWidth="555.0" />
+                              <Label fx:id="mainTowerChosenLabel" alignment="CENTER" layoutX="14.0" layoutY="145.0" prefHeight="59.0" prefWidth="555.0" />
+                              <MenuButton fx:id="upgradesMenuButton" alignment="CENTER" layoutX="216.0" layoutY="234.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="151.0" text="Upgrades">
+                                 <items>
+                                    <MenuItem fx:id="repairItem" mnemonicParsing="false" onAction="#onRepair" text="Repair Item" />
+                                    <MenuItem fx:id="upgradeXPItem" mnemonicParsing="false" onAction="#onUpgradeXP" text="Upgrade XP" />
+                                    <MenuItem fx:id="upgradeReloadSpeedItem" mnemonicParsing="false" onAction="#onUpgradeReloadSpeed" text="Upgrade Reload Speed" />
+                                    <MenuItem fx:id="upgradeResourceAmountItem" mnemonicParsing="false" onAction="#onUpgradeResourceAmount" text="Upgrade Resource Amount" />
+                                 </items>
+                              </MenuButton>
+                              <Label fx:id="mainUpgradeChosenLabel" alignment="CENTER" layoutX="128.0" layoutY="319.0" prefHeight="31.0" prefWidth="328.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -60,7 +60,16 @@
                            <children>
                               <ListView fx:id="reserveTowerList" layoutX="100.0" layoutY="14.0" prefHeight="103.0" prefWidth="382.0" />
                               <Button fx:id="okayReserveTowerButton" layoutX="260.0" layoutY="124.0" mnemonicParsing="false" onAction="#onOkayReserveTower" prefHeight="31.0" prefWidth="62.0" text="Okay" />
-                              <Label fx:id="reserveTowerChosenLabel" alignment="CENTER" layoutX="27.0" layoutY="155.0" prefHeight="59.0" prefWidth="555.0" />
+                              <Label fx:id="reserveTowerChosenLabel" alignment="CENTER" layoutX="27.0" layoutY="143.0" prefHeight="59.0" prefWidth="555.0" />
+                              <MenuButton fx:id="reserveUpgradesMenuButton" alignment="CENTER" layoutX="216.0" layoutY="234.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="151.0" text="Upgrades">
+                                 <items>
+                                    <MenuItem fx:id="reserveRepairItem" mnemonicParsing="false" onAction="#onReserveRepair" text="Repair Item" />
+                                    <MenuItem fx:id="reserveUpgradeXPItem" mnemonicParsing="false" onAction="#onReserveUpgradeXP" text="Upgrade XP" />
+                                    <MenuItem fx:id="reserveUpgradeReloadSpeedItem" mnemonicParsing="false" onAction="#onReserveUpgradeReloadSpeed" text="Upgrade Reload Speed" />
+                                    <MenuItem fx:id="reserveUpgradeResourceAmountItem" mnemonicParsing="false" onAction="#onReserveUpgradeResourceAmount" text="Upgrade Resource Amount" />
+                                 </items>
+                              </MenuButton>
+                              <Label fx:id="reserveUpgradeChosenLabel" alignment="CENTER" layoutX="124.0" layoutY="314.0" prefHeight="31.0" prefWidth="328.0" />
                            </children>
                         </AnchorPane>
                   </content>

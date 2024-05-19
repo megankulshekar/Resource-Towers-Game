@@ -34,7 +34,7 @@ public class UpgradeController {
      * Label showing which upgrade the user has chosen
      */
     @FXML
-    private Label upgradeChosenLabel;
+    private Label mainUpgradeChosenLabel, reserveUpgradeChosenLabel;
 
     /**
      * Label showing which tower the user has chosen
@@ -61,10 +61,13 @@ public class UpgradeController {
     private MenuButton upgradesMenuButton;
 
     /**
-     * List of items in drop down menu
+     * List of items in main tower and reserve tower upgrade drop down menu
      */
     @FXML
     private MenuItem repairItem, upgradeXPItem, upgradeReloadSpeedItem, upgradeResourceAmountItem;
+
+    @FXML
+    private MenuItem reserveRepairItem, reserveUpgradeXPItem, reserveUpgradeReloadSpeedItem, reserveUpgradeResourceAmountItem;
 
     /**
      * Button for confirming main tower selection
@@ -218,42 +221,82 @@ public class UpgradeController {
     }
 
     /**
-     * When the repair item button is chosen from the drop-down menu, finds the index of the repair item within the upgrades list and sets that value to a variable
+     * When the main tower repair item button is chosen from the drop-down menu, finds the index of the repair item within the upgrades list and sets that value to a variable
      */
     @FXML
     public void onRepair(){
         upgradeDescription = repairItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        mainUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
         indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
-     * When the upgrade XP button is chosen from the drop-down menu, finds the index of the upgrade XP item within the upgrades list and sets that value to a variable
+     * When the reserve tower repair item button is chosen from the drop-down menu, finds the index of the repair item within the upgrades list and sets that value to a variable
+     */
+    @FXML
+    public void onReserveRepair(){
+        upgradeDescription = reserveRepairItem.getText();
+        reserveUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
+    }
+
+    /**
+     * When the main tower upgrade XP button is chosen from the drop-down menu, finds the index of the upgrade XP item within the upgrades list and sets that value to a variable
      */
     @FXML
     public void onUpgradeXP(){
         upgradeDescription = upgradeXPItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        mainUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
         indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
-     * When the upgrade reload speed button is chosen from the drop-down menu, finds the index of the upgrade reload speed item within the upgrades list and sets that value to a variable
+     * When the reserve tower upgrade XP button is chosen from the drop-down menu, finds the index of the upgrade XP item within the upgrades list and sets that value to a variable
+     */
+    @FXML
+    public void onReserveUpgradeXP(){
+        upgradeDescription = reserveUpgradeXPItem.getText();
+        reserveUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
+    }
+
+    /**
+     * When the main tower upgrade reload speed button is chosen from the drop-down menu, finds the index of the upgrade reload speed item within the upgrades list and sets that value to a variable
      */
     @FXML
     public void onUpgradeReloadSpeed(){
         upgradeDescription = upgradeReloadSpeedItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        mainUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
         indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
     /**
-     * When the upgrade resource amount button is chosen from the drop-down menu, finds the index of the upgrade resource amount item within the upgrades list and sets that value to a variable
+     * When the reserve tower upgrade reload speed button is chosen from the drop-down menu, finds the index of the upgrade reload speed item within the upgrades list and sets that value to a variable
+     */
+    @FXML
+    public void onReserveUpgradeReloadSpeed(){
+        upgradeDescription = reserveUpgradeReloadSpeedItem.getText();
+        reserveUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
+    }
+
+    /**
+     * When the main tower upgrade resource amount button is chosen from the drop-down menu, finds the index of the upgrade resource amount item within the upgrades list and sets that value to a variable
      */
     @FXML
     public void onUpgradeResourceAmount(){
         upgradeDescription = upgradeResourceAmountItem.getText();
-        upgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        mainUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
+        indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
+    }
+
+    /**
+     * When the reserve tower upgrade resource amount button is chosen from the drop-down menu, finds the index of the upgrade resource amount item within the upgrades list and sets that value to a variable
+     */
+    @FXML
+    public void onReserveUpgradeResourceAmount(){
+        upgradeDescription = reserveUpgradeResourceAmountItem.getText();
+        reserveUpgradeChosenLabel.setText("You have selected: " + upgradeDescription);
         indexOfUpgradeItem = game.getInventory().getUpgradesBought().indexOf(upgradeDescription);
     }
 
@@ -263,7 +306,7 @@ public class UpgradeController {
      */
     @FXML
     public void onOkay(){
-        if (upgradeChosenLabel.getText() == ""){
+        if (mainUpgradeChosenLabel.getText() == "" && reserveUpgradeChosenLabel.getText() == ""){
             messageLabel.setText("You have not chosen an upgrade");
             setLabelVisibility(messageLabel);
         }

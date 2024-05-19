@@ -45,7 +45,33 @@ public class StartScreenServiceTest {
     }
 
     /**
-     * Test the towerCreation method
+     * Tests the towerDescriptionCreation method
+     * Tests if the correct description is created
+     */
+    @Test
+    public void testTowerDescriptionCreation(){
+        game = new GameEnvironment();
+        testStartScreenService = new StartScreenService(game);
+        assertEquals("Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 3\n" +
+                "Reload Speed: 3", testStartScreenService.towerDescriptionCreation(0));
+        assertEquals("Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 2\n" +
+                "Reload Speed: 2", testStartScreenService.towerDescriptionCreation(1));
+        assertEquals("Tower Type: Coal\n" +
+                "Level: 1\n" +
+                "XP: 0\n" +
+                "Resource Amount: 1\n" +
+                "Reload Speed: 1", testStartScreenService.towerDescriptionCreation(2));
+        assertEquals(null, testStartScreenService.towerDescriptionCreation(-5));
+    }
+
+    /**
+     * Tests the towerCreation method
      * Tests if the chosen Coal Tower is created with the correct resource amount and reload speed values
      */
     @Test
@@ -58,5 +84,25 @@ public class StartScreenServiceTest {
         assertEquals(2, testStartScreenService.towerCreation(1).getReloadSpeed());
         assertEquals(1, testStartScreenService.towerCreation(2).getResourceAmount());
         assertEquals(1, testStartScreenService.towerCreation(2).getReloadSpeed());
+    }
+
+    /**
+     * Tests the addingTower method
+     * Tests if the correct tower and description is added to the player's inventory
+     */
+    @Test
+    public void testAddingTower(){
+        game = new GameEnvironment();
+        testStartScreenService = new StartScreenService(game);
+        String[] selectedDescriptions = {testStartScreenService.towerDescriptionCreation(0), testStartScreenService.towerDescriptionCreation(1), testStartScreenService.towerDescriptionCreation(2)};
+        testStartScreenService.addingTower(selectedDescriptions);
+        assertEquals(game.getInventory().getMainTowerDescriptions(0), testStartScreenService.towerDescriptionCreation(0));
+        assertEquals(game.getInventory().getMainTowerDescriptions(1), testStartScreenService.towerDescriptionCreation(1));
+        assertEquals(game.getInventory().getMainTowerDescriptions(2), testStartScreenService.towerDescriptionCreation(2));
+        String[] newSelectedDescriptions = {testStartScreenService.towerDescriptionCreation(0), testStartScreenService.towerDescriptionCreation(1), testStartScreenService.towerDescriptionCreation(0)};
+        testStartScreenService.addingTower(newSelectedDescriptions);
+        assertEquals(game.getInventory().getMainTowerDescriptions(0), testStartScreenService.towerDescriptionCreation(0));
+        assertEquals(game.getInventory().getMainTowerDescriptions(1), testStartScreenService.towerDescriptionCreation(1));
+        assertEquals(game.getInventory().getMainTowerDescriptions(0), testStartScreenService.towerDescriptionCreation(0));
     }
 }
