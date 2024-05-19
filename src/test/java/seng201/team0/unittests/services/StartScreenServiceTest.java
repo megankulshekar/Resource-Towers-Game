@@ -56,18 +56,18 @@ public class StartScreenServiceTest {
                 "Level: 1\n" +
                 "XP: 0\n" +
                 "Resource Amount: 3\n" +
-                "Reload Speed: 3", testStartScreenService.towerCreation(0));
+                "Reload Speed: 3", testStartScreenService.towerDescriptionCreation(0));
         assertEquals("Tower Type: Coal\n" +
                 "Level: 1\n" +
                 "XP: 0\n" +
                 "Resource Amount: 2\n" +
-                "Reload Speed: 2", testStartScreenService.towerCreation(1));
+                "Reload Speed: 2", testStartScreenService.towerDescriptionCreation(1));
         assertEquals("Tower Type: Coal\n" +
                 "Level: 1\n" +
                 "XP: 0\n" +
                 "Resource Amount: 1\n" +
-                "Reload Speed: 1", testStartScreenService.towerCreation(2));
-        assertEquals(null, testStartScreenService.towerCreation(-5));
+                "Reload Speed: 1", testStartScreenService.towerDescriptionCreation(2));
+        assertEquals(null, testStartScreenService.towerDescriptionCreation(-5));
     }
 
     /**

@@ -35,9 +35,14 @@ public class ShopServiceTest {
         assertEquals("You haven't selected a valid tower", testShopService.buyTower(50));
         game.decreaseMoney(10);
         assertEquals("You do not have enough money", testShopService.buyTower(1));
+        game.increaseMoney(30);
+        assertEquals("Tower bought", testShopService.buyTower(1));
+        assertEquals("Tower bought", testShopService.buyTower(2));
 
         assertEquals("Main Tower Sold", testShopService.sellMainTower(0));
-        assertEquals("Only one tower left! You cannot sell this tower.", testShopService.sellMainTower(1));
+        assertEquals("Main Tower Sold", testShopService.sellMainTower(1));
+        assertEquals("Main Tower Sold", testShopService.sellMainTower(2));
+        assertEquals("Only one tower left! You cannot sell this tower.", testShopService.sellMainTower(3));
         assertEquals("Index value does not exist", testShopService.sellMainTower(-1));
 
         Tower ironTower1 = new IronTower();
@@ -75,7 +80,13 @@ public class ShopServiceTest {
         assertEquals("You do not have enough money", testShopService.buyUpgrade(2, "Upgrade Label"));
         assertEquals("You do not have enough money", testShopService.buyUpgrade(0, "Upgrade Label"));
         assertEquals("You do not have enough money", testShopService.buyUpgrade(13, "Upgrade Label"));
+        game.increaseMoney(30);
+        assertEquals("You haven't selected an upgrade", testShopService.buyUpgrade(4, "Upgrade Label"));
+        assertEquals("Upgrade bought", testShopService.buyUpgrade(0, "Upgrade Label"));
+        assertEquals("Upgrade bought", testShopService.buyUpgrade(2, "Upgrade Label"));
 
+        assertEquals("Upgrade sold", testShopService.sellUpgrade(0));
+        assertEquals("Upgrade sold", testShopService.sellUpgrade(0));
         assertEquals("Upgrade sold", testShopService.sellUpgrade(0));
         assertEquals("Upgrade sold", testShopService.sellUpgrade(0));
         assertEquals("Index value does not exist", testShopService.sellUpgrade(1));
