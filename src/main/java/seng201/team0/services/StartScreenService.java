@@ -35,6 +35,28 @@ public class StartScreenService {
     }
 
     /**
+     * Creates description of specific coal tower chosen
+     * @param towerChosen Which tower is chosen
+     */
+    public String towerDescriptionCreation(int towerChosen){
+        Tower coalTower = new CoalTower();
+        if (towerChosen == 0){
+            coalTower.increaseResourceAmount(1);
+            coalTower.decreaseReloadSpeed(-1);
+            return coalTower.getDescription();
+        }
+        else if (towerChosen == 1){
+            return coalTower.getDescription();
+        }
+        else if (towerChosen == 2){
+            coalTower.increaseResourceAmount(-1);
+            coalTower.decreaseReloadSpeed(1);
+            return coalTower.getDescription();
+        }
+        return null;
+    }
+
+    /**
      * Creates the type of tower depending on which one the player has selected
      * @param towerType Index of button clicked
      * @return Coal tower with specific attributes
@@ -54,5 +76,23 @@ public class StartScreenService {
             coalTower.decreaseReloadSpeed(1);
         }
         return coalTower;
+    }
+
+    /**
+     * Creates and adds selected tower to player's inventory
+     * @param selectedDescriptions Array of tower descriptions selected
+     */
+    public void addingTower(String[] selectedDescriptions){
+        for (int i = 0; i < selectedDescriptions.length; i++){
+            if (selectedDescriptions[i].contains("3")){
+                game.addToInventory(towerCreation(0), towerDescriptionCreation(0));
+            }
+            else if (selectedDescriptions[i].contains("2")){
+                game.addToInventory(towerCreation(1), towerDescriptionCreation(1));
+            }
+            else if (selectedDescriptions[i].contains("1")){
+                game.addToInventory(towerCreation(2), towerDescriptionCreation(2));
+            }
+        }
     }
 }

@@ -74,10 +74,14 @@ public class StartScreenController {
      */
     private int towerChosen = -1;
 
+    /**
+     * Specific tower description
+     */
     private String description;
 
-    private String selectedDescription1, selectedDescription2, selectedDescription3;
-
+    /**
+     * Array of tower descriptions selected
+     */
     private String[] selectedDescriptions = new String[3];
 
     /**
@@ -131,13 +135,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower1Chosen(){
-        description = "Tower Type: Coal\n" +
-                "Level: 1\n" +
-                "XP: 0\n" +
-                "Resource Amount: 3\n" +
-                "Reload Speed: 3";
-        descriptionLabel.setText(description);
         towerChosen = 0;
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        descriptionLabel.setText(description);
     }
 
     /**
@@ -145,13 +145,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower2Chosen(){
-        description = "Tower Type: Coal\n" +
-                "Level: 1\n" +
-                "XP: 0\n" +
-                "Resource Amount: 2\n" +
-                "Reload Speed: 2";
-        descriptionLabel.setText(description);
         towerChosen = 1;
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        descriptionLabel.setText(description);
     }
 
     /**
@@ -159,62 +155,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower3Chosen(){
-        description = "Tower Type: Coal\n" +
-                "Level: 1\n" +
-                "XP: 0\n" +
-                "Resource Amount: 1\n" +
-                "Reload Speed: 1";
-        descriptionLabel.setText(description);
         towerChosen = 2;
-    }
-
-    /**
-     * Helper function for setting labels
-     * @param towerChosen Which tower is chosen
-     * @param name Label to change
-     */
-    public void towerTypeChosen(int towerChosen, Label name){
-        if (towerChosen == 0){
-            description = "Tower Type: Coal\n" +
-                    "Level: 1\n" +
-                    "XP: 0\n" +
-                    "Resource Amount: 3\n" +
-                    "Reload Speed: 3";
-            name.setText(description);
-        }
-        else if (towerChosen == 1){
-            description = "Tower Type: Coal\n" +
-                    "Level: 1\n" +
-                    "XP: 0\n" +
-                    "Resource Amount: 2\n" +
-                    "Reload Speed: 2";
-            name.setText(description);
-        }
-        else if (towerChosen == 2){
-            description = "Tower Type: Coal\n" +
-                    "Level: 1\n" +
-                    "XP: 0\n" +
-                    "Resource Amount: 1\n" +
-                    "Reload Speed: 1";
-            name.setText(description);
-        }
-    }
-
-    public void addingTower(){
-        for (int i = 0; i < selectedDescriptions.length; i++){
-            if (selectedDescriptions[i].contains("3")){
-                Tower coalTower = startScreenService.towerCreation(0);
-                game.addToInventory(coalTower, coalTower.getDescription());
-            }
-            else if (selectedDescriptions[i].contains("2")){
-                Tower coalTower = startScreenService.towerCreation(1);
-                game.addToInventory(coalTower, coalTower.getDescription());
-            }
-            else if (selectedDescriptions[i].contains("1")){
-                Tower coalTower = startScreenService.towerCreation(2);
-                game.addToInventory(coalTower, coalTower.getDescription());
-            }
-        }
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        descriptionLabel.setText(description);
     }
 
     /**
@@ -222,9 +165,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower1Selected(){
-        towerTypeChosen(towerChosen, selectedTower1Label);
-        selectedDescription1 = selectedTower1Label.getText();
-        selectedDescriptions[0] = selectedDescription1;
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        selectedTower1Label.setText(description);
+        selectedDescriptions[0] = description;
     }
 
     /**
@@ -232,9 +175,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower2Selected(){
-        towerTypeChosen(towerChosen, selectedTower2Label);
-        selectedDescription2 = selectedTower2Label.getText();
-        selectedDescriptions[1] = selectedDescription2;
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        selectedTower2Label.setText(description);
+        selectedDescriptions[1] = description;
     }
 
     /**
@@ -242,9 +185,9 @@ public class StartScreenController {
      */
     @FXML
     public void onTower3Selected(){
-        towerTypeChosen(towerChosen, selectedTower3Label);
-        selectedDescription3 = selectedTower3Label.getText();
-        selectedDescriptions[2] = selectedDescription3;
+        description = startScreenService.towerDescriptionCreation(towerChosen);
+        selectedTower3Label.setText(description);
+        selectedDescriptions[2] = description;
     }
 
     /**
@@ -261,7 +204,7 @@ public class StartScreenController {
                     difficultyWarningLabel.setText("Please choose a difficulty to start the game!");
                 }
                 else {
-                    addingTower();
+                    startScreenService.addingTower(selectedDescriptions);
                     for (int i = 0; i < game.getNumberRounds(); i++) {
                         Round newRound = new Round(game.getDifficulty());
                         game.addRound(newRound);
