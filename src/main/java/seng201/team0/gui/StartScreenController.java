@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import seng201.team0.models.*;
 import seng201.team0.services.StartScreenService;
 
-import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Class for controlling the start screen GUI
@@ -74,10 +74,19 @@ public class StartScreenController {
      */
     private int towerChosen = -1;
 
+    /**
+     * Description of a chosen tower
+     */
     private String description;
 
+    /**
+     * Descriptions of selected towers
+     */
     private String selectedDescription1, selectedDescription2, selectedDescription3;
 
+    /**
+     * Array of descriptions of selected towers
+     */
     private String[] selectedDescriptions = new String[3];
 
     /**
@@ -200,6 +209,9 @@ public class StartScreenController {
         }
     }
 
+    /**
+     * Adds the selected towers to the user's inventory
+     */
     public void addingTower(){
         for (int i = 0; i < selectedDescriptions.length; i++){
             if (selectedDescriptions[i].contains("3")){
@@ -248,7 +260,8 @@ public class StartScreenController {
     }
 
     /**
-     * When the Start Game button is clicked, the screen shown ends
+     * When the Start Game button is clicked,
+     * the screen shown ends if player enters a valid name and has
      */
     @FXML
     public void onStartGame(){
@@ -257,8 +270,12 @@ public class StartScreenController {
         }
         else if (game.getName().length() >= 3 && game.getName().length() <= 15) {
             if (startScreenService.validCharacters(game.getName())){
+                nameWarningLabel.setText("");
                 if (game.getDifficulty() == null){
                     difficultyWarningLabel.setText("Please choose a difficulty to start the game!");
+                }
+                else if (Arrays.asList(selectedDescriptions).contains(null)){
+                    towerWarningLabel.setText("Please select three towers to start the game!");
                 }
                 else {
                     addingTower();

@@ -24,9 +24,39 @@ public class PreRoundController {
     private PreRoundService preRoundService;
 
     /**
+     * The index of the current round in the round list
+     */
+    private int currentRoundIndex;
+
+    /**
      * The next round
      */
     private Round currentRound;
+
+    /**
+     * The text that will display how much money the played earned
+     */
+    private static String moneyEarnedText = "You earned $";
+
+    /**
+     * The text that will display what random events have occurred
+     */
+    private static String randomEventsText = "No random events occurred";
+
+    /**
+     * The index of the previous round that used the giveMoney method
+     */
+    private static int previousIndexUsingGiveMoney = -1;
+
+    /**
+     * The index of the previous round that randomly chose if a random event will happen
+     */
+    private static int previousIndexUsingRandomEvents = -1;
+
+    /**
+     * The index of the previous round that used the addNewCart method
+     */
+    private static int previousIndexUsingAddNewCart = -1;
 
     /**
      * The difficulty of the next round chosen by the user
@@ -70,6 +100,7 @@ public class PreRoundController {
     public PreRoundController(GameEnvironment game) {
         this.game = game;
         preRoundService = new PreRoundService(this.game);
+        currentRoundIndex = game.getCurrentRoundIndex();
         currentRound = preRoundService.getCurrentRound();
     }
 
@@ -86,21 +117,34 @@ public class PreRoundController {
             completionLabel.setText("You completed the round, "+name+"!");
         }
 
-        String amountGiven = preRoundService.giveMoney();
-        moneyEarned.setText("You earned "+amountGiven);
-
-        Random random = new Random();
-        int randomInt = random.nextInt(10);
-        if (randomInt == 0){
-            int XPGained = preRoundService.towerGainsXP();
-            randomEvents.setText("One of your towers has gained "+XPGained+" XP");
-        } else if (randomInt == 1){
-            preRoundService.towerBreaks();
-            randomEvents.setText("One of your towers has broken down");
+        if (previousIndexUsingGiveMoney != currentRoundIndex) {
+            previousIndexUsingGiveMoney = currentRoundIndex;
+            String amountGiven = preRoundService.giveMoney();
+            moneyEarnedText = "You earned " + amountGiven;
         }
 
-        preRoundService.addNewCart();
+        if (previousIndexUsingRandomEvents != currentRoundIndex) {
+            previousIndexUsingRandomEvents = currentRoundIndex;
+            Random random = new Random();
+            int randomInt = random.nextInt(10);
+            if (randomInt == 0) {
+                int XPGained = preRoundService.towerGainsXP();
+                randomEventsText = "One of your towers has gained " + XPGained + " XP";
+            } else if (randomInt == 1) {
+                preRoundService.towerBreaks();
+                randomEventsText = "One of your towers has broken down";
+            }
+        }
+
+        if (previousIndexUsingAddNewCart != currentRoundIndex) {
+            previousIndexUsingAddNewCart = currentRoundIndex;
+            preRoundService.addNewCart();
+        }
+
         preRoundService.addNewResourceType();
+
+        moneyEarned.setText(moneyEarnedText);
+        randomEvents.setText(randomEventsText);
         displayOptions();
     }
 
@@ -157,6 +201,8 @@ public class PreRoundController {
             } else if (chosenDifficulty.equals("Hard")) {
                 preRoundService.setHardDifficulty();
             }
+
+            randomEventsText = "No random events occurred";
 
             game.increaseCurrentRoundIndex();
             int nextRoundIndex = game.getCurrentRoundIndex();

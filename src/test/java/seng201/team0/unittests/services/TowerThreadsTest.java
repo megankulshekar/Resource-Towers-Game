@@ -44,6 +44,7 @@ public class TowerThreadsTest {
         }
         int index = game.getCurrentRoundIndex();
         testCurrentRound = game.getRounds().get(index);
+        testCurrentRound.resetResourceTypes();
         testCurrentRound.createCarts();
     }
 
@@ -59,9 +60,10 @@ public class TowerThreadsTest {
         testThread.start();
         testThread.join();
         List<Cart> carts = testCurrentRound.getCarts();
-        assertTrue(carts.get(0).isFull());
-        assertTrue(carts.get(1).isFull());
-        assertTrue(carts.get(2).isFull());
+        for (Cart cart : carts){
+            assertTrue(cart.isFull());
+            assertEquals(cart.getSize(), cart.getCurrentLevel());
+        }
     }
 
     /**

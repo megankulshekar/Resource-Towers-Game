@@ -260,6 +260,7 @@ public class ShopController {
 
     /**
      * Displays the visibility of labels for 3 seconds at a time when the buy, sell, or upgrade button is clicked
+     * @param label The label being made visible
      */
     //Reference for Label Visibility: https://stackoverflow.com/questions/29487645/how-to-make-a-label-visible-for-a-certain-time-and-then-should-be-invisible-with
     public void setLabelVisibility(Label label){

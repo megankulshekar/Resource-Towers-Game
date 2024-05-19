@@ -31,10 +31,6 @@
       <RowConstraints maxHeight="348.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TextField fx:id="nameTextField" onKeyTyped="#onNameEntered" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-         <GridPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </GridPane.margin></TextField>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="127.0" text="Enter Name:" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
          <font>
             <Font size="14.0" />
@@ -203,11 +199,12 @@
       </Label>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
-            <Label fx:id="nameWarningLabel" layoutX="2.0" layoutY="65.0" prefHeight="25.0" prefWidth="206.0">
+            <Label fx:id="nameWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="65.0" prefHeight="25.0" prefWidth="206.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
+            <TextField fx:id="nameTextField" layoutX="14.0" layoutY="24.0" onKeyTyped="#onNameEntered" prefHeight="30.0" prefWidth="171.0" />
          </children>
       </AnchorPane>
    </children>

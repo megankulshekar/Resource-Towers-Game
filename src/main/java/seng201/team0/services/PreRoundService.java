@@ -68,7 +68,7 @@ public class PreRoundService {
         do {
             int randomIndex = random.nextInt(5);
             randomTower = game.getInventory().getMainTowers(randomIndex);
-        } while (randomTower == null);
+        } while (randomTower == null || randomTower.isBroken());
         return randomTower;
     }
 

@@ -30,7 +30,7 @@ public class Inventory {
     /**
      * Stores upgrade descriptions for use in other classes
      */
-    private ArrayList<String> upgradesBought = new ArrayList<String>();
+    private List<String> upgradesBought = new ArrayList<String>();
 
     /**
      * Array of items the user has bought
@@ -123,7 +123,7 @@ public class Inventory {
      * Gets list of upgrades descriptions
      * @return Descriptions of all upgrades the player has
      */
-    public ArrayList<String> getUpgradesBought() {
+    public List<String> getUpgradesBought() {
         return upgradesBought;
     }
 

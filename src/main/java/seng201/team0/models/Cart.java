@@ -95,7 +95,7 @@ public class Cart {
     }
 
     /**
-     * Gets the description of the cart's type, how full it is and amount of time it has left
+     * Gets the description of the cart's type, how full it is and the amount of time it has left
      * @return Description of the cart
      */
     public String getDescription(){
