@@ -1,8 +1,10 @@
 package seng201.team0.gui;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
 import seng201.team0.services.InventoryService;
@@ -37,6 +39,9 @@ public class InventoryController {
 
     @FXML
     private Label reserveTower1Label, reserveTower2Label, reserveTower3Label, reserveTower4Label, reserveTower5Label;
+
+    @FXML
+    private Label errorMessageLabel;
 
     @FXML
     private Button moveTowerButton;
@@ -138,6 +143,22 @@ public class InventoryController {
     }
 
     /**
+     * Displays the visibility of labels for 3 seconds at a time when the buy, sell, or upgrade button is clicked
+     * @param label The label being made visible
+     */
+    //Reference for Label Visibility: https://stackoverflow.com/questions/29487645/how-to-make-a-label-visible-for-a-certain-time-and-then-should-be-invisible-with
+    public void setLabelVisibility(Label label){
+        label.setVisible(true);
+        PauseTransition labelDisappear = new PauseTransition(
+                Duration.seconds(3)
+        );
+        labelDisappear.setOnFinished(
+                event -> label.setVisible(false)
+        );
+        labelDisappear.play();
+    }
+
+    /**
      * Initiates which towers are being swapped and ensures there is always at least one tower in main
      */
     @FXML
@@ -145,6 +166,10 @@ public class InventoryController {
         if (mainTowerIndex != -1 && reserveTowerIndex != -1) {
             if (inventoryService.selectTowers(game, mainTowerIndex, reserveTowerIndex)) {
                 swappingTowers();
+            }
+            else{
+                errorMessageLabel.setText("You must have at least one tower in Main Towers");
+                setLabelVisibility(errorMessageLabel);
             }
         }
     }

@@ -35,11 +35,12 @@ public class EndScreenController {
 
     /**
      * Labels showing whether the user won or lost,
+     * number of rounds chosen,
      * number of rounds completed,
      * and amount of money the user has at the end of the game
      */
     @FXML
-    private Label result, roundsCompleted, moneyGained;
+    private Label result, roundsChosen, roundsCompleted, moneyGained;
 
     /**
      * Constructor
@@ -78,6 +79,7 @@ public class EndScreenController {
             }
             roundsCompleted.setText("You completed "+(currentRoundIndex+1)+" out of "+numberOfRounds+" rounds");
         }
+        roundsChosen.setText("You chose "+numberOfRounds+" rounds");
         moneyGained.setText("You gained a total of $"+money);
     }
 }

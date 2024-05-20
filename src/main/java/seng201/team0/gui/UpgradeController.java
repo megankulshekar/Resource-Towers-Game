@@ -28,7 +28,7 @@ public class UpgradeController {
      * Label for outputting success message of upgrade being applied or not applied
      */
     @FXML
-    private Label messageLabel;
+    private Label mainMessageLabel, reserveMessageLabel;
 
     /**
      * Label showing which upgrade the user has chosen
@@ -82,10 +82,10 @@ public class UpgradeController {
     private Button okayReserveTowerButton;
 
     /**
-     * Button for confirming selection of upgrade that will be applied to tower
+     * Buttons for confirming selection of upgrade that will be applied to tower
      */
     @FXML
-    private Button okayButton;
+    private Button okayMainButton, okayReserveButton;
 
     /**
      * Button for leaving the Upgrade GUI
@@ -147,9 +147,9 @@ public class UpgradeController {
 
     /**
      * Helper function for buttons that cannot initially be clicked
-     * @param items
-     * @param button
-     * @param <T>
+     * @param items List of towers
+     * @param button Button that is disabled
+     * @param <T> Type of objects in list
      */
     public <T> void disableButtons(ListView<T> items, Button button){
         items.getSelectionModel().selectedItemProperty().addListener((observer, oldSelection, newSelection) -> {
@@ -301,39 +301,63 @@ public class UpgradeController {
     }
 
     /**
-     * When the okay button is clicked, checks if the upgrade exists in the player's upgrades list and if it does, upgrades the selected tower
+     * When the okay button on the main towers tab is clicked, checks if the upgrade exists in the player's upgrades list and if it does, upgrades the main tower selected
      * If the upgrade does not exist, outputs an error message on the GUI to the player
      */
     @FXML
-    public void onOkay(){
-        if (mainUpgradeChosenLabel.getText() == "" && reserveUpgradeChosenLabel.getText() == ""){
-            messageLabel.setText("You have not chosen an upgrade");
-            setLabelVisibility(messageLabel);
+    public void onOkayMain() {
+        if (mainTowerChosenLabel.getText() == "") {
+            mainMessageLabel.setText("You have not chosen a tower");
+            setLabelVisibility(mainMessageLabel);
+        } else if (mainUpgradeChosenLabel.getText() == "") {
+            mainMessageLabel.setText("You have not chosen an upgrade");
+            setLabelVisibility(mainMessageLabel);
+        } else {
+            upgradeItem(mainMessageLabel);
         }
-        else if (mainTowerChosenLabel.getText() == "" && reserveTowerChosenLabel.getText() == ""){
-            messageLabel.setText("You have not chosen a tower");
-            setLabelVisibility(messageLabel);
+    }
+
+    /**
+     * When the okay button on the reserve towers tab is clicked, checks if the upgrade exists in the player's upgrades list and if it does, upgrades the reserve tower selected
+     * If the upgrade does not exist, outputs an error message on the GUI to the player
+     */
+    @FXML
+    public void onOkayReserve(){
+        if (reserveTowerChosenLabel.getText() == "") {
+            reserveMessageLabel.setText("You have not chosen a tower");
+            setLabelVisibility(reserveMessageLabel);
         }
-        else {
-            if (indexOfUpgradeItem != -1 && towerIndex != -1) {
-                if (towerIndex >= 5) {
-                    towerIndex = towerIndex - 5;
-                    Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
-                    towerDescriptionIndex = 1;
-                    String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
-                    messageLabel.setText(message);
-                    setLabelVisibility(messageLabel);
-                } else if (towerIndex < 5) {
-                    Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
-                    towerDescriptionIndex = 2;
-                    String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
-                    messageLabel.setText(message);
-                    setLabelVisibility(messageLabel);
-                }
-            } else if (indexOfUpgradeItem == -1) {
-                messageLabel.setText("Sorry! You do not have that upgrade!");
+        else if (reserveUpgradeChosenLabel.getText() == "") {
+            reserveMessageLabel.setText("You have not chosen an upgrade");
+            setLabelVisibility(reserveMessageLabel);
+        }
+        else{
+            upgradeItem(reserveMessageLabel);
+        }
+    }
+
+    /**
+     * Helper function that applies upgrade and upgrade description to tower label if it exists
+     */
+    public void upgradeItem(Label messageLabel){
+        if (indexOfUpgradeItem != -1 && towerIndex != -1) {
+            if (towerIndex >= 5) {
+                towerIndex = towerIndex - 5;
+                Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();
+                towerDescriptionIndex = 1;
+                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                messageLabel.setText(message);
+                setLabelVisibility(messageLabel);
+            } else if (towerIndex < 5) {
+                Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
+                towerDescriptionIndex = 2;
+                String message = upgradeService.applyUpgrade(towerIndex, towerDescriptionIndex, tower, indexOfUpgradeItem, upgradeDescription);
+                messageLabel.setText(message);
                 setLabelVisibility(messageLabel);
             }
+        } else if (indexOfUpgradeItem == -1) {
+            messageLabel.setText("Sorry! You do not have that upgrade!");
+            setLabelVisibility(messageLabel);
         }
     }
 
