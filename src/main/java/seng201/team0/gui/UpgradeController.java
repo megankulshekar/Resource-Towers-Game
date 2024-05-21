@@ -202,6 +202,7 @@ public class UpgradeController {
     public void onOkayMainTower(){
         if (reserveSelected == true){
             mainTowerChosenLabel.setText("You have chosen a reserve tower to upgrade. A main tower cannot be chosen. \n" + "If this is a mistake, click exit and re-enter the upgrade page.");
+            okayMainButton.setDisable(true);
         }
         else if (mainSelected == false) {
             Tower tower = mainTowerList.getSelectionModel().getSelectedItem();
@@ -223,6 +224,7 @@ public class UpgradeController {
     public void onOkayReserveTower(){
         if (mainSelected == true){
             reserveTowerChosenLabel.setText("You have chosen a main tower to upgrade. A reserve tower cannot be chosen. \n" + "If this is a mistake, click exit and re-enter the upgrade page.");
+            okayReserveButton.setDisable(true);
         }
         else if (reserveSelected == false){
             Tower tower = reserveTowerList.getSelectionModel().getSelectedItem();

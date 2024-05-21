@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.StartScreenController">
+<GridPane alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.StartScreenController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="200.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.0" minWidth="10.0" prefWidth="200.0" />
@@ -189,14 +189,6 @@
             <Insets left="5.0" right="5.0" />
          </GridPane.margin>
       </Label>
-      <Label fx:id="towerWarningLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="140.0" prefWidth="193.0" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="5">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <GridPane.margin>
-            <Insets left="5.0" right="5.0" />
-         </GridPane.margin>
-      </Label>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
          <children>
             <Label fx:id="nameWarningLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" layoutY="65.0" prefHeight="25.0" prefWidth="206.0">
@@ -205,6 +197,16 @@
                </font>
             </Label>
             <TextField fx:id="nameTextField" layoutX="14.0" layoutY="24.0" onKeyTyped="#onNameEntered" prefHeight="30.0" prefWidth="171.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="41.0" prefWidth="277.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+         <children>
+            <Label fx:id="towerWarningLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="131.0" prefWidth="199.0" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="129.0" prefHeight="27.0" prefWidth="199.0" text="Buy Tower: N/A       Sell Tower: $3" />
          </children>
       </AnchorPane>
    </children>
