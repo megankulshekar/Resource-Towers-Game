@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Class for testing units in testGame class
  */
-public class GameTest {
+public class GameEnvironmentTest {
     /**
      * testGame class
      */
