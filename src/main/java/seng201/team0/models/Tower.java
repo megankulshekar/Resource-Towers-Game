@@ -112,10 +112,10 @@ public abstract class Tower implements Purchasable {
     }
 
     /**
-     * Increases tower's level by 1
-     * Reduces XP modulo 10
-     * Increases tower's resource amount by 2
-     * Decreases tower's reload speed by 2
+     * Increases tower's level by 1,
+     * reduces XP modulo 10,
+     * increases tower's resource amount by 2 and
+     * decreases tower's reload speed by 2
      */
     public void levelUp(){
         level++;

@@ -37,6 +37,7 @@ public class StartScreenService {
     /**
      * Creates description of specific coal tower chosen
      * @param towerChosen Which tower is chosen
+     * @return Description of the chosen tower
      */
     public String towerDescriptionCreation(int towerChosen){
         Tower coalTower = new CoalTower();
