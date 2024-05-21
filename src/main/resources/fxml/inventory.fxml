@@ -189,7 +189,7 @@
             </Button>
          </children>
       </GridPane>
-      <Label fx:id="errorMessageLabel" contentDisplay="CENTER" layoutX="253.0" layoutY="574.0" prefHeight="19.0" prefWidth="293.0">
+      <Label fx:id="errorMessageLabel" contentDisplay="CENTER" layoutX="220.0" layoutY="574.0" prefHeight="19.0" prefWidth="382.0">
          <font>
             <Font size="13.0" />
          </font></Label>
