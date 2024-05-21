@@ -1,5 +1,5 @@
 package seng201.team0.gui;
-
+// Some of the following code is reused from Tutorial 2 Extension - Advanced JavaFX features examples
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import seng201.team0.models.GameEnvironment;
 import seng201.team0.models.Tower;
-import seng201.team0.services.ShopService;
 import seng201.team0.services.UpgradeService;
 
 /**
@@ -37,20 +36,26 @@ public class UpgradeController {
     private Label mainUpgradeChosenLabel, reserveUpgradeChosenLabel;
 
     /**
-     * Label showing which tower the user has chosen
+     * Label showing the main tower chosen
      */
     @FXML
     private Label mainTowerChosenLabel;
 
+    /**
+     * Label showing the reserve tower chosen
+     */
     @FXML
     private Label reserveTowerChosenLabel;
 
     /**
-     * List view of scrollable main towers and reserve towers list
+     * List view of scrollable main towers list
      */
     @FXML
     private ListView<Tower>mainTowerList;
 
+    /**
+     * List view of scrollable reserve towers list
+     */
     @FXML
     private ListView<Tower>reserveTowerList;
 
@@ -61,11 +66,14 @@ public class UpgradeController {
     private MenuButton upgradesMenuButton;
 
     /**
-     * List of items in main tower and reserve tower upgrade drop down menu
+     * List of items in main tower upgrade drop down menu
      */
     @FXML
     private MenuItem repairItem, upgradeXPItem, upgradeReloadSpeedItem, upgradeResourceAmountItem;
 
+    /**
+     * List of items in reserve tower upgrade drop down menu
+     */
     @FXML
     private MenuItem reserveRepairItem, reserveUpgradeXPItem, reserveUpgradeReloadSpeedItem, reserveUpgradeResourceAmountItem;
 
@@ -103,15 +111,24 @@ public class UpgradeController {
      */
     private String upgradeDescription;
 
+    /**
+     * Variable to retrieve proper tower description, initialized to 0
+     */
     private int towerDescriptionIndex = 0;
 
     /**
-     * Keeps track of whether a main tower or reserve tower has been selected to upgrade
+     * Keeps track of whether a main tower has been selected to upgrade
      */
     private Boolean mainSelected = false;
 
+    /**
+     * Keeps track of whether a reserve tower has been selected to upgrade
+     */
     private Boolean reserveSelected = false;
 
+    /**
+     * Variable to store which tower has been chosen within the inventory arrays, initialized to -1
+     */
     private int towerIndex = -1;
 
     /**

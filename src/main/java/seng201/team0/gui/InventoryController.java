@@ -1,5 +1,5 @@
 package seng201.team0.gui;
-
+// Some of the following code is reused from Tutorial 2 - Structuring applications with JavaFX
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,29 +26,50 @@ public class InventoryController {
     private InventoryService inventoryService;
 
     /**
-     * Buttons and labels are separate attributes in the GUI layout
+     * Buttons for main inventory towers
      */
     @FXML
     private Button invenTower1Button, invenTower2Button, invenTower3Button, invenTower4Button, invenTower5Button;
 
+    /**
+     * Labels for main inventory towers
+     */
     @FXML
     private Label tower1Label, tower2Label, tower3Label, tower4Label, tower5Label;
 
+    /**
+     * Buttons for reserve inventory towers
+     */
     @FXML
     private Button reserveTower1Button, reserveTower2Button, reserveTower3Button, reserveTower4Button, reserveTower5Button;
 
+    /**
+     * Labels for reserve inventory towers
+     */
     @FXML
     private Label reserveTower1Label, reserveTower2Label, reserveTower3Label, reserveTower4Label, reserveTower5Label;
 
+    /**
+     * Label for error message if towers cannot be swapped
+     */
     @FXML
     private Label errorMessageLabel;
 
+    /**
+     * Button to swap two towers
+     */
     @FXML
     private Button moveTowerButton;
 
+    /**
+     * Button to launch Upgrade GUI page
+     */
     @FXML
     private Button upgradeTowerButton;
 
+    /**
+     * Button to exit Inventory GUI page
+     */
     @FXML
     private Button exitButton;
 

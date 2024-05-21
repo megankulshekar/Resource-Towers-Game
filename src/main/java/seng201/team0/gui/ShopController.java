@@ -1,5 +1,5 @@
 package seng201.team0.gui;
-
+// Some of the following code is reused from Tutorial 2 Extension - Advanced JavaFX features examples
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
@@ -11,10 +11,7 @@ import javafx.util.Duration;
 import seng201.team0.models.*;
 import seng201.team0.services.ShopService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Class for controlling the shop GUI
@@ -31,11 +28,14 @@ public class ShopController {
     private ShopService shopService;
 
     /**
-     * Buttons and labels for each of the tower types
+     * Buttons for each of the tower types
      */
     @FXML
     private Button copperButton, ironButton, goldButton, uraniumButton, diamondButton;
 
+    /**
+     * Labels for each of the tower types
+     */
     @FXML
     private Label copperLabel, ironLabel, goldLabel, uraniumLabel, diamondLabel;
 
@@ -46,62 +46,92 @@ public class ShopController {
     private Label moneyLabel;
 
     /**
-     * Buying tower button and corresponding label
+     * Button for buying tower
      */
     @FXML
     private Button buyTowerButton;
 
+    /**
+     * Label to display which tower has been bought
+     */
     @FXML
     private Label towerBoughtLabel;
 
     /**
-     * List view of player's tower inventory
+     * List view of player's main tower inventory
      */
     @FXML
     private ListView <Tower>sellMainTowerList;
 
+    /**
+     * List view of player's reserve tower inventory
+     */
     @FXML
     private ListView <Tower>sellReserveTowerList;
 
     /**
-     * Selling tower button and corresponding label
+     * Selling main tower button
      */
     @FXML
     private Button sellMainTowerButton;
 
+    /**
+     * Selling reserving tower button
+     */
     @FXML
     private Button sellReserveTowerButton;
 
+    /**
+     * Label to display that main tower has been sold
+     */
     @FXML
     private Label mainTowerSoldLabel;
 
+    /**
+     * Label to display that reserve tower has been sold
+     */
     @FXML
     private Label reserveTowerSoldLabel;
 
     /**
-     * Buttons and labels for each of the upgrades available
+     * Buttons for each of the upgrades available
      */
     @FXML
     private Button repairItemButton, upgradeXPButton, upgradeReloadSpeedButton, upgradeResourceAmountButton;
 
+    /**
+     * Label for each of the upgrades available
+     */
     @FXML
     private Label repairItem, upgradeXP, upgradeReloadSpeed, upgradeResourceAmount;
 
     /**
-     * Upgrading button and corresponding label
+     * Button for buying an upgrade
      */
     @FXML
     private Button buyUpgradeButton;
 
+    /**
+     * Label to display that upgrade has been bought
+     */
     @FXML
     private Label upgradeBoughtLabel;
 
+    /**
+     * List of upgrades that can be sold from player's inventory
+     */
     @FXML
     private ListView<String> sellUpgradeList;
 
+    /**
+     * Button to sell upgrade
+     */
     @FXML
     private Button sellUpgradeButton;
 
+    /**
+     * Label to display that upgrade has been sold
+     */
     @FXML
     private Label upgradeSoldLabel;
 
@@ -118,10 +148,13 @@ public class ShopController {
     private Label uraniumCostLabel, diamondCostLabel;
 
     /**
-     * Initializes indices of tower types and upgrade selection button to -1
+     * Initializes indices of tower types button to -1
      */
     private int boughtTowerIndex = -1;
 
+    /**
+     * Initializes indices of upgrade selection button to -1
+     */
     private int boughtUpgradeIndex = -1;
 
     /**
@@ -169,8 +202,6 @@ public class ShopController {
         upgradesLabels = List.of(repairItem, upgradeXP, upgradeReloadSpeed, upgradeResourceAmount);
 
         specialTowersVisibility();
-
-        //updates the player's remaining money periodically
         updateMoneyLabel();
 
         for (int i = 0; i < boughtTowerButtons.size(); i++) {
@@ -211,9 +242,9 @@ public class ShopController {
 
     /**
      * Helper function for buttons that cannot initially be clicked
-     * @param items
-     * @param button
-     * @param <T>
+     * @param items List of towers
+     * @param button Button that is disabled
+     * @param <T> Type of objects in list
      */
     public <T> void disableButtons(ListView<T> items, Button button){
         items.getSelectionModel().selectedItemProperty().addListener((observer, oldSelection, newSelection) -> {
@@ -227,7 +258,7 @@ public class ShopController {
     }
 
     /**
-     * The Uranium and Diamond towers cannot be bought until after 8 rounds have been successfully passed
+     * Function to disable the Uranium and Diamond tower buttons until after 8 rounds have been successfully passed
      */
     public void specialTowersVisibility(){
         if (game.getCurrentRoundIndex() < 8){
@@ -237,7 +268,7 @@ public class ShopController {
     }
 
     /**
-     * Function to update the display of the player's money
+     * Function to update the display of the player's money periodically
      */
     //Reference for use of Timeline: https://stackoverflow.com/questions/65252152/how-to-update-a-label-continually-in-javafx
     public void updateMoneyLabel(){

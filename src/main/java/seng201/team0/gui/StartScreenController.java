@@ -1,5 +1,5 @@
 package seng201.team0.gui;
-
+// Some of the following code is reused from Tutorial 2 - Structuring applications with JavaFX
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.models.*;
@@ -191,7 +191,7 @@ public class StartScreenController {
     }
 
     /**
-     * When the Start Game button is clicked, the screen shown ends
+     * When the Start Game button is clicked, the towers selected are added to inventory and the Round GUI is launched
      */
     @FXML
     public void onStartGame(){

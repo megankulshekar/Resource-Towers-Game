@@ -1,5 +1,5 @@
 package seng201.team0.gui;
-
+// Some of the following code is reused from Tutorial 2 Extension - Advanced JavaFX features examples
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
