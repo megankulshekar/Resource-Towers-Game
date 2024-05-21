@@ -357,6 +357,7 @@ public class UpgradeController {
 
     /**
      * Helper function that applies upgrade and upgrade description to tower label if it exists
+     * @param messageLabel Label for the tower the upgrade is applied to
      */
     public void upgradeItem(Label messageLabel){
         if (indexOfUpgradeItem != -1 && towerIndex != -1) {

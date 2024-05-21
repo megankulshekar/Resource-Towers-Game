@@ -104,7 +104,7 @@ public class Cart {
     }
 
     /**
-     * Increases current amount of resources in the cart
+     * Increases current amount of resources in the cart.
      * If current level is greater than or equal to size, cart is set to full
      * @param increaseAmount Amount current level is increased by
      */

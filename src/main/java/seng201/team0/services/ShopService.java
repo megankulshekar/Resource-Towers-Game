@@ -20,7 +20,7 @@ public class ShopService {
     }
 
     /**
-     * Buying tower on backend
+     * Buys a tower from the shop if player has enough money
      * @param boughtTowerIndex Location of which tower will be bought
      * @return Success message
      */
@@ -65,7 +65,7 @@ public class ShopService {
     }
 
     /**
-     * Selling main tower on backend
+     * Sells a main tower from the player's inventory
      * @param index Location of main tower selected in list
      * @return Success message
      */
@@ -93,7 +93,7 @@ public class ShopService {
     }
 
     /**
-     * Selling reserve tower on backend
+     * Sells reserve tower from the player's inventory
      * @param index Location of reserve tower selected in list
      * @return Success message
      */
@@ -109,7 +109,7 @@ public class ShopService {
     }
 
     /**
-     * Buying upgrade on backend
+     * Buys an upgrade from the shop if the player has enough money
      * @param boughtUpgradeIndex Location of upgrade selected in list
      * @param upgradesLabel Corresponding description of upgrade
      * @return Success message
@@ -142,7 +142,7 @@ public class ShopService {
     }
 
     /**
-     * Selling upgrade on backend
+     * Sells an upgrade from the player's inventory
      * @param index Location of upgrade selected in list
      * @return Success message
      */
