@@ -63,7 +63,7 @@ public class UpgradeController {
      * Button for drop down menu of upgrades
      */
     @FXML
-    private MenuButton upgradesMenuButton;
+    private MenuButton upgradesMenuButton, reserveUpgradesMenuButton;
 
     /**
      * List of items in main tower upgrade drop down menu
