@@ -29,3 +29,8 @@
 1. Open a command line interface inside the project directory and run `./gradlew jar` to create a packaged Jar. The Jar file is located at build/libs/seng201_team0-1.0-SNAPSHOT.jar
 2. Navigate to the build/libs/ directory (you can do this with `cd build/libs`)
 3. Run the command `java -jar seng201_team0-1.0-SNAPSHOT.jar` to open the application
+
+## Run Our Specific Jar
+1. Access the Jar from the `SENG201Submission.zip` file
+2. Open a command line interface within the directory where the Jar file named `cme110_mku71_ResourceTowersGame.jar` is located
+3. Run the command `java -jar cme110_mku71_ResourceTowersGame.jar` to open the application
